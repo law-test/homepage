@@ -4,15 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>법학경시대회 | Korean Law Olympiad</title>
-  <meta name="description" content="제7회 법학경시대회 공식 홈페이지. 일정, 결과 안내, 공지사항, 문제 샘플, 응시자 정보와 언론보도를 확인할 수 있습니다." />
+  <meta name="description" content="제8회 법학경시대회 2026년 8월 중순 개최 예정. 일정, 공지사항, 문제 샘플, 응시자 정보와 언론보도를 확인할 수 있습니다." />
 
   <meta property="og:title" content="법학경시대회 | Korean Law Olympiad" />
   <meta property="og:description" content="학력·학벌·지역·경제력의 진입장벽 없이, 미래를 이끌 법학 인재를 발굴하고 양성합니다." />
-  <meta property="og:image" content="https://law-test.github.io/homepage/assets/images/index-image-1.jpg" />
-  <meta property="og:url" content="https://law-test.github.io/homepage/" />
+  <meta property="og:image" content="https://lawtest.co.kr/assets/images/index-image-1.jpg" />
+  <meta property="og:url" content="https://lawtest.co.kr/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="canonical" href="https://law-test.github.io/homepage/" />
+  <link rel="canonical" href="https://lawtest.co.kr/" />
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
+  <!-- SEO · Extended Meta -->
+  <meta name="author" content="선율 법학경시대회 위원회" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="keywords" content="법학경시대회, 법학경시, 헌법, 민법, 형법, 오픈북, 비대면, AI 감독, 법학도, 로스쿨, 변호사시험, 법학 대회" />
+  <meta property="og:site_name" content="법학경시대회 · Korean Law Olympiad" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta name="twitter:title" content="법학경시대회 | Korean Law Olympiad" />
+  <meta name="twitter:description" content="학력·학벌·지역·경제력의 진입장벽 없이, 미래를 이끌 법학 인재를 발굴하고 양성합니다." />
+  <meta name="twitter:image" content="https://lawtest.co.kr/assets/images/index-image-1.jpg" />
+  <meta name="theme-color" content="#1B3A6F" />
+  <meta name="msapplication-TileColor" content="#1B3A6F" />
+  <meta name="msapplication-tooltip" content="법학경시대회" />
+  <meta name="application-name" content="법학경시대회" />
+  <meta name="apple-mobile-web-app-title" content="법학경시대회" />
+  <meta name="naver-site-verification" content="869c2aa07c02035889e2b2f7fc77f84284a44973" />
 
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="stylesheet" as="style" crossorigin
@@ -793,6 +814,108 @@
     }
     .sponsor-list span:last-child::after { display: none; }
 
+    /* SPONSOR CARDS */
+    .sponsor-intro {
+      max-width: 920px;
+      margin: 0 auto 40px;
+      text-align: center;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.75;
+    }
+    .sponsor-intro strong { color: var(--ink); font-weight: 600; }
+    .sponsor-cat-head {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin: 40px 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .sponsor-cat-head:first-of-type { margin-top: 0; }
+    .sponsor-cat-head h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0;
+      letter-spacing: -0.005em;
+    }
+    .sponsor-cat-head .cat-count {
+      font-size: 12px;
+      color: var(--text-mute);
+      letter-spacing: 0.04em;
+    }
+    .sponsor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 860px) { .sponsor-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 540px) { .sponsor-grid { grid-template-columns: 1fr; } }
+
+    .sponsor-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s;
+    }
+    .sponsor-card:hover {
+      border-color: var(--navy);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px -8px rgba(16, 41, 83, 0.15);
+    }
+    .sponsor-card .sp-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 4px;
+      line-height: 1.35;
+    }
+    .sponsor-card .sp-en {
+      display: block;
+      font-size: 11px;
+      color: var(--text-mute);
+      letter-spacing: 0.04em;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .sponsor-card .sp-desc {
+      font-size: 12.5px;
+      line-height: 1.7;
+      color: var(--text-soft);
+      margin: 14px 0 16px;
+      flex: 1;
+    }
+    .sponsor-card .sp-link {
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .sponsor-card .sp-link::after { content: '→'; transition: transform 0.15s; }
+    .sponsor-card:hover .sp-link { color: var(--gold-deep); }
+    .sponsor-card:hover .sp-link::after { transform: translateX(4px); }
+
+    .host-line {
+      margin-top: 32px;
+      padding: 18px 24px;
+      background: var(--navy);
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+    .host-line strong { color: var(--gold); font-weight: 700; margin-right: 6px; }
+
     /* ============================================================
        FOOTER
        ============================================================ */
@@ -870,6 +993,64 @@
       }
     }
   </style>
+
+
+  <!-- Structured Data · JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "법학경시대회 위원회",
+  "alternateName": "Korean Law Olympiad Committee",
+  "url": "https://lawtest.co.kr",
+  "logo": "https://lawtest.co.kr/assets/images/logo.png",
+  "email": "info@lawtest.co.kr",
+  "telephone": "+82-10-3378-9392",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "새문안로5길 13, 지하1층 29호 (당주동, 변호사회관)",
+    "addressLocality": "종로구",
+    "addressRegion": "서울특별시",
+    "addressCountry": "KR"
+  },
+  "sameAs": [
+    "https://smartstore.naver.com/lawtest/",
+    "https://namu.wiki/w/%EB%B2%95%ED%95%99%EA%B2%BD%EC%8B%9C%EB%8C%80%ED%9A%8C"
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "법학경시대회",
+  "alternateName": "Korean Law Olympiad",
+  "url": "https://lawtest.co.kr",
+  "inLanguage": "ko-KR",
+  "description": "학력·학벌·지역·경제력의 진입장벽 없이, 미래를 이끌 법학 인재를 발굴하고 양성합니다."
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "제8회 법학경시대회",
+  "description": "비대면·오픈북 방식으로 시행되는 법학경시대회. 헌법·민법·형법 100문항 100분 100점 만점.",
+  "startDate": "2026-08",
+  "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "VirtualLocation",
+    "url": "https://lawtest.co.kr"
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "선율 법학경시대회 위원회",
+    "url": "https://lawtest.co.kr"
+  },
+  "image": "https://lawtest.co.kr/assets/images/index-image-1.jpg"
+}
+  </script>
 </head>
 <body>
   <a href="#main" class="skip-link">본문 바로가기</a>
@@ -923,8 +1104,8 @@
     <div class="container notice-bar-inner">
       <p>
         <span class="notice-bar-tag">알림</span>
-        제7회 법학경시대회가 2026년 5월 9일(토) 시행 완료되었습니다.
-        결과 발표는 5월 중순에 예정되어 있습니다.
+        제8회 법학경시대회 2026년 8월 중순 개최 예정.
+        제7회 결과 발표는 5월 중순에 예정되어 있습니다.
       </p>
       <a href="notice.html" class="notice-bar-link">상세 안내 →</a>
     </div>
@@ -935,8 +1116,8 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="hero-eyebrow">제7회 · 2026년 · Vol. VII</div>
-          <h1 class="hero-title">제7회 법학경시대회</h1>
+          <div class="hero-eyebrow">제8회 · 2026년 · Vol. VIII</div>
+          <h1 class="hero-title">제8회 법학경시대회</h1>
           <div class="hero-en">Korean Law Olympiad</div>
           <p class="hero-sub">
             <b>학력·학벌·지역·경제력의 진입장벽 없이</b>,
@@ -944,8 +1125,8 @@
             누구나 응시할 수 있되, 결과는 정직하게 변별되는 무대.
           </p>
           <div class="cta-row">
-            <a href="notice.html" class="btn btn-primary">
-              결과 발표 안내 <span class="arrow">→</span>
+            <a href="mailto:info@lawtest.co.kr" class="btn btn-primary">
+              사전 알림 신청 <span class="arrow">→</span>
             </a>
             <a href="about.html" class="btn btn-outline">
               대회 소개 <span class="arrow">→</span>
@@ -954,7 +1135,7 @@
         </div>
         <img class="hero-poster"
              src="https://law-test.github.io/homepage/assets/images/index-image-1.jpg"
-             alt="제7회 법학경시대회 공식 포스터" />
+             alt="제7회 법학경시대회 공식 포스터 (최근 회차)" />
       </div>
     </section>
 
@@ -963,9 +1144,9 @@
       <div class="container">
         <div class="info-grid">
           <div class="info-cell">
-            <div class="info-label">시행일</div>
-            <div class="info-value">2026.5.9 (토)</div>
-            <div class="info-detail">오후 2시 시행 완료</div>
+            <div class="info-label">시행 시기</div>
+            <div class="info-value">2026년 8월 중순</div>
+            <div class="info-detail">예정 · 세부 일정 추후 공지</div>
           </div>
           <div class="info-cell">
             <div class="info-label">방식</div>
@@ -975,12 +1156,12 @@
           <div class="info-cell">
             <div class="info-label">출제 과목</div>
             <div class="info-value">헌법 · 민법 · 형법</div>
-            <div class="info-detail">30 · 40 · 30점 배분</div>
+            <div class="info-detail">30 · 40 · 30점 배분 (예정)</div>
           </div>
           <div class="info-cell">
             <div class="info-label">분량</div>
             <div class="info-value">100문항 / 100분</div>
-            <div class="info-detail">객관식 · 100점 만점</div>
+            <div class="info-detail">단답·4지선다·OX 혼합 · 100점 만점</div>
           </div>
         </div>
       </div>
@@ -1035,7 +1216,7 @@
 
           <div>
             <div class="section-head">
-              <h2><span class="label">SCHEDULE</span>대회 일정</h2>
+              <h2><span class="label">SCHEDULE</span>제7회 일정 (진행 중)</h2>
               <a href="notice.html" class="more-link">상세 +</a>
             </div>
             <ul class="schedule-list">
@@ -1071,6 +1252,14 @@
                 </div>
                 <div class="schedule-step-date">결과 발표 후<br />별도 공지</div>
               </li>
+              <li class="schedule-item" style="border-top: 1px dashed var(--line-strong); padding-top: 16px; margin-top: 8px;">
+                <div class="schedule-icon" style="background: var(--gold-deep); color: #fff;"><span>+</span></div>
+                <div>
+                  <div class="schedule-step-label" style="color: var(--gold-deep);">NEXT · 제8회</div>
+                  <div class="schedule-step-title">제8회 법학경시대회 <span class="badge badge-pending">예정</span></div>
+                </div>
+                <div class="schedule-step-date">2026년<br />8월 중순</div>
+              </li>
             </ul>
           </div>
         </div>
@@ -1105,8 +1294,8 @@
             <h3>법조 생태계의 응원과 신뢰</h3>
             <p>
               변협 협회장·부회장, 서울지방변호사회 회장, 변호사공제재단 이사장 등
-              법조계 인사들이 본 대회를 응원합니다. 11개 기관의 후원과
-              7회까지 200명 이상의 응시 기록을 바탕으로 인재를 발굴합니다.
+              법조계 인사들이 본 대회를 응원합니다. 12개 기관의 후원과
+              제1~7회 합산 278명의 응시 기록을 바탕으로 인재를 발굴합니다.
             </p>
             <a href="voices.html">응원의 말 보기 →</a>
           </article>
@@ -1237,31 +1426,102 @@
     <section class="std sponsors">
       <div class="container">
         <div class="section-head">
-          <h2><span class="label">PATRONS</span>후원 기관</h2>
+          <h2><span class="label">PATRONS · 後援</span>후원 기관</h2>
         </div>
-        <p class="section-lede">
-          변호사공제재단을 비롯한 11개 기관이 법학경시대회를 후원합니다. 주최: 법률사무소 선율.
+        <p class="sponsor-intro">
+          <strong>변호사공제재단을 비롯한 12개 기관</strong>이 법학경시대회를 후원합니다.
+          공익 재단, 법조 전문 매체, 금융권, 로펌, 리걸테크·교육 플랫폼에 이르기까지
+          법조 생태계 전반의 신뢰와 지지를 받고 있습니다.
         </p>
 
-        <img src="https://law-test.github.io/homepage/assets/images/index-image-2.png"
-             class="sponsor-image"
-             alt="후원 기관 로고: 변호사공제재단, 대한변협법률구조재단, 법률신문, 신한은행 법조타운지점, LBOX, BYUCKCHON, EJM Company, 법무법인 JR, 법무법인 오킴스, 한국법학진흥원, Lawinus / 주최: 법률사무소 선율"
-             loading="lazy" />
+        <!-- Category 1: 공익·법조 기관 -->
+        <div class="sponsor-cat-head">
+          <h3>공익 · 법조 기관</h3>
+          <span class="cat-count">PUBLIC &amp; BAR-RELATED · 3개</span>
+        </div>
+        <div class="sponsor-grid">
+          <article class="sponsor-card">
+            <h4 class="sp-name">변호사공제재단<span class="sp-en">Korean Lawyers Mutual Aid Foundation</span></h4>
+            <p class="sp-desc">국민의 기본적 인권 보호와 법률서비스 접근성 향상을 위해 설립. 중대재난 피해자·유가족 지원, 변호사 배상책임 공제사업을 수행합니다.</p>
+            <a href="https://www.klcukba.or.kr/" target="_blank" rel="noopener" class="sp-link">홈페이지</a>
+          </article>
+          <article class="sponsor-card">
+            <h4 class="sp-name">대한변협법률구조재단<span class="sp-en">Korean Bar Legal Aid Foundation</span></h4>
+            <p class="sp-desc">2003년 설립, 기초생활보장 대상자, 한부모가정, 폭력 피해자, 다문화가정, 북한이탈주민, 난민 등 사회적 약자를 위한 법률구조 사업을 수행합니다.</p>
+            <a href="https://www.legalaid.or.kr/" target="_blank" rel="noopener" class="sp-link">홈페이지</a>
+          </article>
+          <article class="sponsor-card">
+            <h4 class="sp-name">한국법학능력시험원<span class="sp-en">LCT · Korean Legal Capability Test</span></h4>
+            <p class="sp-desc">법학 교육 및 시험 운영 연구를 수행하고 법학능력검증시험을 주관하는 비영리 사단법인. 법학 교육 활성화와 법률가 양성에 기여합니다.</p>
+            <a href="https://www.lct.or.kr/" target="_blank" rel="noopener" class="sp-link">홈페이지</a>
+          </article>
+        </div>
 
-        <p class="sponsor-list">
-          <span>재단법인 변호사공제재단</span>
-          <span>대한변협법률구조재단</span>
-          <span>법률신문</span>
-          <span>신한은행 법조타운지점</span>
-          <span>LBOX</span>
-          <span>BYUCKCHON</span>
-          <span>EJM Company</span>
-          <span>법무법인(유) JR</span>
-          <span>법무법인 오킴스</span>
-          <span>한국법학진흥원(KLAI)</span>
-          <span>Lawinus</span>
-          <span>법률사무소 선율</span>
-        </p>
+        <!-- Category 2: 매체·금융·로펌 -->
+        <div class="sponsor-cat-head">
+          <h3>법조 매체 · 금융 · 로펌</h3>
+          <span class="cat-count">MEDIA · BANKING · LAW FIRMS · 4개</span>
+        </div>
+        <div class="sponsor-grid">
+          <article class="sponsor-card">
+            <h4 class="sp-name">법률신문<span class="sp-en">Law Times · 法律新聞</span></h4>
+            <p class="sp-desc">75년 전통의 법률 전문 언론. 법조계 소식, 판결, 로펌·법조단체, 로스쿨·학계, 리걸에듀를 다룹니다. 수상자에게 리걸에듀 수강할인권을 제공합니다.</p>
+            <a href="https://www.lawtimes.co.kr/" target="_blank" rel="noopener" class="sp-link">홈페이지</a>
+          </article>
+          <article class="sponsor-card">
+            <h4 class="sp-name">신한은행 법조타운지점<span class="sp-en">Shinhan Bank · Legal Town Branch</span></h4>
+            <p class="sp-desc">서울 법조타운을 중심으로 법조계·법원 관련 금융서비스를 제공하는 37년 전통의 법원 전문 지점. 수상자에게 기념품과 금융권 진로 응원을 제공합니다.</p>
+            <a href="https://m.shinhan.com/rib/mnew/index.jsp?cr=210010724004&hwno=06167004" target="_blank" rel="noopener" class="sp-link">홈페이지</a>
+          </article>
+          <article class="sponsor-card">
+            <h4 class="sp-name">법무법인 오킴스<span class="sp-en">Law Firm Ohkims</span></h4>
+            <p class="sp-desc">ICT, 블록체인, 의료·헬스케어, 기업금융, 벤처캐피털, 사모펀드 등 첨단 산업과 기업 분야에 강점. 오성헌 대표변호사가 시상식 축사로 응원합니다.</p>
+            <a href="https://ohkimslaw.com/" target="_blank" rel="noopener" class="sp-link">홈페이지</a>
+          </article>
+          <article class="sponsor-card">
+            <h4 class="sp-name">법무법인(유) JR<span class="sp-en">Law Firm JR</span></h4>
+            <p class="sp-desc">형사·성범죄·교통·이혼·가사상속·민사·기업법무·노동·마약 등 다양한 업무를 다루는 법무법인. "당신의 권리, 그 이상의 가치를 보호합니다."</p>
+            <a href="https://www.lawfirmjr.com/" target="_blank" rel="noopener" class="sp-link">홈페이지</a>
+          </article>
+        </div>
+
+        <!-- Category 3: 리걸테크·교육·플랫폼 -->
+        <div class="sponsor-cat-head">
+          <h3>리걸테크 · 교육 · 플랫폼</h3>
+          <span class="cat-count">LEGAL TECH · EDUCATION · 5개</span>
+        </div>
+        <div class="sponsor-grid">
+          <article class="sponsor-card">
+            <h4 class="sp-name">엘박스 (LBOX)<span class="sp-en">LBOX · Legal AI &amp; Case Search</span></h4>
+            <p class="sp-desc">판례 검색과 법률 AI 서비스를 제공하는 리걸테크 기업. 대규모 판결문 데이터, AI 요약, 유사판례 검색, AI 질의응답, 사건일정관리를 제공합니다.</p>
+            <a href="https://lbox.kr/v2" target="_blank" rel="noopener" class="sp-link">홈페이지</a>
+          </article>
+          <article class="sponsor-card">
+            <h4 class="sp-name">벽촌 (BYUCKCHON)<span class="sp-en">BYUCKCHON · AI &amp; Platform</span></h4>
+            <p class="sp-desc">AI·플랫폼 개발 기업. 리걸테크 솔루션, 변호사 지식공유 플랫폼, AI 판결문 요약 솔루션, AI 법률 상담 챗봇을 개발합니다. 정민철 대표가 시상식 축사.</p>
+            <a href="https://byuckchon.com/" target="_blank" rel="noopener" class="sp-link">홈페이지</a>
+          </article>
+          <article class="sponsor-card">
+            <h4 class="sp-name">이제이엠컴퍼니<span class="sp-en">EJM Company · '우리가' Platform</span></h4>
+            <p class="sp-desc">도시정비조합 운영 효율화를 위한 디지털 플랫폼 '우리가'를 운영. 조합원 관리, 동의서 징구, 문서 관리, 총회관리, 전자투표 솔루션을 제공합니다.</p>
+            <a href="https://web.ejmc.kr/" target="_blank" rel="noopener" class="sp-link">홈페이지</a>
+          </article>
+          <article class="sponsor-card">
+            <h4 class="sp-name">한국법학진흥원<span class="sp-en">KLAI · Korea Law Advancement Institute</span></h4>
+            <p class="sp-desc">법학 교육 및 AI 전문가 교육 과정을 운영하는 교육원. 제7회 후원 참여 기관으로 보도되었습니다.</p>
+            <a href="https://klai.or.kr/" target="_blank" rel="noopener" class="sp-link">홈페이지</a>
+          </article>
+          <article class="sponsor-card">
+            <h4 class="sp-name">로이너스 (Lawinus)<span class="sp-en">Lawinus · 로스쿨 커뮤니티</span></h4>
+            <p class="sp-desc">로스쿨생이 직접 기획·제작한 로스쿨 커뮤니티. 로스쿨생들이 마음 편히 대화하고 정보를 공유할 수 있는 공간을 지향합니다.</p>
+            <a href="https://lawinus.net/" target="_blank" rel="noopener" class="sp-link">홈페이지</a>
+          </article>
+        </div>
+
+        <!-- Host line -->
+        <div class="host-line">
+          <strong>주최</strong>법률사무소 선율 (선율 법학경시대회 위원회)
+        </div>
       </div>
     </section>
   </main>
@@ -1281,7 +1541,7 @@
               <dt>주최</dt>
               <dd>선율 법학경시대회 위원회</dd>
               <dt>후원</dt>
-              <dd>변호사공제재단 외 10개 기관</dd>
+              <dd>변호사공제재단 외 11개 기관</dd>
               <dt>주소</dt>
               <dd>서울특별시 종로구 새문안로5길 13, 지하1층 29호 (당주동, 변호사회관)</dd>
               <dt>문의</dt>
