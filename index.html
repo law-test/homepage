@@ -517,6 +517,14 @@ main { background: var(--white); }
   transition: color 0.3s;
 }
 
+.ceremony-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 1024px) { .ceremony-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { .ceremony-grid { grid-template-columns: 1fr; } }
+
 /* === Feature Cards (Highlights) === */
 .features {
   display: grid;
@@ -1625,7 +1633,7 @@ footer.site-footer {
       <p class="section-desc">대한변호사협회 변호사회관 1층 회의실·조영래홀에서 개최된 6회의 시상식.</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+    <div class="ceremony-grid">
       <div style="background: var(--white); border: 1px solid var(--line); overflow: hidden;">
         <div style="aspect-ratio: 4/3; overflow: hidden;"><img src="photos/r1_group.jpg" alt="제1회 시상식" style="width: 100%; height: 100%; object-fit: cover;"></div>
         <div style="padding: 20px 24px;">
