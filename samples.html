@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문제 샘플 | 법학경시대회</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+/* === Reset & Variables === */
+:root {
+  --navy: #0F2847;
+  --navy-deep: #081830;
+  --navy-light: #1B3A66;
+  --gold: #B8924E;
+  --gold-deep: #8C6A36;
+  --burgundy: #6B1A2E;
+  --ivory: #FAF7F0;
+  --white: #FFFFFF;
+  --gray-50: #F5F4F0;
+  --gray-100: #E8E5DD;
+  --gray-300: #C4BFB3;
+  --gray-500: #7A7568;
+  --gray-700: #2A2924;
+  --text: #0F1419;
+  --line: #D8D3C5;
+  --line-soft: #EBE7DD;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 400;
+  background: var(--white);
+  color: var(--text);
+  line-height: 1.75;
+  font-size: 17px;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+
+.serif {
+  font-family: 'Nanum Myeongjo', serif;
+}
+
+/* === Utility Top Bar === */
+.utility-bar {
+  background: var(--navy-deep);
+  color: var(--gray-100);
+  font-size: 12px;
+  border-bottom: 1px solid var(--gold-deep);
+}
+.utility-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 0.05em;
+}
+.utility-inner .est {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+.utility-links a {
+  margin-left: 20px;
+  color: var(--gray-100);
+  transition: color 0.3s;
+}
+.utility-links a:hover { color: var(--gold); }
+
+/* === Header === */
+header.site-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--line-soft);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--navy);
+}
+.brand-text h1 {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--navy);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.brand-text .en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--gold-deep);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+nav.main-nav ul {
+  display: flex;
+  gap: 8px;
+}
+nav.main-nav a {
+  display: block;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+  position: relative;
+  transition: color 0.3s;
+}
+nav.main-nav a:hover,
+nav.main-nav a.active {
+  color: var(--navy);
+}
+nav.main-nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background: var(--gold);
+}
+
+/* === Hero (Index) === */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '法';
+  position: absolute;
+  right: -5vw;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: 50vw;
+  color: var(--white);
+  opacity: 0.04;
+  line-height: 0.8;
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 100px 32px 120px;
+  position: relative;
+  z-index: 2;
+}
+.hero-edition {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.hero h2 {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: clamp(40px, 5.5vw, 72px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+.hero h2 .num {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero-tagline {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--white);
+  margin-bottom: 48px;
+  max-width: 640px;
+  line-height: 1.7;
+}
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: 1px solid;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.btn-primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy-deep);
+}
+.btn-primary:hover {
+  background: var(--white);
+  border-color: var(--white);
+}
+.btn-outline {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--white);
+}
+.btn-outline:hover {
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+}
+.btn-dark {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+.btn-dark:hover { background: var(--burgundy); border-color: var(--burgundy); }
+.btn-light {
+  background: transparent;
+  border-color: var(--navy);
+  color: var(--navy);
+}
+.btn-light:hover { background: var(--navy); color: var(--white); }
+.btn .arrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+}
+
+/* === Quick Info Strip (Below Hero) === */
+.quick-info {
+  background: var(--navy-deep);
+  border-top: 1px solid rgba(184, 146, 78, 0.2);
+  color: var(--white);
+}
+.quick-info-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.quick-item {
+  padding: 32px 24px;
+  border-right: 1px solid rgba(184, 146, 78, 0.15);
+  text-align: center;
+}
+.quick-item:last-child { border-right: none; }
+.quick-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.quick-value {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--white);
+}
+
+/* === Main Content Sections === */
+main { background: var(--white); }
+.section {
+  padding: 100px 0;
+}
+.section-alt {
+  background: var(--ivory);
+}
+.section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.section-head {
+  margin-bottom: 56px;
+  text-align: center;
+}
+.section-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gold-deep);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: clamp(32px, 4vw, 44px);
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.section-desc {
+  margin-top: 16px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 17px;
+  color: #1A1A1A;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+/* === Two-Column Notice + Schedule (LCT-style) === */
+.dashboard {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+}
+.panel {
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+}
+.panel-head {
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--line-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--ivory);
+}
+.panel-head h3 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--navy);
+}
+.panel-head .more {
+  font-size: 13px;
+  color: var(--gray-500);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s;
+}
+.panel-head .more:hover { color: var(--navy); }
+.panel-body {
+  padding: 8px 32px;
+}
+.notice-list li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-soft);
+  align-items: center;
+}
+.notice-list li:last-child { border-bottom: none; }
+.notice-list a {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  color: #0A1419;
+  font-weight: 500;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.notice-list a:hover { color: var(--navy); }
+.notice-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  background: var(--navy);
+  color: var(--white);
+  flex-shrink: 0;
+}
+.notice-tag.gold { background: var(--gold); color: var(--navy-deep); }
+.notice-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gray-500);
+}
+
+/* === Schedule Panel (right) === */
+.schedule-panel .schedule-list {
+  padding: 16px 0;
+}
+.schedule-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-soft);
+  align-items: center;
+}
+.schedule-row:last-child { border-bottom: none; }
+.schedule-row .step {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gold-deep);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.schedule-row .info .label {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.schedule-row .info .date {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  color: #1A1A1A;
+  font-weight: 500;
+}
+
+/* === Sponsors Strip === */
+.sponsors-strip {
+  padding: 64px 0;
+  background: var(--ivory);
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+.sponsors-strip-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.sponsors-strip-title {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: var(--gold-deep);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.sponsor-cell {
+  background: var(--white);
+  padding: 24px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 90px;
+  transition: all 0.3s;
+}
+.sponsor-cell:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+.sponsor-cell:hover .sponsor-name { color: var(--white); }
+.sponsor-cell:hover .sponsor-en { color: var(--gold); }
+.sponsor-name {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--navy);
+  transition: color 0.3s;
+}
+.sponsor-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 10px;
+  color: var(--gray-500);
+  margin-top: 2px;
+  transition: color 0.3s;
+}
+
+/* === Feature Cards (Highlights) === */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.feature-card {
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+  padding: 40px 32px;
+  position: relative;
+  transition: all 0.3s;
+}
+.feature-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(15, 40, 71, 0.08);
+}
+.feature-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 48px;
+  color: var(--burgundy);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.feature-card h4 {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--navy);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+.feature-card p {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  color: #1A1A1A;
+  font-weight: 400;
+  line-height: 1.8;
+}
+.feature-card .more-link {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 0.03em;
+}
+
+/* === CTA Banner === */
+.cta-banner {
+  background: var(--navy);
+  color: var(--white);
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 50%, rgba(184, 146, 78, 0.15), transparent 60%);
+}
+.cta-banner-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+}
+.cta-banner h3 {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: clamp(28px, 3.5vw, 40px);
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+.cta-banner p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 32px;
+  letter-spacing: 0.05em;
+}
+
+/* === Sub-page Hero === */
+.sub-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.sub-hero::before {
+  content: attr(data-char);
+  position: absolute;
+  right: -2vw;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: 28vw;
+  color: var(--white);
+  opacity: 0.04;
+  line-height: 0.8;
+  pointer-events: none;
+}
+.sub-hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 32px;
+  position: relative;
+  z-index: 2;
+}
+.breadcrumb {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.breadcrumb a { color: var(--gold); }
+.breadcrumb .sep { margin: 0 8px; opacity: 0.5; }
+.sub-hero h2 {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.sub-hero .desc {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 18px;
+  color: var(--white);
+  max-width: 720px;
+  line-height: 1.75;
+  font-weight: 500;
+}
+
+/* === Article-style Content === */
+.article-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.article-toc {
+  position: sticky;
+  top: 100px;
+  border-left: 1px solid var(--gold);
+  padding-left: 24px;
+}
+.article-toc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--gold-deep);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.article-toc ul li {
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--gray-700);
+}
+.article-toc ul a:hover { color: var(--navy); }
+
+.article-section {
+  margin-bottom: 64px;
+  scroll-margin-top: 120px;
+}
+.article-section h3 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--navy);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--gold);
+  display: inline-block;
+  letter-spacing: -0.01em;
+}
+.article-section h3 .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--burgundy);
+  margin-right: 16px;
+}
+.article-section p {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 17px;
+  line-height: 1.9;
+  color: #0A1419;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.article-section p strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+.article-section ul.bulleted {
+  list-style: none;
+  margin: 24px 0;
+}
+.article-section ul.bulleted li {
+  font-family: 'Pretendard', sans-serif;
+  padding-left: 28px;
+  position: relative;
+  margin-bottom: 14px;
+  font-size: 17px;
+  line-height: 1.85;
+  color: #0A1419;
+}
+.article-section ul.bulleted li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: var(--gold);
+  font-size: 12px;
+}
+
+/* === Voices (Endorsements) Page === */
+.voices-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.voice-card {
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+  padding: 40px;
+  position: relative;
+  transition: all 0.3s;
+}
+.voice-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 12px 40px rgba(15, 40, 71, 0.08);
+}
+.voice-card::before {
+  content: '"';
+  position: absolute;
+  top: 8px;
+  left: 24px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px;
+  color: var(--gold);
+  opacity: 0.4;
+  line-height: 1;
+}
+.voice-quote {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.85;
+  color: #0F1F2E;
+  margin-top: 24px;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+.voice-author {
+  border-top: 1px solid var(--line-soft);
+  padding-top: 20px;
+}
+.voice-name {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.voice-title {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 14px;
+  color: #4A4740;
+  font-weight: 500;
+}
+
+/* === Achievements Page === */
+.achieve-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-bottom: 80px;
+}
+.achieve-stat {
+  background: var(--white);
+  padding: 48px 24px;
+  text-align: center;
+}
+.achieve-stat-num {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: 56px;
+  color: var(--burgundy);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.achieve-stat-label {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--navy);
+}
+.achieve-stat-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--gold-deep);
+  margin-top: 4px;
+  letter-spacing: 0.1em;
+}
+
+.achieve-block {
+  margin-bottom: 64px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.achieve-block-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 64px;
+  color: var(--gold-deep);
+  line-height: 1;
+}
+.achieve-block-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6B4D1F;
+  margin-top: 12px;
+  letter-spacing: 0.1em;
+}
+.achieve-block h3 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--navy);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+.achieve-block p {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  color: #0A1419;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+.achieve-list {
+  margin-top: 16px;
+  display: grid;
+  gap: 12px;
+}
+.achieve-list-item {
+  padding: 18px 22px;
+  background: var(--gray-50);
+  border-left: 3px solid var(--gold);
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  color: #0A1419;
+  line-height: 1.75;
+}
+.achieve-list-item strong {
+  color: var(--navy);
+}
+
+/* === Media Page === */
+.media-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-bottom: 80px;
+}
+.media-stat {
+  background: var(--white);
+  padding: 36px 20px;
+  text-align: center;
+}
+.media-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 48px;
+  color: var(--gold-deep);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.media-stat-label {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--navy);
+}
+
+.media-section {
+  margin-bottom: 64px;
+}
+.media-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--navy);
+}
+.media-roman {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--gold-deep);
+}
+.media-section-title {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--navy);
+  flex: 1;
+}
+.media-section-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gray-500);
+  letter-spacing: 0.1em;
+}
+
+.media-list {
+  display: grid;
+  gap: 12px;
+}
+.media-item {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  gap: 24px;
+  padding: 20px 24px;
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.media-item:hover {
+  border-color: var(--gold);
+  background: var(--ivory);
+  transform: translateX(4px);
+}
+.media-source {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.media-source-name {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--navy);
+}
+.media-source-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--gold-deep);
+  letter-spacing: 0.05em;
+}
+.media-headline {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #0A1419;
+  line-height: 1.55;
+}
+.media-headline strong {
+  font-weight: 700;
+  color: var(--navy);
+}
+.media-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+.media-date-small {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gray-500);
+}
+.media-arrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--gold-deep);
+  transition: transform 0.3s;
+}
+.media-item:hover .media-arrow { transform: translateX(4px); }
+
+.media-empty {
+  padding: 32px;
+  background: var(--ivory);
+  border: 1px dashed var(--gold);
+  text-align: center;
+  font-family: 'Nanum Myeongjo', serif;
+  color: var(--gray-500);
+  font-style: italic;
+}
+
+.media-flagship {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: var(--white);
+  padding: 48px;
+  margin-bottom: 64px;
+  position: relative;
+  overflow: hidden;
+}
+.media-flagship::before {
+  content: '報';
+  position: absolute;
+  right: -2vw;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: 20vw;
+  color: var(--white);
+  opacity: 0.04;
+  line-height: 0.8;
+  pointer-events: none;
+}
+.media-flagship-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.media-flagship-title {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: 32px;
+  margin-bottom: 12px;
+  line-height: 1.3;
+  position: relative;
+  z-index: 1;
+}
+.media-flagship-desc {
+  font-size: 16px;
+  color: var(--gray-100);
+  line-height: 1.7;
+  max-width: 720px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .media-stats { grid-template-columns: repeat(2, 1fr); }
+  .media-item { grid-template-columns: 1fr; gap: 8px; padding: 16px 20px; }
+  .media-source { flex-direction: row; align-items: center; gap: 8px; }
+  .media-meta { justify-content: space-between; }
+  .media-section-head { flex-wrap: wrap; }
+}
+
+/* === Universities Page === */
+.uni-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 80px;
+}
+.uni-feature {
+  padding: 40px 32px;
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+  position: relative;
+}
+.uni-feature.dark {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.uni-feature-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  color: var(--gold-deep);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.uni-feature.dark .uni-feature-eyebrow { color: var(--gold); }
+.uni-feature-num {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: 64px;
+  color: var(--burgundy);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.uni-feature.dark .uni-feature-num { color: var(--gold); }
+.uni-feature-label {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.uni-feature.dark .uni-feature-label { color: var(--white); }
+.uni-feature-desc {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  color: #1A1A1A;
+  font-weight: 400;
+  line-height: 1.75;
+}
+.uni-feature.dark .uni-feature-desc { color: var(--gray-100); }
+
+.uni-tier {
+  margin-bottom: 64px;
+}
+.uni-tier-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--navy);
+}
+.uni-tier-roman {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--gold-deep);
+}
+.uni-tier-title {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--navy);
+  flex: 1;
+}
+.uni-tier-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gray-500);
+  letter-spacing: 0.1em;
+}
+
+.uni-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.uni-cell {
+  background: var(--white);
+  padding: 22px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80px;
+  position: relative;
+  transition: all 0.3s;
+}
+.uni-cell:hover {
+  background: var(--ivory);
+  z-index: 1;
+}
+.uni-rank {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 12px;
+  color: #6B4D1F;
+}
+.uni-name {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #0A1A2E;
+  line-height: 1.3;
+}
+.uni-cell.highlight {
+  background: var(--burgundy);
+  color: var(--white);
+}
+.uni-cell.highlight .uni-name { color: var(--white); }
+.uni-cell.highlight .uni-rank { color: var(--gold); }
+.uni-cell.special {
+  background: var(--navy);
+  color: var(--white);
+}
+.uni-cell.special .uni-name { color: var(--white); }
+.uni-cell.special .uni-rank { color: var(--gold); }
+.uni-cell.global {
+  background: linear-gradient(135deg, var(--gold-deep) 0%, var(--burgundy) 100%);
+  color: var(--white);
+}
+.uni-cell.global .uni-name { color: var(--white); }
+.uni-cell.global .uni-rank { color: rgba(255,255,255,0.7); }
+
+@media (max-width: 1024px) {
+  .uni-feature-grid { grid-template-columns: 1fr; }
+  .uni-list { grid-template-columns: repeat(3, 1fr); }
+  .uni-tier-head { flex-wrap: wrap; }
+}
+@media (max-width: 768px) {
+  .uni-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* === Footer === */
+footer.site-footer {
+  background: var(--navy-deep);
+  color: var(--gray-100);
+  padding: 64px 0 32px;
+  border-top: 1px solid var(--gold-deep);
+}
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 64px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(184, 146, 78, 0.2);
+}
+.footer-brand h3 {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.footer-brand .en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+.footer-hierarchy {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 8px 16px;
+  font-size: 13px;
+  margin-top: 24px;
+}
+.footer-hierarchy dt {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 11px;
+  align-self: center;
+}
+.footer-col h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.footer-col ul li {
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom {
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(245, 247, 240, 0.5);
+}
+.footer-bottom .copyright {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+/* === Animations === */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-edition { animation: fadeUp 0.8s ease 0.1s both; }
+.hero h2 { animation: fadeUp 0.8s ease 0.25s both; }
+.hero-tagline { animation: fadeUp 0.8s ease 0.4s both; }
+.hero-cta { animation: fadeUp 0.8s ease 0.55s both; }
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .dashboard { grid-template-columns: 1fr; }
+  .features { grid-template-columns: 1fr; }
+  .sponsors-grid { grid-template-columns: repeat(3, 1fr); }
+  .quick-info-inner { grid-template-columns: repeat(2, 1fr); }
+  .quick-item:nth-child(2) { border-right: none; }
+  .voices-grid { grid-template-columns: 1fr; }
+  .achieve-hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .achieve-block { grid-template-columns: 1fr; gap: 16px; }
+  .article-grid { grid-template-columns: 1fr; gap: 32px; }
+  .article-toc { position: static; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 768px) {
+  nav.main-nav ul { display: none; }
+  .utility-links { display: none; }
+  .sponsors-grid { grid-template-columns: repeat(2, 1fr); }
+  .quick-info-inner { grid-template-columns: 1fr; }
+  .quick-item { border-right: none !important; border-bottom: 1px solid rgba(184, 146, 78, 0.15); }
+  .quick-item:last-child { border-bottom: none; }
+}
+
+/* === Pretendard fallback === */
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400 900;
+  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/PretendardVariable.woff2') format('woff2-variations');
+  font-display: swap;
+}
+
+</style>
+<style>
+.sample-block { background: var(--white); border: 1px solid var(--line); margin-bottom: 48px; padding: 48px; position: relative; }
+.sample-head { display: flex; align-items: baseline; gap: 24px; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 2px solid var(--ivory); }
+.sample-num { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 56px; font-weight: 600; color: var(--burgundy); line-height: 1; }
+.sample-meta { flex: 1; }
+.sample-subject { font-family: 'Pretendard', sans-serif; font-size: 13px; letter-spacing: 0.2em; color: var(--gold-deep); text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+.sample-title-text { font-family: 'Nanum Myeongjo', serif; font-weight: 700; font-size: 22px; color: #0A1419; }
+.sample-question { font-family: 'Pretendard', sans-serif; font-size: 16.5px; line-height: 1.85; color: #0A1419; margin-bottom: 24px; padding: 24px; background: var(--ivory); border-left: 3px solid var(--gold); }
+.sample-choices { list-style: none; padding: 0; margin: 0 0 32px; }
+.sample-choices li { font-family: 'Pretendard', sans-serif; font-size: 15.5px; line-height: 1.7; color: #1A1A1A; padding: 14px 16px 14px 56px; position: relative; border-bottom: 1px solid var(--line-soft); }
+.sample-choices li::before { content: attr(data-num); position: absolute; left: 16px; top: 12px; width: 28px; height: 28px; border: 1.5px solid var(--gold-deep); color: var(--gold-deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; font-weight: 600; }
+.sample-choices li.correct { background: rgba(184, 146, 78, 0.08); }
+.sample-choices li.correct::before { background: var(--gold-deep); color: var(--white); }
+.sample-answer { display: inline-block; background: var(--burgundy); color: var(--white); padding: 6px 14px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; letter-spacing: 0.2em; margin-bottom: 16px; }
+.sample-explain { font-family: 'Pretendard', sans-serif; font-size: 15px; line-height: 1.85; color: #1A1A1A; padding: 24px; background: #F5F2E8; border-left: 3px solid var(--burgundy); }
+.sample-explain strong { color: var(--navy); }
+.sample-explain h5 { font-family: 'Nanum Myeongjo', serif; font-weight: 700; font-size: 16px; color: var(--navy); margin: 16px 0 8px; }
+.sample-explain h5:first-child { margin-top: 0; }
+</style>
+</head>
+<body>
+
+<!-- Utility Top Bar -->
+<div class="utility-bar">
+  <div class="utility-inner">
+    <div class="est">EST. MMXXIV &middot; 法의 날</div>
+    <div class="utility-links">
+      <a href="notice.html">English</a>
+      <a href="notice.html">로그인</a>
+      <a href="https://smartstore.naver.com/lawtest/" target="_blank">참가신청</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-mark">法</div>
+      <div class="brand-text">
+        <h1>법학경시대회</h1>
+        <div class="en">Korean Law Olympiad</div>
+      </div>
+    </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="about.html">대회 소개</a></li>
+        <li><a href="universities.html">응시자 정보</a></li>
+        <li><a href="samples.html" class="active">문제 샘플</a></li>
+        <li><a href="voices.html">응원의 말</a></li>
+        <li><a href="achievements.html">결실</a></li>
+        <li><a href="media.html">언론보도</a></li>
+        <li><a href="https://smartstore.naver.com/lawtest/" target="_blank">참가 신청</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Sub Hero -->
+<section class="sub-hero" data-char="問">
+  <div class="sub-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span class="sep">/</span>Sample Questions
+    </div>
+    <h2>문제 샘플</h2>
+    <p class="desc">본 대회의 출제 방향을 가늠할 수 있도록 헌법·민법·형법 각 영역의 샘플 문항을 공개합니다. 단순 암기보다는 조문·판례·교과서를 직접 펼쳐 법리를 적용하는 능력을 묻습니다.</p>
+  </div>
+</section>
+
+<!-- Note -->
+<section class="section" style="padding-bottom: 0;">
+  <div class="section-inner">
+    <div style="background: var(--navy); color: var(--white); padding: 32px 40px; margin-bottom: 64px; position: relative; overflow: hidden;">
+      <div style="position: absolute; right: -10px; top: 50%; transform: translateY(-50%); font-family: 'Nanum Myeongjo', serif; font-weight: 800; font-size: 200px; color: var(--white); opacity: 0.04; line-height: 0.8; pointer-events: none;">問</div>
+      <div style="position: relative; z-index: 2;">
+        <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; font-weight: 600;">Sample Questions &middot; 出題 例示</div>
+        <p style="font-family: 'Pretendard', sans-serif; font-size: 16px; line-height: 1.85; color: rgba(255,255,255,0.9); margin: 0;">
+          본 대회는 <strong style="color: var(--gold);">조문검색·판례검색·규범이해·사례분석</strong> 4개 영역에서 출제됩니다. 본 페이지의 샘플 문항은 출제 방향을 보여주기 위한 예시이며, 실제 시험 문항과 동일하지 않습니다. 정답을 미리 보지 않으려면 스크롤을 천천히 내려주시기 바랍니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Samples -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-inner">
+
+    <!-- Sample 1: 헌법 -->
+    <div class="sample-block">
+      <div class="sample-head">
+        <div class="sample-num">Q1</div>
+        <div class="sample-meta">
+          <div class="sample-subject">Ⅰ. 憲法 &middot; Constitutional Law</div>
+          <div class="sample-title-text">규범이해 영역 &middot; 기본권 제한의 한계</div>
+        </div>
+      </div>
+
+      <div class="sample-question">
+        다음 중 헌법 제37조 제2항의 <strong>과잉금지원칙</strong>의 부분원칙으로 헌법재판소가 일관되게 인정하는 것이 <strong>아닌</strong> 것은?
+      </div>
+
+      <ol class="sample-choices">
+        <li data-num="①">목적의 정당성</li>
+        <li data-num="②">수단의 적합성</li>
+        <li data-num="③" class="correct">의무의 명확성</li>
+        <li data-num="④">침해의 최소성</li>
+        <li data-num="⑤">법익의 균형성</li>
+      </ol>
+
+      <div class="sample-answer">정답 ③</div>
+      <div class="sample-explain">
+        <h5>해설</h5>
+        <p>헌법재판소는 헌법 제37조 제2항의 과잉금지원칙(비례원칙)을 ① 목적의 정당성, ② 수단의 적합성(방법의 적정성), ③ 침해의 최소성(피해의 최소성), ④ 법익의 균형성(좁은 의미의 비례성)이라는 <strong>4단계</strong>로 일관되게 적용해 왔다(헌재 1992. 12. 24. 92헌가8 등).</p>
+        <h5>오답 분석</h5>
+        <p><strong>③ '의무의 명확성'</strong>은 과잉금지원칙의 부분원칙이 아니라, 별개의 헌법원칙인 <strong>명확성원칙</strong>(법치주의에서 도출되는 원칙)의 내용이다. 명확성원칙은 법률이 누구에게 어떤 행위가 금지·허용되는지 명확하게 규정해야 한다는 원칙으로, 죄형법정주의의 명확성원칙(헌법 제12조 제1항)과 일반적 명확성원칙으로 구분된다.</p>
+        <h5>학습 포인트</h5>
+        <p>과잉금지원칙과 명확성원칙은 모두 법치주의에서 도출되는 헌법원칙이지만 별개로 작동한다. 한 법률이 명확성원칙에는 위반되지 않으면서도 과잉금지원칙에 위반될 수 있고, 그 반대도 가능하다. 헌법강의 교과서를 펴고 두 원칙의 도입 근거와 심사 구조를 함께 정리해 두면 사례형에 대비할 수 있다.</p>
+      </div>
+    </div>
+
+    <!-- Sample 2: 민법 -->
+    <div class="sample-block">
+      <div class="sample-head">
+        <div class="sample-num">Q2</div>
+        <div class="sample-meta">
+          <div class="sample-subject">Ⅱ. 民法 &middot; Civil Law</div>
+          <div class="sample-title-text">사례분석 영역 &middot; 채권자취소권의 행사기간</div>
+        </div>
+      </div>
+
+      <div class="sample-question">
+        甲은 2024년 1월 10일 乙에게 1억 원을 빌려주었다. 乙은 변제기 도래 직전인 2024년 12월 5일 자신의 유일한 부동산을 친구 丙에게 매도하였고, 甲은 이 사실을 2025년 3월 1일에 알게 되었다. 다음 중 옳은 것은?
+      </div>
+
+      <ol class="sample-choices">
+        <li data-num="①">甲의 채권자취소권 행사기간은 사해행위가 있은 날부터 1년이다.</li>
+        <li data-num="②" class="correct">甲은 사해행위를 안 날부터 1년, 사해행위가 있은 날부터 5년 내에 채권자취소의 소를 제기하여야 한다.</li>
+        <li data-num="③">甲의 채권자취소권은 형성권이므로 재판외에서도 행사할 수 있다.</li>
+        <li data-num="④">甲이 사해행위를 안 날부터 1년의 기간은 소멸시효이므로 중단·정지가 가능하다.</li>
+        <li data-num="⑤">乙과 丙 사이의 매매계약은 절대적으로 무효가 된다.</li>
+      </ol>
+
+      <div class="sample-answer">정답 ②</div>
+      <div class="sample-explain">
+        <h5>해설</h5>
+        <p>민법 제406조 제2항은 <strong>"전항의 소(채권자취소의 소)는 채권자가 취소원인을 안 날로부터 1년, 법률행위 있은 날로부터 5년 내에 제기하여야 한다"</strong>고 규정한다. 이는 제척기간이며, 출소기간이다(대법원 2002. 7. 26. 선고 2001다73138 판결 등).</p>
+        <h5>오답 분석</h5>
+        <p><strong>① 오답</strong>: 두 기간(주관적 1년 / 객관적 5년) 중 하나만 들었으므로 부정확하다.<br>
+        <strong>③ 오답</strong>: 채권자취소권은 형성권이지만 반드시 <strong>재판상</strong> 행사하여야 한다(민법 제406조 제1항, 통설·판례). 재판외 행사는 인정되지 않는다.<br>
+        <strong>④ 오답</strong>: 제406조 제2항의 1년·5년은 <strong>제척기간</strong>이지 소멸시효가 아니므로 중단·정지가 적용되지 않는다.<br>
+        <strong>⑤ 오답</strong>: 채권자취소가 인용되면 그 효력은 <strong>상대적</strong>으로만 발생한다. 즉 취소채권자와 수익자 사이에서만 무효가 되며, 채무자(乙)와 수익자(丙) 사이의 법률관계 자체가 절대적으로 무효가 되는 것은 아니다.</p>
+        <h5>학습 포인트</h5>
+        <p>채권자취소권은 변호사시험에서도 매년 출제되는 핵심 쟁점이다. ① 행사요건(피보전채권·사해행위·사해의사·수익자·전득자), ② 행사방법(반드시 재판상), ③ 행사기간(제척기간), ④ 효과(상대효)를 정리해 두면 다양한 사례에 적용 가능하다.</p>
+      </div>
+    </div>
+
+    <!-- Sample 3: 형법 -->
+    <div class="sample-block">
+      <div class="sample-head">
+        <div class="sample-num">Q3</div>
+        <div class="sample-meta">
+          <div class="sample-subject">Ⅲ. 刑法 &middot; Criminal Law</div>
+          <div class="sample-title-text">규범이해 영역 &middot; 죄형법정주의</div>
+        </div>
+      </div>
+
+      <div class="sample-question">
+        다음 중 죄형법정주의의 파생원칙에 관한 설명으로 가장 옳지 <strong>않은</strong> 것은?
+      </div>
+
+      <ol class="sample-choices">
+        <li data-num="①">관습법에 의한 가벌성의 인정 또는 형의 가중은 허용되지 않는다 (관습형법금지의 원칙).</li>
+        <li data-num="②">형벌법규는 명확하게 규정되어야 하며, 그 의미내용이 모호하거나 불확정한 경우에는 명확성의 원칙에 위반된다.</li>
+        <li data-num="③" class="correct">행위 시의 법률에 의하여는 처벌되지 않던 행위라도 행위 후 신법으로 범죄로 규정된 경우 이를 적용하여 처벌할 수 있다.</li>
+        <li data-num="④">형벌법규의 해석은 엄격하여야 하며, 명문의 규정 없이 피고인에게 불리한 방향으로 유추해석을 하는 것은 금지된다.</li>
+        <li data-num="⑤">행위와 그에 대한 형벌은 균형을 이루어야 한다 (적정성의 원칙).</li>
+      </ol>
+
+      <div class="sample-answer">정답 ③</div>
+      <div class="sample-explain">
+        <h5>해설</h5>
+        <p>죄형법정주의의 파생원칙 중 하나인 <strong>소급효금지의 원칙(형벌불소급원칙)</strong>은 행위 시 법률에 의하여 처벌되지 않던 행위는 행위 후에 제정된 법률에 의하여 소급하여 처벌할 수 없다는 원칙이다(헌법 제13조 제1항, 형법 제1조 제1항).</p>
+        <h5>오답 분석</h5>
+        <p>①, ②, ④, ⑤는 각각 관습형법금지, 명확성원칙, 유추해석금지, 적정성의 원칙으로 모두 죄형법정주의의 파생원칙에 해당한다.<br>
+        <strong>③</strong>은 형벌불소급원칙에 정면으로 위반되는 진술이므로 옳지 않다.</p>
+        <h5>심화: 보안처분의 경우</h5>
+        <p>다만 헌법재판소는 형벌이 아닌 <strong>보안처분</strong>의 경우 그 성질에 따라 소급효금지의 적용 여부가 달라질 수 있다고 본다(헌재 2012. 12. 27. 2010헌가82 등). 신상정보공개·전자장치부착명령 등은 사안별로 판단된다.</p>
+        <h5>학습 포인트</h5>
+        <p>죄형법정주의의 파생원칙 5가지(법률주의=관습형법금지·소급효금지·명확성·유추해석금지·적정성)는 형법 총론에서 가장 먼저 다루는 핵심 주제이다. 각 원칙의 헌법적 근거와 적용 한계(보안처분·소송법 영역 등)를 함께 정리해 두면 헌법·형법 통합 사례에서 유리하다.</p>
+      </div>
+    </div>
+
+    <!-- Sample 4: 조문/판례 검색 -->
+    <div class="sample-block">
+      <div class="sample-head">
+        <div class="sample-num">Q4</div>
+        <div class="sample-meta">
+          <div class="sample-subject">Ⅳ. 條文·判例 檢索 &middot; Statutory &middot; Case Search</div>
+          <div class="sample-title-text">조문왕·판례왕 영역 &middot; 정확한 조문 인용</div>
+        </div>
+      </div>
+
+      <div class="sample-question">
+        민법 제2조에서 규정하는 신의성실의 원칙과 권리남용금지의 원칙에 관한 설명으로 옳은 것은? (오픈북 &middot; 법전 참조 가능)
+      </div>
+
+      <ol class="sample-choices">
+        <li data-num="①">민법 제2조 제1항은 "권리의 행사와 의무의 이행은 합리성에 좇아 성실히 하여야 한다"고 규정한다.</li>
+        <li data-num="②" class="correct">민법 제2조 제2항은 "권리는 남용하지 못한다"고 규정하며, 이는 모든 사권(私權)에 적용된다.</li>
+        <li data-num="③">신의성실의 원칙은 채권법 영역에만 적용되고, 물권법 영역에는 적용되지 않는다.</li>
+        <li data-num="④">신의성실의 원칙 위반은 직권조사사항이 아니므로 당사자의 주장이 있어야만 법원이 판단할 수 있다.</li>
+        <li data-num="⑤">권리남용에 해당하더라도 권리 자체가 소멸하는 것은 아니므로, 모든 경우에 권리행사의 효력은 유지된다.</li>
+      </ol>
+
+      <div class="sample-answer">정답 ②</div>
+      <div class="sample-explain">
+        <h5>해설</h5>
+        <p>민법 제2조는 다음과 같다.<br>
+        <strong>제1항</strong> "권리의 행사와 의무의 이행은 <strong>신의에 좇아 성실히</strong> 하여야 한다."<br>
+        <strong>제2항</strong> "<strong>권리는 남용하지 못한다.</strong>"<br>
+        오픈북 시험에서는 법전을 펼쳐 이러한 핵심 조문을 정확히 확인할 수 있는 능력이 변별력의 핵심이다.</p>
+        <h5>오답 분석</h5>
+        <p><strong>① 오답</strong>: "합리성에 좇아"가 아니라 <strong>"신의에 좇아 성실히"</strong>이다. 비슷해 보이는 표현을 정확히 구별할 수 있어야 한다.<br>
+        <strong>③ 오답</strong>: 신의칙은 민법 전 영역(채권법·물권법·친족상속법)에 적용되는 일반조항이다(통설·판례).<br>
+        <strong>④ 오답</strong>: 신의칙 위반과 권리남용은 <strong>직권조사사항</strong>이다(대법원 1989. 9. 29. 선고 88다카17181 판결 등). 당사자의 주장이 없어도 법원이 직권으로 판단할 수 있다.<br>
+        <strong>⑤ 오답</strong>: 권리남용으로 인정되면 권리행사의 효과가 부정된다. 다만 권리 자체가 소멸하는지 여부는 사안에 따라 다르며, 일반적으로는 그 행사가 부정될 뿐 권리 자체는 유지된다는 견해가 다수설이지만, 본 지문은 "모든 경우에 권리행사의 효력은 유지된다"고 단정하므로 옳지 않다.</p>
+        <h5>학습 포인트</h5>
+        <p>오픈북 방식의 본 대회는 단순히 법전을 베껴 적는 능력이 아니라, <strong>법전에서 정확한 조문을 빠르게 찾아 사안에 적용하는 능력</strong>을 묻는다. 평소 법전을 자주 펴 보고 조문 번호와 핵심 문구를 머릿속에 정리해 두는 학습이 필요하다. 본 대회의 '조문왕'은 응시자 중 조문검색 영역 만점자에게 수여되는 특별상이다.</p>
+      </div>
+    </div>
+
+    <!-- Practice Note -->
+    <div style="background: var(--ivory); padding: 48px; border-left: 3px solid var(--gold); margin-top: 64px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; letter-spacing: 0.25em; color: var(--gold-deep); text-transform: uppercase; margin-bottom: 16px; font-weight: 600;">A Note on Preparation &middot; 學習 案內</div>
+      <p style="font-family: 'Pretendard', sans-serif; font-size: 17px; line-height: 1.85; color: #0A1419; font-weight: 500; margin-bottom: 16px;">
+        본 대회는 <strong>학원 강사들의 요약서가 아니라 법전·판례 전문·저명 교과서</strong>를 직접 펼쳐 읽는 학습을 지향합니다.
+      </p>
+      <p style="font-family: 'Pretendard', sans-serif; font-size: 15px; line-height: 1.85; color: #1A1A1A; margin: 0;">
+        시험 문항은 헌법 30점(40문항), 민법 40점(50문항 수준), 형법 30점(40문항)으로 구성되며 시험시간은 100분입니다. 응시자에게는 시험 전 학습가이드가 제공되며, 시상식 후에는 무료 해설강의가 진행됩니다. 자세한 내용은 <a href="about.html" style="color: var(--burgundy); border-bottom: 1px solid var(--gold);">대회 소개</a>를 참고하시기 바랍니다.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <h3>법전을 직접 펼치고<br>법리를 적용해 보십시오</h3>
+    <p>Open the statutes &middot; Apply the doctrine</p>
+    <div class="hero-cta" style="justify-content: center;">
+      <a href="https://smartstore.naver.com/lawtest/" target="_blank" class="btn btn-primary">제7회 참가 신청 <span class="arrow">→</span></a>
+      <a href="universities.html" class="btn btn-outline">응시자 정보 <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>법학경시대회</h3>
+        <div class="en">Korean Law Olympiad</div>
+        <dl class="footer-hierarchy">
+          <dt>주최</dt><dd>선율 법학경시대회 위원회</dd>
+          <dt>후원</dt><dd>변호사공제재단 외 10개 기관</dd>
+        </dl>
+        <p style="margin-top: 24px; font-size: 14px; line-height: 1.75; color: rgba(245, 247, 240, 0.8);">
+          서울특별시 종로구 새문안로5길 13, 제지하1층 29호 (당주동, 변호사회관)<br>
+          문의: 010-3378-9392
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Sitemap</h4>
+        <ul>
+          <li><a href="about.html">대회 소개</a></li>
+          <li><a href="universities.html">응시자 정보</a></li>
+          <li><a href="samples.html">문제 샘플</a></li>
+          <li><a href="voices.html">응원의 말</a></li>
+          <li><a href="achievements.html">결실</a></li>
+          <li><a href="media.html">언론보도</a></li>
+          <li><a href="https://smartstore.naver.com/lawtest/" target="_blank">참가 신청</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <ul>
+          <li><a href="notice.html">공지사항</a></li>
+          <li><a href="notice.html">자주 묻는 질문</a></li>
+          <li><a href="notice.html">보도자료</a></li>
+          <li><a href="notice.html">이용약관</a></li>
+          <li><a href="notice.html">개인정보처리방침</a></li>
+          <li><a href="notice.html">문의하기</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="copyright">Copyright &copy; MMXXVI &middot; Korean Law Olympiad. All Rights Reserved.</div>
+      <div>EST. 2024 &middot; 法의 날</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
