@@ -1,509 +1,1225 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<script>
-(function(){
-  if (location.protocol !== 'file:' && location.hostname === 'law-test.github.io' && location.pathname === '/homepage') {
-    location.replace('/homepage/' + location.search + location.hash);
-  }
-})();
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="법학경시대회 누적 응시자, 참여 학교, 회차별 점수 분포와 오픈북 시험의 변별력을 안내합니다.">
-<link rel="canonical" href="https://law-test.github.io/homepage/universities.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="응시자 정보 | 법학경시대회">
-<meta property="og:description" content="법학경시대회 누적 응시자, 참여 학교, 회차별 점수 분포와 오픈북 시험의 변별력을 안내합니다.">
-<meta property="og:url" content="https://law-test.github.io/homepage/universities.html">
-<meta property="og:image" content="https://law-test.github.io/homepage/assets/images/index-image-1.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<title>응시자 정보 | 법학경시대회</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/css/site.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>응시자 정보 | 법학경시대회</title>
+  <meta name="description" content="법학경시대회 누적 응시자, 참여 학교, 회차별 점수 분포와 오픈북 시험의 변별력을 안내합니다." />
+
+  <meta property="og:title" content="응시자 정보 | 법학경시대회" />
+  <meta property="og:description" content="법학경시대회 누적 응시자, 참여 학교, 회차별 점수 분포와 오픈북 시험의 변별력을 안내합니다." />
+  <meta property="og:image" content="https://law-test.github.io/homepage/assets/images/index-image-1.jpg" />
+  <meta property="og:url" content="https://law-test.github.io/homepage/universities.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://law-test.github.io/homepage/universities.html" />
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+  <style>
+    :root {
+      --navy: #1B3A6F;
+      --navy-deep: #102953;
+      --navy-soft: #E8EFF7;
+      --gold: #B5945C;
+      --gold-deep: #8E7039;
+      --ink: #1A1A1A;
+      --text: #2E3338;
+      --text-soft: #5A6068;
+      --text-mute: #8B919C;
+      --line: #E0E4EB;
+      --line-strong: #C5CCD7;
+      --bg: #FFFFFF;
+      --bg-soft: #F7F9FC;
+      --bg-alt: #F2F5FA;
+      --important: #C8102E;
+      --success: #1F7A4D;
+      --font: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+      --max-w: 1200px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+    .skip-link { position: absolute; top: -40px; left: 0; background: var(--navy); color: #fff; padding: 8px 16px; z-index: 1000; font-size: 13px; }
+    .skip-link:focus { top: 0; }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* UTILITY BAR */
+    .utility { background: var(--bg-alt); border-bottom: 1px solid var(--line); font-size: 12px; color: var(--text-soft); }
+    .utility-inner { display: flex; justify-content: space-between; align-items: center; height: 36px; }
+    .utility-left { display: flex; gap: 16px; }
+    .utility-right { display: flex; gap: 16px; align-items: center; }
+    .utility a { color: var(--text-soft); }
+    .utility a:hover { color: var(--navy); }
+    .utility-divider { width: 1px; height: 12px; background: var(--line-strong); display: inline-block; }
+
+    /* HEADER */
+    header.site-header { background: var(--bg); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 100; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 84px; gap: 32px; }
+    .brand { display: flex; align-items: center; }
+    .brand img { height: 48px; width: auto; }
+    .brand-text { margin-left: 14px; padding-left: 14px; border-left: 1px solid var(--line); display: flex; flex-direction: column; line-height: 1.2; }
+    .brand-text .ko { font-size: 13px; color: var(--text-soft); font-weight: 500; }
+    .brand-text .en { font-size: 11px; color: var(--text-mute); letter-spacing: 0.04em; margin-top: 2px; }
+    nav.primary ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 36px; align-items: center; }
+    nav.primary a { font-size: 15px; font-weight: 500; color: var(--ink); padding: 10px 0; position: relative; transition: color 0.15s; }
+    nav.primary a:hover { color: var(--navy); }
+    nav.primary a.active { color: var(--navy); }
+    nav.primary a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--navy); transform: scaleX(0); transition: transform 0.2s; }
+    nav.primary a:hover::after, nav.primary a.active::after { transform: scaleX(1); }
+    .menu-toggle { display: none; }
+    @media (max-width: 980px) { nav.primary ul { gap: 24px; } nav.primary a { font-size: 14px; } }
+    @media (max-width: 860px) {
+      .header-inner { height: 68px; }
+      .brand-text { display: none; }
+      .brand img { height: 40px; }
+      nav.primary { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 16px 24px; }
+      nav.primary.open { display: block; }
+      nav.primary ul { flex-direction: column; align-items: stretch; gap: 0; }
+      nav.primary li { border-bottom: 1px solid var(--line); }
+      nav.primary li:last-child { border-bottom: none; }
+      nav.primary a { display: block; padding: 14px 0; }
+      .menu-toggle { display: inline-flex; align-items: center; gap: 8px; background: none; border: 1px solid var(--line-strong); padding: 8px 14px; font-size: 13px; font-weight: 500; color: var(--ink); cursor: pointer; font-family: inherit; }
+      .menu-toggle .bars { display: inline-block; width: 14px; height: 10px; background: linear-gradient(var(--ink), var(--ink)) 0 0/100% 1.5px no-repeat, linear-gradient(var(--ink), var(--ink)) 0 50%/100% 1.5px no-repeat, linear-gradient(var(--ink), var(--ink)) 0 100%/100% 1.5px no-repeat; }
+    }
+
+    /* GLOBAL NOTICE BAR */
+    .notice-bar { background: var(--navy); color: #fff; }
+    .notice-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; flex-wrap: wrap; }
+    .notice-bar-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; padding: 4px 10px; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.32); margin-right: 12px; vertical-align: 1px; }
+    .notice-bar p { margin: 0; font-size: 14px; flex: 1 1 auto; }
+    .notice-bar a { color: #fff; border-bottom: 1px solid rgba(255,255,255,0.5); font-weight: 500; }
+    .notice-bar a:hover { border-bottom-color: #fff; }
+    .notice-bar-link { font-size: 13px; font-weight: 500; white-space: nowrap; }
+
+    /* PAGE HEADER */
+    .page-header { background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%); padding: 56px 0 48px; border-bottom: 1px solid var(--line); }
+    .breadcrumb { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--text-mute); margin-bottom: 24px; }
+    .breadcrumb a { color: var(--text-soft); }
+    .breadcrumb a:hover { color: var(--navy); }
+    .breadcrumb .sep { color: var(--line-strong); }
+    .breadcrumb .current { color: var(--ink); font-weight: 500; }
+    .page-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; color: var(--navy); font-weight: 600; letter-spacing: 0.06em; margin-bottom: 16px; }
+    .page-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--navy); }
+    h1.page-title { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.3; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 16px; }
+    .page-sub { font-size: 17px; line-height: 1.7; color: var(--text); max-width: 800px; margin: 0; }
+
+    /* TOP STATS */
+    .top-stats { background: var(--bg); border-bottom: 1px solid var(--line); }
+    .top-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 720px) { .top-stats-grid { grid-template-columns: 1fr; } }
+    .top-stat-cell {
+      padding: 36px 36px;
+      border-right: 1px solid var(--line);
+    }
+    .top-stat-cell:last-child { border-right: none; }
+    @media (max-width: 720px) {
+      .top-stat-cell { border-right: none; border-bottom: 1px solid var(--line); }
+      .top-stat-cell:last-child { border-bottom: none; }
+    }
+    .top-stat-cell .label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+    .top-stat-cell .num {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .top-stat-cell .num small { font-size: 22px; font-weight: 600; }
+    .top-stat-cell .name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .top-stat-cell p {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-soft);
+      margin: 0;
+    }
+
+    /* SECTIONS */
+    section.std { padding: 80px 0; }
+    @media (max-width: 720px) { section.std { padding: 56px 0; } }
+
+    .section-numbered {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 32px; margin-bottom: 36px; align-items: start;
+    }
+    @media (max-width: 720px) { .section-numbered { grid-template-columns: 1fr; gap: 16px; } }
+    .section-num-box {
+      width: 56px; height: 56px;
+      background: var(--navy); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700; letter-spacing: 0.02em;
+    }
+    .section-title-block .label { display: block; font-size: 12px; font-weight: 600; color: var(--navy); letter-spacing: 0.08em; margin-bottom: 6px; }
+    .section-title-block h2 { font-size: clamp(22px, 2.6vw, 28px); font-weight: 700; color: var(--ink); margin: 0 0 12px; letter-spacing: -0.01em; line-height: 1.3; }
+    .section-title-block .lede { font-size: 15px; line-height: 1.7; color: var(--text); max-width: 760px; margin: 0; }
+
+    .section-divider { height: 1px; background: var(--line); margin: 80px 0; }
+    @media (max-width: 720px) { .section-divider { margin: 56px 0; } }
+
+    /* SECTION 1 — Open book yet discriminating */
+    .prose-block {
+      max-width: 860px;
+      margin-bottom: 32px;
+    }
+    .prose-block p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text);
+      margin: 0 0 14px;
+    }
+    .prose-block strong { color: var(--ink); font-weight: 600; }
+    .prose-block .accent {
+      background: linear-gradient(transparent 65%, rgba(181, 148, 92, 0.25) 65%);
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .perf-indicators {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 720px) { .perf-indicators { grid-template-columns: 1fr; } }
+    .perf-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--navy);
+      padding: 28px 32px;
+    }
+    .perf-card.highlight { border-top-color: var(--gold); }
+    .perf-card .stamp {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+    .perf-card.highlight .stamp { color: var(--gold-deep); }
+    .perf-card .num {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .perf-card .num .accent {
+      color: var(--navy);
+    }
+    .perf-card.highlight .num .accent { color: var(--gold-deep); }
+    .perf-card .num small { font-size: 18px; font-weight: 600; color: var(--text-mute); }
+    .perf-card .desc {
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    /* SECTION 2 — Round-by-round */
+    .winners-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 980px) { .winners-row { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px) { .winners-row { grid-template-columns: repeat(2, 1fr); } }
+
+    .winner-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .winner-card:hover {
+      border-color: var(--navy);
+      transform: translateY(-2px);
+    }
+    .winner-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-bottom: 1px solid var(--line);
+    }
+    .winner-body {
+      padding: 14px 16px 16px;
+    }
+    .winner-round {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--navy-soft);
+      padding: 3px 8px;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+    .winner-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .winner-detail {
+      font-size: 12px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .score-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      border-top: 1px solid var(--ink);
+    }
+    .score-table thead th {
+      background: var(--bg-soft);
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-soft);
+      text-align: left;
+      border-bottom: 1px solid var(--line-strong);
+    }
+    .score-table thead th:nth-child(1) { width: 80px; text-align: center; }
+    .score-table thead th:nth-child(2) { width: 160px; }
+    .score-table thead th:nth-child(3) { width: 110px; text-align: center; }
+    .score-table thead th:nth-child(4) { width: 100px; text-align: center; }
+    .score-table tbody tr { border-bottom: 1px solid var(--line); transition: background 0.15s; }
+    .score-table tbody tr:hover { background: var(--bg-soft); }
+    .score-table td { padding: 16px; vertical-align: middle; }
+    .score-table .round-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--navy-soft);
+      padding: 4px 10px;
+      letter-spacing: 0.04em;
+    }
+    .score-table td:nth-child(1) { text-align: center; }
+    .score-table td:nth-child(3),
+    .score-table td:nth-child(4) {
+      text-align: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 15px;
+    }
+    .score-table td.dash { color: var(--text-mute); font-weight: 400; }
+    .score-table .winner-cell strong { color: var(--ink); font-weight: 700; }
+    .score-table .winner-cell .meta {
+      display: block;
+      font-size: 12px;
+      color: var(--text-soft);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .table-note {
+      margin-top: 16px;
+      padding: 14px 18px;
+      background: var(--bg-soft);
+      border-left: 3px solid var(--text-mute);
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--text-soft);
+    }
+    .table-note strong { color: var(--ink); font-weight: 600; }
+
+    /* CEREMONY PHOTOS */
+    .ceremony-photos {
+      margin-top: 56px;
+    }
+    .ceremony-photos h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .ceremony-photos h3 .label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+    .ceremony-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 720px) { .ceremony-photo-grid { grid-template-columns: 1fr; } }
+    .cphoto {
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .cphoto img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+    .cphoto figcaption {
+      padding: 12px 18px;
+      background: var(--bg-soft);
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+      color: var(--text-soft);
+      letter-spacing: 0.02em;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .cphoto figcaption .round-mark {
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+    }
+
+    /* SECTION 3 — Profession diversity */
+    .professions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .prof-tag {
+      display: inline-block;
+      padding: 12px 22px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      font-size: 15px;
+      color: var(--text);
+      transition: all 0.15s;
+      font-weight: 500;
+    }
+    .prof-tag:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+      background: var(--bg-soft);
+    }
+    .prof-tag.highlight {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+    .prof-tag.gold {
+      background: rgba(181, 148, 92, 0.1);
+      border-color: var(--gold);
+      color: var(--gold-deep);
+      font-weight: 600;
+    }
+
+    /* SECTION 4 — Schools */
+    .schools-block { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    .school-subhead {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 14px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .school-subhead h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0;
+    }
+    .school-subhead .meta {
+      font-size: 12px;
+      color: var(--text-mute);
+      letter-spacing: 0.04em;
+    }
+
+    /* Top 12 ranked */
+    .ranked-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 56px;
+    }
+    @media (max-width: 760px) { .ranked-grid { grid-template-columns: repeat(2, 1fr); } }
+    .rank-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: border-color 0.2s;
+    }
+    .rank-card:hover { border-color: var(--navy); }
+    .rank-num {
+      width: 32px; height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+      letter-spacing: -0.01em;
+    }
+    .rank-1 .rank-num { background: var(--navy); color: #fff; }
+    .rank-2 .rank-num { background: var(--navy-soft); color: var(--navy); }
+    .rank-3 .rank-num { background: var(--navy-soft); color: var(--navy); }
+    .rank-num.std { background: var(--bg-soft); color: var(--text-soft); border: 1px solid var(--line-strong); }
+    .rank-school {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* Special tracks */
+    .special-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+    @media (max-width: 760px) { .special-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .special-grid { grid-template-columns: 1fr; } }
+    .special-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold);
+      padding: 18px 22px;
+    }
+    .special-card .school-ko {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .special-card .school-en {
+      font-size: 12px;
+      color: var(--text-mute);
+      letter-spacing: 0.02em;
+    }
+
+    /* Full 69 list */
+    .full-schools {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px 16px;
+    }
+    @media (max-width: 760px) { .full-schools { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .full-schools { grid-template-columns: 1fr; } }
+    .full-schools .school {
+      padding: 10px 14px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--text);
+      transition: all 0.15s;
+    }
+    .full-schools .school:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+    .full-schools .school.your-school {
+      background: linear-gradient(135deg, var(--navy-soft), var(--bg));
+      border: 1px dashed var(--navy);
+      color: var(--navy);
+      font-weight: 600;
+      text-align: center;
+    }
+    .full-schools .school.your-school::before {
+      content: '+ ';
+      font-weight: 700;
+    }
+
+    /* Diversity note */
+    .diversity-note {
+      margin-top: 56px;
+      background: var(--navy);
+      color: #fff;
+      padding: 40px 44px;
+    }
+    @media (max-width: 720px) { .diversity-note { padding: 32px 28px; } }
+    .diversity-note .label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .diversity-note h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 16px;
+      line-height: 1.4;
+    }
+    .diversity-note p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.85);
+      margin: 0 0 12px;
+    }
+    .diversity-note p:last-child { margin-bottom: 0; }
+    .diversity-note strong { color: var(--gold); font-weight: 600; }
+
+    /* CTA BLOCK */
+    .cta-block { background: var(--navy-deep); color: #fff; padding: 64px 0; text-align: center; }
+    .cta-block h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 700; margin: 0 0 12px; letter-spacing: -0.01em; }
+    .cta-block p { font-size: 15px; color: rgba(255,255,255,0.8); margin: 0 0 28px; letter-spacing: 0.02em; }
+    .cta-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; font-size: 15px; font-weight: 500; font-family: inherit; cursor: pointer; transition: all 0.15s; border: 1px solid transparent; }
+    .btn-on-dark-primary { background: #fff; color: var(--navy); border-color: #fff; }
+    .btn-on-dark-primary:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+    .btn-on-dark-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
+    .btn-on-dark-outline:hover { border-color: #fff; }
+
+    /* FOOTER */
+    footer.site-footer { background: var(--navy-deep); color: rgba(255,255,255,0.85); padding-top: 56px; }
+    .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.12); }
+    @media (max-width: 820px) { .footer-grid { grid-template-columns: 1fr; gap: 36px; } }
+    .footer-brand img { height: 42px; margin-bottom: 24px; }
+    .footer-brand p { font-size: 13px; line-height: 1.75; color: rgba(255,255,255,0.75); margin: 0 0 20px; }
+    .footer-info dl { margin: 0; display: grid; grid-template-columns: 60px 1fr; gap: 6px 14px; font-size: 13px; }
+    .footer-info dt { color: var(--gold); font-weight: 500; font-size: 12px; letter-spacing: 0.04em; }
+    .footer-info dd { margin: 0; color: rgba(255,255,255,0.85); }
+    .footer-col h4 { font-size: 13px; font-weight: 600; color: #fff; margin: 0 0 16px; letter-spacing: 0.04em; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { font-size: 13px; color: rgba(255,255,255,0.7); transition: color 0.15s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { padding: 24px 0 32px; font-size: 12px; color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
 <body>
-<a class="skip-link" href="#main-content">본문 바로가기</a>
+  <a href="#main" class="skip-link">본문 바로가기</a>
 
-<!-- Utility Top Bar -->
-<div class="utility-bar">
-  <div class="utility-inner">
-    <div class="est">EST. MMXXIV &middot; 法의 날</div>
-    <div class="utility-links">
-      <a href="https://smartstore.naver.com/lawtest/" target="_blank" rel="noopener noreferrer">참가신청</a>
+  <!-- UTILITY BAR -->
+  <div class="utility">
+    <div class="container utility-inner">
+      <div class="utility-left"><span>법학경시대회 공식 홈페이지</span></div>
+      <div class="utility-right">
+        <a href="contact.html">문의하기</a>
+        <span class="utility-divider"></span>
+        <a href="faq.html">자주 묻는 질문</a>
+        <span class="utility-divider"></span>
+        <a href="notice.html">공지사항</a>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Header -->
-<header class="site-header">
-  <div class="header-inner">
-    <a href="./index.html" class="brand">
-      <div class="brand-mark">法</div>
-      <div class="brand-text">
-        <h1>법학경시대회</h1>
-        <div class="en">Korean Law Olympiad</div>
-      </div>
-    </a>
-    <button class="menu-toggle" type="button" aria-label="주요 메뉴 열기" aria-controls="primary-navigation" aria-expanded="false">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-    <nav class="main-nav" id="primary-navigation" aria-label="주요 메뉴">
-      <ul>
-        <li><a href="./about.html">대회 소개</a></li>
-        <li><a href="./universities.html" class="active">응시자 정보</a></li>
-        <li><a href="./samples.html">문제 샘플</a></li>
-        <li><a href="./voices.html">응원의 말</a></li>
-        <li><a href="./achievements.html">결실</a></li>
-        <li><a href="./media.html">언론보도</a></li>
-        <li><a href="https://smartstore.naver.com/lawtest/" target="_blank" rel="noopener noreferrer">참가 신청</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main id="main-content">
-<!-- Sub Hero -->
-<section class="sub-hero" data-char="應">
-  <div class="sub-hero-inner">
-    <div class="breadcrumb">
-      <a href="./index.html">Home</a><span class="sep">/</span>Participants
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="법학경시대회 홈으로 이동">
+        <img src="assets/images/logo.png" alt="법학경시대회 Korean Law Olympiad" />
+        <span class="brand-text">
+          <span class="ko">선율 법학경시대회 위원회</span>
+          <span class="en">Korean Law Olympiad Committee</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bars" aria-hidden="true"></span>메뉴
+      </button>
+      <nav class="primary" id="primary-nav" aria-label="주요 메뉴">
+        <ul>
+          <li><a href="about.html">대회 소개</a></li>
+          <li><a href="universities.html" class="active">응시자 정보</a></li>
+          <li><a href="samples.html">문제 샘플</a></li>
+          <li><a href="voices.html">응원의 말</a></li>
+          <li><a href="achievements.html">결실</a></li>
+          <li><a href="media.html">언론보도</a></li>
+        </ul>
+      </nav>
     </div>
-    <h2>응시자 정보</h2>
-    <p class="desc">고등학교 재학생부터 옥스퍼드·뉴욕대 출신까지. 제6회까지 200명 이상, 제1~7회 합산 278명이 응시한 본 대회의 점수 분포, 회차별 커트라인, 그리고 오픈북 시험의 변별력에 관한 기록입니다.</p>
-  </div>
-</section>
+  </header>
 
-<!-- Section 1: Stats -->
-<section class="section">
-  <div class="section-inner">
-
-    <!-- Highlight -->
-    <div class="uni-feature-grid">
-      <div class="uni-feature">
-        <div class="uni-feature-eyebrow">Cumulative</div>
-        <div class="uni-feature-num">200<span style="font-size: 32px;">+</span></div>
-        <div class="uni-feature-label">제6회까지 누적 응시자</div>
-        <div class="uni-feature-desc">제1회부터 제6회까지 누적 200명 이상의 학습자가 본 대회에 응시하였습니다. 제1~7회 합산 응시 기록은 278명입니다.</div>
-      </div>
-      <div class="uni-feature dark">
-        <div class="uni-feature-eyebrow">Institutions</div>
-        <div class="uni-feature-num">69</div>
-        <div class="uni-feature-label">참여 학교</div>
-        <div class="uni-feature-desc">국내외 대학·고등학교 총 69개교의 학습자가 본 대회에 응시하였습니다.</div>
-      </div>
-      <div class="uni-feature">
-        <div class="uni-feature-eyebrow">Open</div>
-        <div class="uni-feature-num">∞</div>
-        <div class="uni-feature-label">진입장벽 없음</div>
-        <div class="uni-feature-desc">고등학교 재학생, 대학 미진학자도 응시. 학력·학벌·지역의 장벽이 없습니다.</div>
-      </div>
-    </div>
-
-    <!-- Section: 변별력 -->
-    <div class="uni-tier">
-      <div class="uni-tier-head">
-        <div class="uni-tier-roman">Ⅰ.</div>
-        <div class="uni-tier-title">오픈북이지만, 변별력 있다</div>
-        <div class="uni-tier-en">Open-Book, Yet Discriminating</div>
-      </div>
-
-      <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; margin-bottom: 48px;">
-        <div>
-          <p style="font-family: 'Pretendard', sans-serif; font-size: 18px; line-height: 1.85; color: #0A1419; font-weight: 500; margin-bottom: 20px;">
-            본 대회는 비대면&middot;오픈북(응시용 PC 외 전자기기·인터넷 검색·AI 도구 사용 금지)으로 시행됩니다. 법학 관련 최고의 전문가들이 출제하며, 변호사와 로스쿨 재학생으로 구성된 체험단 검수를 거치며 <strong style="color: var(--burgundy);">60점~70점을 변호사시험 합격 가능선</strong>으로 설계합니다.
-          </p>
-          <p style="font-family: 'Pretendard', sans-serif; font-size: 16px; line-height: 1.85; color: #1A1A1A; margin-bottom: 20px;">
-            오픈북임에도 변별력이 확보되는 이유는 출제 철학에 있습니다. 본 대회는 단순 암기를 묻지 않습니다. 조문&middot;판례&middot;교과서를 펼쳐 놓고도 <strong>법리의 이해와 사례 적용 능력</strong>이 있어야 풀 수 있는 문항을 출제합니다.
-          </p>
-          <p style="font-family: 'Pretendard', sans-serif; font-size: 16px; line-height: 1.85; color: #1A1A1A;">
-            체험단 자료는 정식 응시자와의 우열 비교를 위한 홍보 문구가 아니라, 실제 시험 난도와 합격 가능선 기준을 점검하기 위한 검수 절차로 활용합니다.
-          </p>
-        </div>
-        <div style="background: var(--navy); color: var(--white); padding: 48px 32px; position: relative; overflow: hidden;">
-          <div style="position: absolute; right: -10px; top: 50%; transform: translateY(-50%); font-family: 'Nanum Myeongjo', serif; font-weight: 800; font-size: 240px; color: var(--white); opacity: 0.04; line-height: 0.8; pointer-events: none;">辨</div>
-          <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 24px;">Performance Indicators</div>
-          <div style="display: grid; gap: 24px;">
-            <div>
-              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--gold); margin-bottom: 4px;">최고점</div>
-              <div style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 32px; color: var(--white);">73<span style="font-size: 20px; opacity: 0.7;"> / 100</span></div>
-              <div style="font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 4px;">제3&middot;5회 (오픈북 기준)</div>
-            </div>
-            <div>
-              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--gold); margin-bottom: 4px;">평균</div>
-              <div style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 32px; color: var(--white);">30<span style="font-size: 20px;">~</span>44<span style="font-size: 20px; opacity: 0.7;"> / 100</span></div>
-              <div style="font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 4px;">회차별 평균 점수 분포</div>
-            </div>
-            <div>
-              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--gold); margin-bottom: 4px;">합격 가능선</div>
-              <div style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 32px; color: var(--white);">60<span style="font-size: 20px;">~</span>70<span style="font-size: 20px; opacity: 0.7;">점</span></div>
-              <div style="font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 4px;">변호사시험 합격 가능선 설계 기준</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section: 회차별 대상 사진 -->
-    <div class="uni-tier">
-      <div class="uni-tier-head">
-        <div class="uni-tier-roman">Ⅱ.</div>
-        <div class="uni-tier-title">회차별 대상 점수 &middot; 평균 점수</div>
-        <div class="uni-tier-en">Score Distribution by Round</div>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 32px;">
-        <div style="background: var(--white); border: 1px solid var(--line);">
-          <div style="aspect-ratio: 1/1; overflow: hidden;"><img src="./photos/r1_winner.jpg" alt="제1회 대상 한정현" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null;this.classList.add('image-fallback');this.src='assets/images/image-placeholder.svg';" loading="lazy" decoding="async"></div>
-          <div style="padding: 12px 14px; text-align: center;">
-            <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--burgundy); font-weight: 600; letter-spacing: 0.1em;">Ⅰ</div>
-            <div style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 14px; color: #0A1419;">한정현</div>
-            <div style="font-family: 'Pretendard', sans-serif; font-size: 11px; color: #4A4740; margin-top: 2px;">KAIST</div>
-          </div>
-        </div>
-        <div style="background: var(--white); border: 1px solid var(--line);">
-          <div style="aspect-ratio: 1/1; overflow: hidden;"><img src="./photos/r3_winner.jpg" alt="제3회 대상 이규한" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null;this.classList.add('image-fallback');this.src='assets/images/image-placeholder.svg';" loading="lazy" decoding="async"></div>
-          <div style="padding: 12px 14px; text-align: center;">
-            <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--burgundy); font-weight: 600; letter-spacing: 0.1em;">Ⅲ</div>
-            <div style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 14px; color: #0A1419;">이규한</div>
-            <div style="font-family: 'Pretendard', sans-serif; font-size: 11px; color: #4A4740; margin-top: 2px;">현직 경찰관 &middot; 73점</div>
-          </div>
-        </div>
-        <div style="background: var(--white); border: 1px solid var(--line);">
-          <div style="aspect-ratio: 1/1; overflow: hidden;"><img src="./photos/r4_winner.jpg" alt="제4회 대상 박상영" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null;this.classList.add('image-fallback');this.src='assets/images/image-placeholder.svg';" loading="lazy" decoding="async"></div>
-          <div style="padding: 12px 14px; text-align: center;">
-            <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--burgundy); font-weight: 600; letter-spacing: 0.1em;">Ⅳ</div>
-            <div style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 14px; color: #0A1419;">박상영</div>
-            <div style="font-family: 'Pretendard', sans-serif; font-size: 11px; color: #4A4740; margin-top: 2px;">고려대 &middot; 71점</div>
-          </div>
-        </div>
-        <div style="background: var(--white); border: 1px solid var(--line);">
-          <div style="aspect-ratio: 1/1; overflow: hidden;"><img src="./photos/r5_winner.jpg" alt="제5회 대상 여운규" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null;this.classList.add('image-fallback');this.src='assets/images/image-placeholder.svg';" loading="lazy" decoding="async"></div>
-          <div style="padding: 12px 14px; text-align: center;">
-            <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--burgundy); font-weight: 600; letter-spacing: 0.1em;">Ⅴ</div>
-            <div style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 14px; color: #0A1419;">여운규</div>
-            <div style="font-family: 'Pretendard', sans-serif; font-size: 11px; color: #4A4740; margin-top: 2px;">방송통신대 &middot; 73점</div>
-          </div>
-        </div>
-        <div style="background: var(--white); border: 1px solid var(--line);">
-          <div style="aspect-ratio: 1/1; overflow: hidden;"><img src="./photos/r6_winner.jpg" alt="제6회 대상 박준한" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null;this.classList.add('image-fallback');this.src='assets/images/image-placeholder.svg';" loading="lazy" decoding="async"></div>
-          <div style="padding: 12px 14px; text-align: center;">
-            <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--burgundy); font-weight: 600; letter-spacing: 0.1em;">Ⅵ</div>
-            <div style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 14px; color: #0A1419;">박준한</div>
-            <div style="font-family: 'Pretendard', sans-serif; font-size: 11px; color: #4A4740; margin-top: 2px;">고려사이버대 &middot; 70점</div>
-          </div>
-        </div>
-      </div>
-
-
-      <div style="background: var(--white); border: 1px solid var(--line); margin-bottom: 24px; overflow-x: auto;">
-        <div style="display: grid; grid-template-columns: 0.7fr 1.5fr 1fr 1fr 2fr; background: var(--navy); color: var(--white); font-family: 'Pretendard', sans-serif; font-weight: 600; font-size: 14px; min-width: 720px;">
-          <div style="padding: 16px 20px; text-align: center;">회차</div>
-          <div style="padding: 16px 20px;">시상식 일자</div>
-          <div style="padding: 16px 20px; text-align: center;">대상 점수</div>
-          <div style="padding: 16px 20px; text-align: center;">평균</div>
-          <div style="padding: 16px 20px;">대상 수상자</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 0.7fr 1.5fr 1fr 1fr 2fr; border-bottom: 1px solid var(--line-soft); font-family: 'Pretendard', sans-serif; font-size: 15px; color: #0A1419; min-width: 720px;">
-          <div style="padding: 18px 20px; text-align: center; font-weight: 700; color: var(--burgundy); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px;">Ⅰ</div>
-          <div style="padding: 18px 20px;">2025년 3월 3일</div>
-          <div style="padding: 18px 20px; text-align: center;">&mdash;</div>
-          <div style="padding: 18px 20px; text-align: center;">&mdash;</div>
-          <div style="padding: 18px 20px;"><strong>한정현</strong> <span style="color: #4A4740; font-size: 13px;">(KAIST 졸업, 산자부 인턴)</span></div>
-        </div>
-        <div style="display: grid; grid-template-columns: 0.7fr 1.5fr 1fr 1fr 2fr; border-bottom: 1px solid var(--line-soft); background: var(--ivory); font-family: 'Pretendard', sans-serif; font-size: 15px; color: #0A1419; min-width: 720px;">
-          <div style="padding: 18px 20px; text-align: center; font-weight: 700; color: var(--burgundy); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px;">Ⅱ</div>
-          <div style="padding: 18px 20px;">2025년 4월 5일</div>
-          <div style="padding: 18px 20px; text-align: center; font-weight: 700; color: var(--burgundy);">67점</div>
-          <div style="padding: 18px 20px; text-align: center; font-weight: 600;">33점</div>
-          <div style="padding: 18px 20px;"><strong>김예진</strong> <span style="color: #4A4740; font-size: 13px;">(충북대 로스쿨)</span></div>
-        </div>
-        <div style="display: grid; grid-template-columns: 0.7fr 1.5fr 1fr 1fr 2fr; border-bottom: 1px solid var(--line-soft); background: var(--ivory); font-family: 'Pretendard', sans-serif; font-size: 15px; color: #0A1419; min-width: 720px;">
-          <div style="padding: 18px 20px; text-align: center; font-weight: 700; color: var(--burgundy); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px;">Ⅲ</div>
-          <div style="padding: 18px 20px;">2025년 5월 10일</div>
-          <div style="padding: 18px 20px; text-align: center; font-weight: 700; color: var(--burgundy);">73점</div>
-          <div style="padding: 18px 20px; text-align: center; font-weight: 600;">44점</div>
-          <div style="padding: 18px 20px;"><strong>이규한</strong> <span style="color: #4A4740; font-size: 13px;">(현직 경찰관 최초 대상)</span></div>
-        </div>
-        <div style="display: grid; grid-template-columns: 0.7fr 1.5fr 1fr 1fr 2fr; border-bottom: 1px solid var(--line-soft); font-family: 'Pretendard', sans-serif; font-size: 15px; color: #0A1419; min-width: 720px;">
-          <div style="padding: 18px 20px; text-align: center; font-weight: 700; color: var(--burgundy); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px;">Ⅳ</div>
-          <div style="padding: 18px 20px;">2025년 8월 9일</div>
-          <div style="padding: 18px 20px; text-align: center; font-weight: 700; color: var(--burgundy);">71점</div>
-          <div style="padding: 18px 20px; text-align: center;">&mdash;</div>
-          <div style="padding: 18px 20px;"><strong>박상영</strong> <span style="color: #4A4740; font-size: 13px;">(고려대 → 서울대 대학원 법학과)</span></div>
-        </div>
-        <div style="display: grid; grid-template-columns: 0.7fr 1.5fr 1fr 1fr 2fr; border-bottom: 1px solid var(--line-soft); background: var(--ivory); font-family: 'Pretendard', sans-serif; font-size: 15px; color: #0A1419; min-width: 720px;">
-          <div style="padding: 18px 20px; text-align: center; font-weight: 700; color: var(--burgundy); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px;">Ⅴ</div>
-          <div style="padding: 18px 20px;">2025년 9월 20일</div>
-          <div style="padding: 18px 20px; text-align: center; font-weight: 700; color: var(--burgundy);">73점</div>
-          <div style="padding: 18px 20px; text-align: center;">&mdash;</div>
-          <div style="padding: 18px 20px;"><strong>여운규</strong> <span style="color: #4A4740; font-size: 13px;">(방송통신대 법학과)</span></div>
-        </div>
-        <div style="display: grid; grid-template-columns: 0.7fr 1.5fr 1fr 1fr 2fr; background: var(--ivory); font-family: 'Pretendard', sans-serif; font-size: 15px; color: #0A1419; min-width: 720px;">
-          <div style="padding: 18px 20px; text-align: center; font-weight: 700; color: var(--burgundy); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px;">Ⅵ</div>
-          <div style="padding: 18px 20px;">2026년 1월 24일</div>
-          <div style="padding: 18px 20px; text-align: center; font-weight: 700; color: var(--burgundy);">70점</div>
-          <div style="padding: 18px 20px; text-align: center;">&mdash;</div>
-          <div style="padding: 18px 20px;"><strong>박준한</strong> <span style="color: #4A4740; font-size: 13px;">(고려사이버대 → 치안대학원 진학 예정)</span></div>
-        </div>
-      </div>
-
-      <p style="font-family: 'Pretendard', sans-serif; font-size: 14px; color: #4A4740; line-height: 1.7; padding: 16px 20px; background: var(--ivory); border-left: 3px solid var(--gold);">
-        ※ 점수는 100점 만점 기준입니다. <strong>제2회 평균 33점</strong>은 헌법 41·민법 28·형법 32점의 산술평균입니다. 체험단 자료는 공식 응시자 성적과의 우열 비교가 아니라, 출제 난도와 60점~70점 기준점 보정을 위한 검수 자료로 활용합니다.
+  <!-- GLOBAL NOTICE BAR -->
+  <div class="notice-bar" role="status">
+    <div class="container notice-bar-inner">
+      <p>
+        <span class="notice-bar-tag">알림</span>
+        제7회 법학경시대회가 2026년 5월 9일(토) 시행 완료되었습니다.
+        결과 발표는 5월 중순에 예정되어 있습니다.
       </p>
-
-      <!-- Ceremony Photos Gallery -->
-      <div style="margin-top: 56px;">
-        <h4 style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 17px; color: var(--burgundy); margin: 0 0 20px; padding-left: 16px; border-left: 3px solid var(--gold);">시상식 기록 &middot; Ceremony Archive</h4>
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
-          <figure style="margin: 0;">
-            <img src="./assets/images/universities-image-1.jpg" alt="제3회 법학경시대회 시상식" style="width: 100%; height: auto; display: block; box-shadow: 0 4px 20px rgba(15, 40, 71, 0.12);" loading="lazy" decoding="async">
-            <figcaption style="font-family: 'Pretendard', sans-serif; font-size: 13px; color: #4A4740; padding: 12px 4px 0; border-bottom: 1px solid var(--line-soft); margin-bottom: 0;">
-              <strong style="color: var(--burgundy); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px;">Ⅲ</strong> &nbsp; 제3회 시상식 &middot; 2025년 5월 10일 &middot; 변호사회관 1층
-            </figcaption>
-          </figure>
-          <figure style="margin: 0;">
-            <img src="./assets/images/universities-image-2.jpg" alt="제4회 법학경시대회 시상식" style="width: 100%; height: auto; display: block; box-shadow: 0 4px 20px rgba(15, 40, 71, 0.12);" loading="lazy" decoding="async">
-            <figcaption style="font-family: 'Pretendard', sans-serif; font-size: 13px; color: #4A4740; padding: 12px 4px 0; border-bottom: 1px solid var(--line-soft); margin-bottom: 0;">
-              <strong style="color: var(--burgundy); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px;">Ⅳ</strong> &nbsp; 제4회 시상식 &middot; 2025년 8월 9일 &middot; 변호사회관 1층
-            </figcaption>
-          </figure>
-          <figure style="margin: 0;">
-            <img src="./assets/images/universities-image-3.jpg" alt="제5회 법학경시대회 및 제1회 자기주도 학습법 공모전 시상식" style="width: 100%; height: auto; display: block; box-shadow: 0 4px 20px rgba(15, 40, 71, 0.12);" loading="lazy" decoding="async">
-            <figcaption style="font-family: 'Pretendard', sans-serif; font-size: 13px; color: #4A4740; padding: 12px 4px 0; border-bottom: 1px solid var(--line-soft); margin-bottom: 0;">
-              <strong style="color: var(--burgundy); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px;">Ⅴ</strong> &nbsp; 제5회 시상식 &middot; 2025년 9월 20일 &middot; 자기주도 학습법 공모전 병행
-            </figcaption>
-          </figure>
-          <figure style="margin: 0;">
-            <img src="./assets/images/universities-image-4.jpg" alt="제6회 법학경시대회 시상식" style="width: 100%; height: auto; display: block; box-shadow: 0 4px 20px rgba(15, 40, 71, 0.12);" loading="lazy" decoding="async">
-            <figcaption style="font-family: 'Pretendard', sans-serif; font-size: 13px; color: #4A4740; padding: 12px 4px 0; border-bottom: 1px solid var(--line-soft); margin-bottom: 0;">
-              <strong style="color: var(--burgundy); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px;">Ⅵ</strong> &nbsp; 제6회 시상식 &middot; 2026년 1월 24일 &middot; 변호사회관 조영래홀
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Section: 응시자 직업 다양성 -->
-    <div class="uni-tier">
-      <div class="uni-tier-head">
-        <div class="uni-tier-roman">Ⅲ.</div>
-        <div class="uni-tier-title">직업의 다양성</div>
-        <div class="uni-tier-en">Diverse Backgrounds</div>
-      </div>
-      <div class="uni-list" style="grid-template-columns: repeat(4, 1fr);">
-        <div class="uni-cell"><div class="uni-name">학부생</div></div>
-        <div class="uni-cell"><div class="uni-name">취업준비생</div></div>
-        <div class="uni-cell"><div class="uni-name">의사</div></div>
-        <div class="uni-cell"><div class="uni-name">현직 경찰관</div></div>
-        <div class="uni-cell"><div class="uni-name">로스쿨 재학생</div></div>
-        <div class="uni-cell"><div class="uni-name">공무원</div></div>
-        <div class="uni-cell"><div class="uni-name">교사</div></div>
-        <div class="uni-cell"><div class="uni-name">태권도 사범</div></div>
-        <div class="uni-cell"><div class="uni-name">평생학습자</div></div>
-        <div class="uni-cell"><div class="uni-name">고등학생</div></div>
-        <div class="uni-cell"><div class="uni-name">대학 미진학자</div></div>
-        <div class="uni-cell highlight"><div class="uni-name">기초생활수급자</div></div>
-      </div>
-    </div>
-
-    <!-- Section: 학교 -->
-    <div class="uni-tier">
-      <div class="uni-tier-head">
-        <div class="uni-tier-roman">Ⅳ.</div>
-        <div class="uni-tier-title">참여 학교 (응시자 빈도순)</div>
-        <div class="uni-tier-en">Participating Institutions &middot; 69 Schools</div>
-      </div>
-
-      <h4 style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 17px; color: var(--burgundy); margin: 24px 0 16px; padding-left: 16px; border-left: 3px solid var(--gold);">응시자 빈도 상위 12개교</h4>
-      <div class="uni-list top-schools" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 32px;">
-        <div class="uni-cell special"><span class="uni-rank">1</span><div class="uni-name">KAIST</div></div>
-        <div class="uni-cell special"><span class="uni-rank">2</span><div class="uni-name">고려대학교</div></div>
-        <div class="uni-cell special"><span class="uni-rank">3</span><div class="uni-name">한국방송통신대학교</div></div>
-        <div class="uni-cell"><span class="uni-rank">4</span><div class="uni-name">서울대학교</div></div>
-        <div class="uni-cell"><span class="uni-rank">5</span><div class="uni-name">동국대학교</div></div>
-        <div class="uni-cell"><span class="uni-rank">6</span><div class="uni-name">연세대학교</div></div>
-        <div class="uni-cell"><span class="uni-rank">7</span><div class="uni-name">숙명여자대학교</div></div>
-        <div class="uni-cell"><span class="uni-rank">8</span><div class="uni-name">전북대학교</div></div>
-        <div class="uni-cell"><span class="uni-rank">9</span><div class="uni-name">성균관대학교</div></div>
-        <div class="uni-cell"><span class="uni-rank">10</span><div class="uni-name">중앙대학교</div></div>
-        <div class="uni-cell"><span class="uni-rank">11</span><div class="uni-name">경희대학교</div></div>
-        <div class="uni-cell"><span class="uni-rank">12</span><div class="uni-name">한양대학교</div></div>
-      </div>
-
-      <h4 style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 17px; color: var(--burgundy); margin: 24px 0 16px; padding-left: 16px; border-left: 3px solid var(--gold);">해외 명문대 &middot; 특별 트랙</h4>
-      <div class="uni-list" style="margin-bottom: 32px;">
-        <div class="uni-cell global"><div class="uni-name">옥스퍼드대학교<br><small style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px;">University of Oxford</small></div></div>
-        <div class="uni-cell global"><div class="uni-name">뉴욕대학교<br><small style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px;">New York University</small></div></div>
-        <div class="uni-cell global"><div class="uni-name">University of Dayton<br><small style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px;">USA</small></div></div>
-        <div class="uni-cell highlight"><div class="uni-name">고졸<br><small style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px;">대학 미진학</small></div></div>
-        <div class="uni-cell highlight"><div class="uni-name">풍암고등학교<br><small style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px;">고등학교 재학</small></div></div>
-        <div class="uni-cell"><div class="uni-name">한국방송통신대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">고려사이버대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">경찰대학교</div></div>
-      </div>
-
-      <h4 style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 17px; color: var(--burgundy); margin: 24px 0 16px; padding-left: 16px; border-left: 3px solid var(--gold);">전국 참가 학교 전체 (총 69개교)</h4>
-      <div class="uni-list">
-        <div class="uni-cell"><div class="uni-name">KAIST</div></div>
-        <div class="uni-cell"><div class="uni-name">고려대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">한국방송통신대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">서울대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">동국대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">연세대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">숙명여자대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">전북대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">성균관대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">중앙대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">경희대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">한양대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">한국외국어대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">숭실대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">부산대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">인천대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">목포대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">이화여자대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">국민대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">성신여자대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">덕성여자대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">대구가톨릭대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">고려사이버대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">서강대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">서울시립대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">단국대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">가천대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">경기대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">가톨릭대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">경찰대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">경북대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">충남대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">부경대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">울산대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">한남대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">조선대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">청주대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">순천향대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">강릉원주대학교</div></div>
-        <div class="uni-cell highlight"><div class="uni-name">고졸 (대학 미진학)</div></div>
-        <div class="uni-cell"><div class="uni-name">건국대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">홍익대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">명지대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">강남대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">인하대학교</div></div>
-        <div class="uni-cell global"><div class="uni-name">옥스퍼드대학교</div></div>
-        <div class="uni-cell global"><div class="uni-name">뉴욕대학교</div></div>
-        <div class="uni-cell global"><div class="uni-name">University of Dayton</div></div>
-        <div class="uni-cell"><div class="uni-name">전남대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">경상국립대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">충북대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">한림대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">한국해양대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">경남대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">세명대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">경성대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">동의대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">계명대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">영남대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">한국기술교육대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">대전대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">수원대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">서경대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">국립경국대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">중부대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">선문대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">경남정보대학교</div></div>
-        <div class="uni-cell"><div class="uni-name">백석예술대학교</div></div>
-        <div class="uni-cell highlight"><div class="uni-name">풍암고등학교 (재학)</div></div>
-        <div class="uni-cell" style="background: var(--ivory); display: flex; align-items: center; justify-content: center;">
-          <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: #6B4D1F; letter-spacing: 0.1em; font-weight: 500;">+ Your Institution</div>
-        </div>
-        <div class="uni-cell" style="background: var(--ivory); display: flex; align-items: center; justify-content: center;">
-          <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: #6B4D1F; letter-spacing: 0.1em; font-weight: 500;">+ Your Institution</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Insight -->
-    <div style="margin-top: 80px; padding: 48px; background: var(--ivory); border-left: 3px solid var(--gold);">
-      <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; letter-spacing: 0.25em; color: var(--gold-deep); text-transform: uppercase; margin-bottom: 16px; font-weight: 600;">A Note on Diversity</div>
-      <p style="font-family: 'Pretendard', sans-serif; font-size: 22px; font-weight: 600; line-height: 1.7; color: #081830; margin-bottom: 20px; letter-spacing: -0.01em;">
-        본 대회의 응시자 명부에는 <strong>옥스퍼드대학교의 학습자</strong>와 <strong>풍암고등학교 재학생</strong>이 같은 무대에 이름을 올립니다.
-      </p>
-      <p style="font-family: 'Pretendard', sans-serif; font-size: 16px; line-height: 1.85; color: #1A1A1A; font-weight: 400;">
-        한국 법학 교육에서 검증 통로가 부족했던 이공계 출신, 방송통신대&middot;사이버대 학습자, 고등학교 졸업자, 지방 거주 응시자, 해외 거주자, 경제적 어려움에 처한 응시자에게도 본 대회는 학력&middot;학벌의 진입장벽 없는 무대를 제공해 왔습니다. 비대면 시행 방식이 그 가능성을 열었습니다.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-banner">
-  <div class="cta-banner-inner">
-    <h3>당신도 이 명단에<br>이름을 올릴 수 있습니다</h3>
-    <p>Add your name to this roster of legal aspirants</p>
-    <div class="hero-cta" style="justify-content: center;">
-      <a href="https://smartstore.naver.com/lawtest/" target="_blank" class="btn btn-primary" rel="noopener noreferrer">제7회 참가 신청 <span class="arrow">→</span></a>
-      <a href="./achievements.html" class="btn btn-outline">대회의 결실 <span class="arrow">→</span></a>
+      <a href="notice.html" class="notice-bar-link">상세 안내 →</a>
     </div>
   </div>
-</section>
 
-</main>
-
-<!-- Footer -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <h3>법학경시대회</h3>
-        <div class="en">Korean Law Olympiad</div>
-        <dl class="footer-hierarchy">
-          <dt>주최</dt><dd>선율 법학경시대회 위원회</dd>
-          <dt>후원</dt><dd>변호사공제재단 외 10개 기관</dd>
-        </dl>
-        <p style="margin-top: 24px; font-size: 14px; line-height: 1.75; color: rgba(245, 247, 240, 0.8);">
-          서울특별시 종로구 새문안로5길 13, 제지하1층 29호 (당주동, 변호사회관)<br>
-          문의: 010-3378-9392<br>
-          <span class="footer-note">본 대회는 2023년 대한변협 법학경시대회 TF 논의에서 출발하였으며, 현재 주최는 선율 법학경시대회 위원회입니다.</span>
+  <!-- PAGE HEADER -->
+  <main id="main">
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="현재 위치">
+          <a href="index.html">홈</a>
+          <span class="sep">›</span>
+          <span class="current">응시자 정보</span>
+        </nav>
+        <div class="page-eyebrow">PARTICIPANTS</div>
+        <h1 class="page-title">응시자 정보</h1>
+        <p class="page-sub">
+          고등학교 재학생부터 옥스퍼드·뉴욕대 출신까지.
+          제6회까지 200명 이상, 제1~7회 합산 278명이 응시한 본 대회의 점수 분포,
+          회차별 커트라인, 그리고 오픈북 시험의 변별력에 관한 기록입니다.
         </p>
       </div>
-      <div class="footer-col">
-        <h4>Sitemap</h4>
-        <ul>
-          <li><a href="./about.html">대회 소개</a></li>
-          <li><a href="./universities.html">응시자 정보</a></li>
-        <li><a href="./samples.html">문제 샘플</a></li>
-        <li><a href="./voices.html">응원의 말</a></li>
-          <li><a href="./achievements.html">결실</a></li>
-          <li><a href="./media.html">언론보도</a></li>
-          <li><a href="https://smartstore.naver.com/lawtest/" target="_blank" rel="noopener noreferrer">참가 신청</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Information</h4>
-        <ul>
-          <li><a href="./notice.html">공지사항</a></li>
-          <li><a href="./faq.html">자주 묻는 질문</a></li>
-          <li><a href="./media.html">보도자료</a></li>
-          <li><a href="./terms.html">이용약관</a></li>
-          <li><a href="./privacy.html">개인정보처리방침</a></li>
-          <li><a href="./contact.html">문의하기</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="copyright">Copyright &copy; MMXXVI &middot; Korean Law Olympiad. All Rights Reserved.</div>
-      <div>EST. 2024 &middot; 法의 날</div>
-    </div>
-  </div>
-</footer>
+    </section>
 
-<script src="./assets/js/site.js" defer></script>
+    <!-- TOP STATS -->
+    <div class="top-stats">
+      <div class="container">
+        <div class="top-stats-grid">
+          <div class="top-stat-cell">
+            <div class="label">CUMULATIVE</div>
+            <div class="num">200<small>+ 명</small></div>
+            <div class="name">제6회까지 누적 응시자</div>
+            <p>제1회부터 제6회까지 누적 200명 이상의 학습자가 본 대회에 응시하였습니다. 제1~7회 합산 278명.</p>
+          </div>
+          <div class="top-stat-cell">
+            <div class="label">INSTITUTIONS</div>
+            <div class="num">69<small>개교</small></div>
+            <div class="name">참여 학교</div>
+            <p>국내외 대학·고등학교 총 69개교의 학습자가 본 대회에 응시하였습니다.</p>
+          </div>
+          <div class="top-stat-cell">
+            <div class="label">OPEN ACCESS</div>
+            <div class="num" style="font-size: 64px;">∞</div>
+            <div class="name">진입장벽 없음</div>
+            <p>고등학교 재학생, 대학 미진학자도 응시. 학력·학벌·지역의 장벽이 없습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 01: OPEN-BOOK YET DISCRIMINATING -->
+    <section class="std">
+      <div class="container">
+        <div class="section-numbered">
+          <div class="section-num-box">01</div>
+          <div class="section-title-block">
+            <span class="label">OPEN-BOOK, YET DISCRIMINATING</span>
+            <h2>오픈북이지만, 변별력 있다</h2>
+          </div>
+        </div>
+
+        <div class="prose-block">
+          <p>
+            본 대회는 비대면·오픈북(응시용 PC 외 전자기기·인터넷 검색·AI 도구 사용 금지)으로 시행됩니다.
+            법학 관련 최고의 전문가들이 출제하며, 변호사와 로스쿨 재학생으로 구성된 체험단 검수를 거치며
+            <span class="accent">60점~70점을 변호사시험 합격 가능선</span>으로 설계합니다.
+          </p>
+          <p>
+            오픈북임에도 변별력이 확보되는 이유는 출제 철학에 있습니다. 본 대회는 단순 암기를 묻지 않습니다.
+            조문·판례·교과서를 펼쳐 놓고도 <strong>법리의 이해와 사례 적용 능력</strong>이 있어야 풀 수 있는 문항을 출제합니다.
+          </p>
+          <p>
+            체험단 자료는 정식 응시자와의 우열 비교를 위한 홍보 문구가 아니라,
+            실제 시험 난도와 합격 가능선 기준을 점검하기 위한 검수 절차로 활용합니다.
+          </p>
+        </div>
+
+        <div class="perf-indicators">
+          <div class="perf-card">
+            <div class="stamp">PERFORMANCE · 최고점</div>
+            <div class="num"><span class="accent">73</span> <small>/ 100</small></div>
+            <div class="desc">제3·5회 (오픈북 기준)</div>
+          </div>
+          <div class="perf-card">
+            <div class="stamp">PERFORMANCE · 평균</div>
+            <div class="num"><span class="accent">30~44</span> <small>/ 100</small></div>
+            <div class="desc">회차별 평균 점수 분포</div>
+          </div>
+          <div class="perf-card highlight">
+            <div class="stamp">DESIGN · 합격 가능선</div>
+            <div class="num"><span class="accent">60~70</span> <small>점</small></div>
+            <div class="desc">변호사시험 합격 가능선 설계 기준</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- SECTION 02: ROUND-BY-ROUND -->
+    <section class="std" style="padding-top: 0;">
+      <div class="container">
+        <div class="section-numbered">
+          <div class="section-num-box">02</div>
+          <div class="section-title-block">
+            <span class="label">SCORE DISTRIBUTION BY ROUND</span>
+            <h2>회차별 대상 점수 · 평균 점수</h2>
+            <p class="lede">제1회부터 제6회까지의 대상 수상자 점수와 회차별 평균 점수입니다. 100점 만점 기준.</p>
+          </div>
+        </div>
+
+        <!-- Winners cards -->
+        <div class="winners-row">
+          <article class="winner-card">
+            <img src="https://law-test.github.io/homepage/photos/r1_winner.jpg" alt="제1회 대상 한정현" loading="lazy" />
+            <div class="winner-body">
+              <span class="winner-round">제1회 대상</span>
+              <div class="winner-name">한정현</div>
+              <div class="winner-detail">KAIST 졸업</div>
+            </div>
+          </article>
+          <article class="winner-card">
+            <img src="https://law-test.github.io/homepage/photos/r3_winner.jpg" alt="제3회 대상 이규한" loading="lazy" />
+            <div class="winner-body">
+              <span class="winner-round">제3회 대상</span>
+              <div class="winner-name">이규한</div>
+              <div class="winner-detail">현직 경찰관 · 73점</div>
+            </div>
+          </article>
+          <article class="winner-card">
+            <img src="https://law-test.github.io/homepage/photos/r4_winner.jpg" alt="제4회 대상 박상영" loading="lazy" />
+            <div class="winner-body">
+              <span class="winner-round">제4회 대상</span>
+              <div class="winner-name">박상영</div>
+              <div class="winner-detail">고려대 · 71점</div>
+            </div>
+          </article>
+          <article class="winner-card">
+            <img src="https://law-test.github.io/homepage/photos/r5_winner.jpg" alt="제5회 대상 여운규" loading="lazy" />
+            <div class="winner-body">
+              <span class="winner-round">제5회 대상</span>
+              <div class="winner-name">여운규</div>
+              <div class="winner-detail">방송통신대 · 73점</div>
+            </div>
+          </article>
+          <article class="winner-card">
+            <img src="https://law-test.github.io/homepage/photos/r6_winner.jpg" alt="제6회 대상 박준한" loading="lazy" />
+            <div class="winner-body">
+              <span class="winner-round">제6회 대상</span>
+              <div class="winner-name">박준한</div>
+              <div class="winner-detail">고려사이버대 · 70점</div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Score table -->
+        <table class="score-table">
+          <thead>
+            <tr>
+              <th scope="col">회차</th>
+              <th scope="col">시상식 일자</th>
+              <th scope="col">대상 점수</th>
+              <th scope="col">평균</th>
+              <th scope="col">대상 수상자</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="round-tag">제1회</span></td>
+              <td>2025년 3월 3일</td>
+              <td class="dash">—</td>
+              <td class="dash">—</td>
+              <td class="winner-cell">
+                <strong>한정현</strong>
+                <span class="meta">KAIST 졸업, 산자부 인턴</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="round-tag">제2회</span></td>
+              <td>2025년 4월 5일</td>
+              <td>67점</td>
+              <td>33점</td>
+              <td class="winner-cell">
+                <strong>김예진</strong>
+                <span class="meta">충북대 로스쿨</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="round-tag">제3회</span></td>
+              <td>2025년 5월 10일</td>
+              <td>73점</td>
+              <td>44점</td>
+              <td class="winner-cell">
+                <strong>이규한</strong>
+                <span class="meta">현직 경찰관 최초 대상</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="round-tag">제4회</span></td>
+              <td>2025년 8월 9일</td>
+              <td>71점</td>
+              <td class="dash">—</td>
+              <td class="winner-cell">
+                <strong>박상영</strong>
+                <span class="meta">고려대 → 서울대 대학원 법학과</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="round-tag">제5회</span></td>
+              <td>2025년 9월 20일</td>
+              <td>73점</td>
+              <td class="dash">—</td>
+              <td class="winner-cell">
+                <strong>여운규</strong>
+                <span class="meta">방송통신대 법학과</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="round-tag">제6회</span></td>
+              <td>2026년 1월 24일</td>
+              <td>70점</td>
+              <td class="dash">—</td>
+              <td class="winner-cell">
+                <strong>박준한</strong>
+                <span class="meta">고려사이버대 → 치안대학원 진학 예정</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="table-note">
+          ※ 점수는 100점 만점 기준입니다.
+          <strong>제2회 평균 33점</strong>은 헌법 41점·민법 28점·형법 32점의 산술평균입니다.
+          체험단 자료는 공식 응시자 성적과의 우열 비교가 아니라, 출제 난도와 60~70점 기준점 보정을 위한 검수 자료로 활용합니다.
+        </div>
+
+        <!-- Ceremony photos -->
+        <div class="ceremony-photos">
+          <h3>
+            <span class="label">CEREMONY ARCHIVE · 시상식 기록</span>
+            제3회~제6회 시상식
+          </h3>
+          <div class="ceremony-photo-grid">
+            <figure class="cphoto">
+              <img src="https://law-test.github.io/homepage/assets/images/universities-image-1.jpg" alt="제3회 법학경시대회 시상식" loading="lazy" />
+              <figcaption>
+                <span><span class="round-mark">제3회</span> 시상식</span>
+                <span>2025.05.10 · 변호사회관 1층</span>
+              </figcaption>
+            </figure>
+            <figure class="cphoto">
+              <img src="https://law-test.github.io/homepage/assets/images/universities-image-2.jpg" alt="제4회 법학경시대회 시상식" loading="lazy" />
+              <figcaption>
+                <span><span class="round-mark">제4회</span> 시상식</span>
+                <span>2025.08.09 · 변호사회관 1층</span>
+              </figcaption>
+            </figure>
+            <figure class="cphoto">
+              <img src="https://law-test.github.io/homepage/assets/images/universities-image-3.jpg" alt="제5회 법학경시대회 시상식" loading="lazy" />
+              <figcaption>
+                <span><span class="round-mark">제5회</span> 시상식</span>
+                <span>2025.09.20 · 자기주도 학습법 공모전 병행</span>
+              </figcaption>
+            </figure>
+            <figure class="cphoto">
+              <img src="https://law-test.github.io/homepage/assets/images/universities-image-4.jpg" alt="제6회 법학경시대회 시상식" loading="lazy" />
+              <figcaption>
+                <span><span class="round-mark">제6회</span> 시상식</span>
+                <span>2026.01.24 · 변호사회관 조영래홀</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- SECTION 03: PROFESSION DIVERSITY -->
+    <section class="std" style="padding-top: 0;">
+      <div class="container">
+        <div class="section-numbered">
+          <div class="section-num-box">03</div>
+          <div class="section-title-block">
+            <span class="label">DIVERSE BACKGROUNDS</span>
+            <h2>직업의 다양성</h2>
+            <p class="lede">학부생부터 평생학습자, 기초생활수급자까지 — 응시자의 직업·신분은 광범위합니다.</p>
+          </div>
+        </div>
+
+        <div class="professions">
+          <span class="prof-tag">학부생</span>
+          <span class="prof-tag">취업준비생</span>
+          <span class="prof-tag">의사</span>
+          <span class="prof-tag highlight">현직 경찰관</span>
+          <span class="prof-tag">로스쿨 재학생</span>
+          <span class="prof-tag">공무원</span>
+          <span class="prof-tag">교사</span>
+          <span class="prof-tag">태권도 사범</span>
+          <span class="prof-tag">평생학습자</span>
+          <span class="prof-tag">고등학생</span>
+          <span class="prof-tag">대학 미진학자</span>
+          <span class="prof-tag gold">기초생활수급자</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04: SCHOOLS -->
+    <section class="std schools-block" style="padding-top: 56px;">
+      <div class="container">
+        <div class="section-numbered">
+          <div class="section-num-box">04</div>
+          <div class="section-title-block">
+            <span class="label">PARTICIPATING INSTITUTIONS · 69 SCHOOLS</span>
+            <h2>참여 학교 (응시자 빈도순)</h2>
+            <p class="lede">국내외 대학·고등학교 총 69개교의 학습자가 본 대회에 응시하였습니다.</p>
+          </div>
+        </div>
+
+        <!-- Top 12 ranked -->
+        <div class="school-subhead">
+          <h3>응시자 빈도 상위 12개교</h3>
+          <div class="meta">RANKED BY PARTICIPATION</div>
+        </div>
+        <div class="ranked-grid">
+          <div class="rank-card rank-1"><div class="rank-num">1</div><div class="rank-school">KAIST</div></div>
+          <div class="rank-card rank-2"><div class="rank-num">2</div><div class="rank-school">고려대학교</div></div>
+          <div class="rank-card rank-3"><div class="rank-num">3</div><div class="rank-school">한국방송통신대학교</div></div>
+          <div class="rank-card"><div class="rank-num std">4</div><div class="rank-school">서울대학교</div></div>
+          <div class="rank-card"><div class="rank-num std">5</div><div class="rank-school">동국대학교</div></div>
+          <div class="rank-card"><div class="rank-num std">6</div><div class="rank-school">연세대학교</div></div>
+          <div class="rank-card"><div class="rank-num std">7</div><div class="rank-school">숙명여자대학교</div></div>
+          <div class="rank-card"><div class="rank-num std">8</div><div class="rank-school">전북대학교</div></div>
+          <div class="rank-card"><div class="rank-num std">9</div><div class="rank-school">성균관대학교</div></div>
+          <div class="rank-card"><div class="rank-num std">10</div><div class="rank-school">중앙대학교</div></div>
+          <div class="rank-card"><div class="rank-num std">11</div><div class="rank-school">경희대학교</div></div>
+          <div class="rank-card"><div class="rank-num std">12</div><div class="rank-school">한양대학교</div></div>
+        </div>
+
+        <!-- Special / overseas -->
+        <div class="school-subhead">
+          <h3>해외 명문대 · 비전통적 학습자 트랙</h3>
+          <div class="meta">DIVERSE PATHWAYS</div>
+        </div>
+        <div class="special-grid">
+          <div class="special-card">
+            <div class="school-ko">옥스퍼드대학교</div>
+            <div class="school-en">University of Oxford · UK</div>
+          </div>
+          <div class="special-card">
+            <div class="school-ko">뉴욕대학교</div>
+            <div class="school-en">New York University · USA</div>
+          </div>
+          <div class="special-card">
+            <div class="school-ko">University of Dayton</div>
+            <div class="school-en">USA</div>
+          </div>
+          <div class="special-card">
+            <div class="school-ko">고졸 (대학 미진학)</div>
+            <div class="school-en">High School Graduate</div>
+          </div>
+          <div class="special-card">
+            <div class="school-ko">풍암고등학교</div>
+            <div class="school-en">고등학교 재학생</div>
+          </div>
+          <div class="special-card">
+            <div class="school-ko">한국방송통신대학교</div>
+            <div class="school-en">평생학습 트랙</div>
+          </div>
+          <div class="special-card">
+            <div class="school-ko">고려사이버대학교</div>
+            <div class="school-en">사이버대학 트랙</div>
+          </div>
+          <div class="special-card">
+            <div class="school-ko">경찰대학교</div>
+            <div class="school-en">National Police University</div>
+          </div>
+        </div>
+
+        <!-- Full 69 -->
+        <div class="school-subhead">
+          <h3>전국 참가 학교 전체 (총 69개교)</h3>
+          <div class="meta">FULL ROSTER</div>
+        </div>
+        <div class="full-schools">
+          <div class="school">KAIST</div>
+          <div class="school">고려대학교</div>
+          <div class="school">한국방송통신대학교</div>
+          <div class="school">서울대학교</div>
+          <div class="school">동국대학교</div>
+          <div class="school">연세대학교</div>
+          <div class="school">숙명여자대학교</div>
+          <div class="school">전북대학교</div>
+          <div class="school">성균관대학교</div>
+          <div class="school">중앙대학교</div>
+          <div class="school">경희대학교</div>
+          <div class="school">한양대학교</div>
+          <div class="school">한국외국어대학교</div>
+          <div class="school">숭실대학교</div>
+          <div class="school">부산대학교</div>
+          <div class="school">인천대학교</div>
+          <div class="school">목포대학교</div>
+          <div class="school">이화여자대학교</div>
+          <div class="school">국민대학교</div>
+          <div class="school">성신여자대학교</div>
+          <div class="school">덕성여자대학교</div>
+          <div class="school">대구가톨릭대학교</div>
+          <div class="school">고려사이버대학교</div>
+          <div class="school">서강대학교</div>
+          <div class="school">서울시립대학교</div>
+          <div class="school">단국대학교</div>
+          <div class="school">가천대학교</div>
+          <div class="school">경기대학교</div>
+          <div class="school">가톨릭대학교</div>
+          <div class="school">경찰대학교</div>
+          <div class="school">경북대학교</div>
+          <div class="school">충남대학교</div>
+          <div class="school">부경대학교</div>
+          <div class="school">울산대학교</div>
+          <div class="school">한남대학교</div>
+          <div class="school">조선대학교</div>
+          <div class="school">청주대학교</div>
+          <div class="school">순천향대학교</div>
+          <div class="school">강릉원주대학교</div>
+          <div class="school">고졸 (대학 미진학)</div>
+          <div class="school">건국대학교</div>
+          <div class="school">홍익대학교</div>
+          <div class="school">명지대학교</div>
+          <div class="school">강남대학교</div>
+          <div class="school">인하대학교</div>
+          <div class="school">옥스퍼드대학교</div>
+          <div class="school">뉴욕대학교</div>
+          <div class="school">University of Dayton</div>
+          <div class="school">전남대학교</div>
+          <div class="school">경상국립대학교</div>
+          <div class="school">충북대학교</div>
+          <div class="school">한림대학교</div>
+          <div class="school">한국해양대학교</div>
+          <div class="school">경남대학교</div>
+          <div class="school">세명대학교</div>
+          <div class="school">경성대학교</div>
+          <div class="school">동의대학교</div>
+          <div class="school">계명대학교</div>
+          <div class="school">영남대학교</div>
+          <div class="school">한국기술교육대학교</div>
+          <div class="school">대전대학교</div>
+          <div class="school">수원대학교</div>
+          <div class="school">서경대학교</div>
+          <div class="school">국립경국대학교</div>
+          <div class="school">중부대학교</div>
+          <div class="school">선문대학교</div>
+          <div class="school">경남정보대학교</div>
+          <div class="school">백석예술대학교</div>
+          <div class="school">풍암고등학교 (재학)</div>
+          <div class="school your-school">Your Institution</div>
+          <div class="school your-school">Your Institution</div>
+        </div>
+
+        <!-- Diversity note -->
+        <div class="diversity-note">
+          <div class="label">A NOTE ON DIVERSITY</div>
+          <h3>옥스퍼드 학습자와 풍암고등학교 재학생이<br />같은 무대에 이름을 올립니다</h3>
+          <p>
+            본 대회의 응시자 명부에는 <strong>옥스퍼드대학교의 학습자</strong>와
+            <strong>풍암고등학교 재학생</strong>이 같은 무대에 이름을 올립니다.
+          </p>
+          <p>
+            한국 법학 교육에서 검증 통로가 부족했던 이공계 출신, 방송통신대·사이버대 학습자,
+            고등학교 졸업자, 지방 거주 응시자, 해외 거주자, 경제적 어려움에 처한 응시자에게도
+            본 대회는 학력·학벌의 진입장벽 없는 무대를 제공해 왔습니다.
+            비대면 시행 방식이 그 가능성을 열었습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-block">
+      <div class="container">
+        <h2>당신도 이 명단에 이름을 올릴 수 있습니다</h2>
+        <p>Add your name to this roster of legal aspirants</p>
+        <div class="cta-row">
+          <a href="achievements.html" class="btn btn-on-dark-primary">대회의 결실 →</a>
+          <a href="samples.html" class="btn btn-on-dark-outline">문제 샘플 →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/images/logo-white.png" alt="법학경시대회 Korean Law Olympiad" />
+          <p>
+            본 대회는 2023년 대한변협 법학경시대회 TF 논의에서 출발하였으며,
+            현재 주최는 선율 법학경시대회 위원회입니다.
+          </p>
+          <div class="footer-info">
+            <dl>
+              <dt>주최</dt>
+              <dd>선율 법학경시대회 위원회</dd>
+              <dt>후원</dt>
+              <dd>변호사공제재단 외 10개 기관</dd>
+              <dt>주소</dt>
+              <dd>서울특별시 종로구 새문안로5길 13, 지하1층 29호 (당주동, 변호사회관)</dd>
+              <dt>문의</dt>
+              <dd>010-3378-9392</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>주요 메뉴</h4>
+          <ul>
+            <li><a href="about.html">대회 소개</a></li>
+            <li><a href="universities.html">응시자 정보</a></li>
+            <li><a href="samples.html">문제 샘플</a></li>
+            <li><a href="voices.html">응원의 말</a></li>
+            <li><a href="achievements.html">결실</a></li>
+            <li><a href="media.html">언론보도</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>안내</h4>
+          <ul>
+            <li><a href="notice.html">공지사항</a></li>
+            <li><a href="faq.html">자주 묻는 질문</a></li>
+            <li><a href="media.html">보도자료</a></li>
+            <li><a href="terms.html">이용약관</a></li>
+            <li><a href="privacy.html">개인정보처리방침</a></li>
+            <li><a href="contact.html">문의하기</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Korean Law Olympiad. All Rights Reserved.</div>
+        <div>EST. 2024 · 법의 날</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const btn = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('nav.primary');
+      if (!btn || !nav) return;
+      btn.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+      });
+    })();
+  </script>
 </body>
 </html>
