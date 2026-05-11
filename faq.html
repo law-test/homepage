@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>자주 묻는 질문 | 법학경시대회</title>
   <meta name="description" content="법학경시대회 참가 자격, 시험 방식, 오픈북 규정, AI 감독 시스템, 수상 혜택에 관한 자주 묻는 질문입니다." />
 
@@ -73,7 +73,8 @@
     .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
 
     /* UTILITY BAR */
-    .utility { background: var(--bg-alt); border-bottom: 1px solid var(--line); font-size: 12px; color: var(--text-soft); }
+    .utility {
+      padding-top: env(safe-area-inset-top, 0); background: var(--bg-alt); border-bottom: 1px solid var(--line); font-size: 12px; color: var(--text-soft); }
     .utility-inner { display: flex; justify-content: space-between; align-items: center; height: 36px; }
     .utility-left { display: flex; gap: 16px; }
     .utility-right { display: flex; gap: 16px; align-items: center; }

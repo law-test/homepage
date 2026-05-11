@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>문의하기 | 법학경시대회</title>
   <meta name="description" content="법학경시대회 참가, 보도자료, 후원, 개인정보 권리 행사 및 기타 문의 방법을 안내합니다." />
 
@@ -73,7 +73,8 @@
     .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
 
     /* UTILITY BAR */
-    .utility { background: var(--bg-alt); border-bottom: 1px solid var(--line); font-size: 12px; color: var(--text-soft); }
+    .utility {
+      padding-top: env(safe-area-inset-top, 0); background: var(--bg-alt); border-bottom: 1px solid var(--line); font-size: 12px; color: var(--text-soft); }
     .utility-inner { display: flex; justify-content: space-between; align-items: center; height: 36px; }
     .utility-left { display: flex; gap: 16px; }
     .utility-right { display: flex; gap: 16px; align-items: center; }
