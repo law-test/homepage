@@ -1,9 +1,27 @@
-# robots.txt for 법학경시대회 · Korean Law Olympiad
-# https://lawtest.co.kr
+# robots.txt for lawtest.or.kr
+# 한국 법학경시대회 (Korean Law Olympiad)
 
-# 모든 검색엔진 봇 허용 (기본값이지만 명시)
 User-agent: *
 Allow: /
 
+# 검색엔진 봇 명시적 허용
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+User-agent: NaverBot
+Allow: /
+
+User-agent: Daumoa
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
 # 사이트맵 위치
-Sitemap: https://lawtest.co.kr/sitemap.xml
+Sitemap: https://lawtest.or.kr/sitemap.xml
