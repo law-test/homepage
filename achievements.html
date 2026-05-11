@@ -397,6 +397,71 @@
       color: var(--text);
       margin: 0;
     }
+
+    /* BOOKS FEATURE - 표지 포함 카드 */
+    .books-feature{
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin: 8px 0;
+    }
+    .book-card{
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 36px;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      padding: 32px 36px;
+      align-items: start;
+    }
+    .book-card .book-cover{
+      align-self: start;
+    }
+    .book-card .book-cover img{
+      width: 100%;
+      height: auto;
+      display: block;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08);
+      border-radius: 2px;
+    }
+    .book-card .book-info h3{
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 6px;
+      line-height: 1.35;
+    }
+    .book-card .book-info .book-sub{
+      font-family: 'Cormorant Garamond', 'Nanum Myeongjo', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--gold-deep, #B5945C);
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+    .book-card .book-info .byline{
+      font-size: 13px;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .book-card .book-info p{
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+      margin: 0 0 18px;
+    }
+    @media (max-width: 760px){
+      .book-card{
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 20px;
+      }
+      .book-card .book-cover{
+        max-width: 200px;
+        margin: 0 auto;
+      }
+    }
     .book-meta {
       border-left: 2px solid var(--gold);
       padding-left: 20px;
@@ -906,6 +971,105 @@
   ]
 }
   </script>
+  <style>
+    /* 제1회 공모전 모집 정보 그리드 */
+    .contest-info-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #E5DFD2;
+      border: 1px solid #E5DFD2;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 28px 0 36px;
+    }
+    .contest-info-cell{
+      background: #FFFFFF;
+      padding: 20px 22px;
+    }
+    .contest-info-cell .ci-label{
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--gold-deep, #B5945C);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .contest-info-cell .ci-value{
+      font-size: 15px;
+      color: var(--navy, #1B3A6F);
+      line-height: 1.55;
+      font-weight: 500;
+    }
+    @media (max-width: 720px){
+      .contest-info-grid{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px){
+      .contest-info-grid{ grid-template-columns: 1fr; }
+    }
+
+    /* 제2회 공모전 예정 안내 */
+    .contest-upcoming{
+      margin-top: 40px;
+      padding: 32px 36px;
+      background: linear-gradient(135deg, #F4EFE3 0%, #FAF7F0 100%);
+      border: 1px solid #E5DFD2;
+      border-left: 4px solid var(--navy, #1B3A6F);
+      border-radius: 6px;
+    }
+    .contest-upcoming .cu-head{ margin-bottom: 16px; }
+    .contest-upcoming .cu-tag{
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--gold-deep, #B5945C);
+      font-weight: 700;
+      padding: 4px 10px;
+      border: 1px solid var(--gold-deep, #B5945C);
+      border-radius: 2px;
+      margin-bottom: 12px;
+    }
+    .contest-upcoming h3{
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 24px;
+      color: var(--navy, #1B3A6F);
+      margin: 0;
+      line-height: 1.4;
+    }
+    .contest-upcoming .cu-body p{
+      color: #3A3A3A;
+      font-size: 15px;
+      line-height: 1.75;
+      margin: 0 0 18px;
+    }
+    .cu-meta{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid #E0D9C9;
+    }
+    .cu-meta > div{
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cu-meta-label{
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #8A7A5C;
+      font-weight: 700;
+    }
+    .cu-meta-value{
+      font-size: 14px;
+      color: var(--navy, #1B3A6F);
+      font-weight: 500;
+    }
+    @media (max-width: 720px){
+      .contest-upcoming{ padding: 24px 20px; }
+      .contest-upcoming h3{ font-size: 20px; }
+      .cu-meta{ grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <a href="#main" class="skip-link">본문 바로가기</a>
@@ -959,7 +1123,7 @@
     <div class="container notice-bar-inner">
       <p>
         <span class="notice-bar-tag">알림</span>
-        제8회 법학경시대회 2026년 8월 중순 개최 예정.
+        제8회 법학경시대회는 2026년 8월 중순 개최됩니다.
         제7회 결과 발표는 5월 중순에 예정되어 있습니다.
       </p>
       <a href="notice.html" class="notice-bar-link">상세 안내 →</a>
@@ -1009,9 +1173,9 @@
             <div class="stat-label-en">Study Contest</div>
           </div>
           <div class="stat-cell">
-            <div class="stat-num">200<small>+명</small></div>
-            <div class="stat-label-ko">누적 응시자</div>
-            <div class="stat-label-en">Participants, 1st–6th</div>
+            <div class="stat-num">약 300<small>명</small></div>
+            <div class="stat-label-ko">수상자</div>
+            <div class="stat-label-en">Awardees</div>
           </div>
         </div>
       </div>
@@ -1033,29 +1197,81 @@
           </div>
         </div>
 
-        <div class="book-highlight">
-          <div>
-            <h3>「헌법은 우리 이야기다」</h3>
-            <div class="byline">8인 공저 · 도서출판 서리풀 · 2025년 8월</div>
-            <p>
-              헌법 전문부터 제37조 제2항까지를 다루는 헌법 입문서.
-              "딱딱한 조문들을 어떻게 하면 독자 여러분의 가슴에 닿게 할 수 있을까"라는 문제의식에서 출발하여,
-              판례 기반의 짧은 소설과 Q&amp;A 형식을 결합한 독특한 구성.
-            </p>
-          </div>
-          <dl class="book-meta">
-            <dt>공저자 구성</dt>
-            <dd>서울대 · 고려대 · 이화여대 · 중앙대 · 한국방송통신대 · 성균관대 · 목포대 · 충남대 (8개 대학)</dd>
-            <dt>전공 분포</dt>
-            <dd>6개 학사 전공 · 비법학 전공자 6명 + 법학 전공자 2명</dd>
-            <dt>다루는 범위</dt>
-            <dd>헌법 전문 ~ 제37조 제2항</dd>
-          </dl>
+        <div class="books-feature">
+          <article class="book-card">
+            <div class="book-cover">
+              <img src="photos/book_hunbeop.jpg" alt="헌법은 우리 이야기다 - 책 표지" loading="lazy" />
+            </div>
+            <div class="book-info">
+              <h3>「헌법은 우리 이야기다」</h3>
+              <div class="book-sub">Audi Alteram Partem</div>
+              <div class="byline">유혜윤 외 7인 공저 · 변호사 김민규 감수 · 도서출판 서리풀 · 2025년 8월</div>
+              <p>
+                헌법 전문부터 제37조 제2항까지를 다루는 헌법 입문서.
+                "딱딱한 조문들을 어떻게 하면 독자 여러분의 가슴에 닿게 할 수 있을까"라는 문제의식에서 출발하여,
+                판례 기반의 짧은 소설과 Q&amp;A 형식을 결합한 독특한 구성입니다.
+              </p>
+              <dl class="book-meta">
+                <dt>공저자 구성</dt>
+                <dd>서울대 · 고려대 · 이화여대 · 중앙대 · 한국방송통신대 · 성균관대 · 목포대 · 충남대 (8개 대학)</dd>
+                <dt>전공 분포</dt>
+                <dd>6개 학사 전공 · 비법학 전공자 6명 + 법학 전공자 2명</dd>
+                <dt>다루는 범위</dt>
+                <dd>헌법 전문 ~ 제37조 제2항</dd>
+              </dl>
+            </div>
+          </article>
+
+          <article class="book-card">
+            <div class="book-cover">
+              <img src="photos/book_byunsi.jpg" alt="우리 손으로 쓴 변호사시험 기출해설집 - 책 표지" loading="lazy" />
+            </div>
+            <div class="book-info">
+              <h3>「우리 손으로 쓴 변호사시험 기출해설집」</h3>
+              <div class="book-sub">민사법 사례형 1회~14회</div>
+              <div class="byline">한정현 외 6인 공저 · 변호사 김민규 감수 · 도서출판 서리풀</div>
+              <p>
+                변호사시험 민사법 사례형 1회부터 14회까지의 기출문제를 수험생의 시각에서 직접 해설한 책입니다.
+                수상자 공동체의 협업으로 완성되었으며, 시험을 준비하는 후속 세대에게 학습 자산으로 누적됩니다.
+              </p>
+              <dl class="book-meta">
+                <dt>공저자</dt>
+                <dd>한정현 외 6인 (총 7인 공저)</dd>
+                <dt>다루는 범위</dt>
+                <dd>변호사시험 민사법 사례형 제1회 ~ 제14회</dd>
+                <dt>분야</dt>
+                <dd>민사법(민법·민사소송법·상법) 사례형 해설</dd>
+              </dl>
+            </div>
+          </article>
+
+          <article class="book-card">
+            <div class="book-cover">
+              <img src="photos/book_minbeop.jpg" alt="쉽게 풀어쓴 민법 조문 - 채권총론편 책 표지" loading="lazy" />
+            </div>
+            <div class="book-info">
+              <h3>「쉽게 풀어쓴 민법 조문」</h3>
+              <div class="book-sub">채권총론편</div>
+              <div class="byline">이승관 외 10인 공저 · 변호사 김민규 감수 · 도서출판 서리풀 · 2025년 9월 20일</div>
+              <p>
+                주요 조문의 핵심 내용만 간결하게 정리한 법률 입문서. 채권총론 영역의 민법 조문을
+                초학자의 시각에서 쉽게 풀어내, 법학 입문자가 기초를 다질 수 있도록 구성되었습니다.
+              </p>
+              <dl class="book-meta">
+                <dt>공저자</dt>
+                <dd>이승관 외 10인 (총 11인 공저)</dd>
+                <dt>다루는 범위</dt>
+                <dd>민법 채권총론편 주요 조문</dd>
+                <dt>판형</dt>
+                <dd>입문서 · 254페이지 · ISBN 979-11-988910-5-1</dd>
+              </dl>
+            </div>
+          </article>
         </div>
 
         <div class="book-additional">
           <strong>ADDITIONAL PUBLICATIONS · 추가 저술</strong>
-          변호사시험 해설서를 비롯한 법학 전반 6권의 저서가 수상자 개인 또는 공동 명의로 출판되었습니다.
+          위 두 권을 포함해 수상자 공동체의 협업 또는 개인 명의로 법학 전반 7권의 도서가 출판되었으며, 3권을 추가 저술 중입니다.
         </div>
       </div>
     </section>
@@ -1129,7 +1345,7 @@
     <div class="container"><div class="section-divider"></div></div>
 
     <!-- SECTION 03: STUDY METHOD CONTEST -->
-    <section class="std" style="padding-top: 0;">
+    <section class="std" style="padding-top: 0;" id="contest">
       <div class="container">
         <div class="section-numbered">
           <div class="section-num-box">03</div>
@@ -1144,18 +1360,44 @@
           </div>
         </div>
 
+        <!-- 제1회 모집 개요 -->
+        <div class="contest-info-grid">
+          <div class="contest-info-cell">
+            <div class="ci-label">SLOGAN</div>
+            <div class="ci-value">배움은 나답게</div>
+          </div>
+          <div class="contest-info-cell">
+            <div class="ci-label">접수 기간</div>
+            <div class="ci-value">2025.08.09 ~ 09.13 자정</div>
+          </div>
+          <div class="contest-info-cell">
+            <div class="ci-label">참여 대상</div>
+            <div class="ci-value">제한 없음</div>
+          </div>
+          <div class="contest-info-cell">
+            <div class="ci-label">참가비</div>
+            <div class="ci-value">무료</div>
+          </div>
+          <div class="contest-info-cell">
+            <div class="ci-label">선정 기준</div>
+            <div class="ci-value">자기소개 20점 · 학습법 설명 50점 · 학습법으로 이룬 성취 30점 (총 100점)</div>
+          </div>
+          <div class="contest-info-cell">
+            <div class="ci-label">제출</div>
+            <div class="ci-value">info@lawtest.co.kr</div>
+          </div>
+        </div>
+
         <table class="winners-table">
           <thead>
             <tr>
               <th scope="col">시상</th>
-              <th scope="col">수상자</th>
               <th scope="col">주요 성과</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><span class="rank-tag rank-grand">대상</span></td>
-              <td><span class="name">박○○</span></td>
               <td class="achievement">
                 로스쿨 민법 A+ · 법학경시대회 최우수상·민법 금상 · 저서 2권(단독저서 1권) ·
                 LEET 30점 상승 · 우수학술지 논문 게재
@@ -1163,7 +1405,6 @@
             </tr>
             <tr>
               <td><span class="rank-tag rank-excellence">최우수상</span></td>
-              <td><span class="name">한정현</span></td>
               <td class="achievement">
                 전일제 직장 + 주경야독 · 인지과학 적용 학습법 개발 ·
                 변호사시험 기출해설서 포함 저서 6권
@@ -1171,16 +1412,14 @@
             </tr>
             <tr>
               <td><span class="rank-tag rank-excellence">최우수상</span></td>
-              <td><span class="name">이승관</span></td>
               <td class="achievement">
                 독창적 민법 학습법 · 학과 수석 · 민법 관련 저서 3권
               </td>
             </tr>
             <tr>
               <td><span class="rank-tag rank-excellence">최우수상</span></td>
-              <td><span class="name">김준이</span></td>
               <td class="achievement">
-                서울대학교 전과목 A+ · 헌법 관련 저서 1권
+                서울대 전과목 A+ · 헌법 관련 저서 1권
               </td>
             </tr>
           </tbody>
@@ -1190,6 +1429,22 @@
           제1회 공모전은 2025년 9월 제5회 법학경시대회 시상식과 함께 개최되었습니다.
           한 세대의 학습 노하우가 다음 세대의 학습 자산으로 누적되는 순환식 교육 구조의 핵심 장치입니다.
         </p>
+
+        <!-- 제2회 공모전 예정 -->
+        <div class="contest-upcoming">
+          <div class="cu-head">
+            <span class="cu-tag">UPCOMING · 다가오는 행사</span>
+            <h3>제2회 전국 자기주도 학습법 공모전</h3>
+          </div>
+          <div class="cu-body">
+            <p>제8회 법학경시대회 직후 접수를 시작하여 2026년 9월 중순 시상 예정입니다. 자세한 모집 요강과 양식은 추후 공지사항에서 안내합니다.</p>
+            <div class="cu-meta">
+              <div><span class="cu-meta-label">접수 시작</span><span class="cu-meta-value">제8회 법학경시대회 직후</span></div>
+              <div><span class="cu-meta-label">시상 예정</span><span class="cu-meta-value">2026년 9월 중순</span></div>
+              <div><span class="cu-meta-label">문의</span><span class="cu-meta-value">info@lawtest.co.kr · 010-3378-9392</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1322,7 +1577,7 @@
         </div>
 
         <div class="contrib-feature">
-          <img src="https://law-test.github.io/homepage/assets/images/achievements-image-1.jpg"
+          <img src="assets/images/achievements-image-1.jpg"
                alt="2025년 5월 12일 KAIST 터만홀 강의 - 성심당 튀김소보로 기부" loading="lazy" />
           <div class="contrib-feature-body">
             <span class="stamp">FEATURED · 2025.5.12</span>
