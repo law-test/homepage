@@ -1,32 +1,88 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<script>
-(function(){
-  if (location.protocol !== 'file:' && location.hostname === 'law-test.github.io' && location.pathname === '/homepage') {
-    location.replace('/homepage/' + location.search + location.hash);
-  }
-})();
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>페이지를 찾을 수 없습니다 | 법학경시대회</title>
-<link rel="stylesheet" href="./assets/css/site.css">
-<style>
-.error-wrap{max-width:760px;margin:0 auto;padding:96px 24px;text-align:center}.error-code{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:72px;color:var(--burgundy);line-height:1}.error-wrap h1{font-family:'Nanum Myeongjo',serif;font-size:32px;color:var(--navy);margin:12px 0 16px}.error-wrap p{color:#2A2924;margin-bottom:28px}.error-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>페이지를 찾을 수 없습니다 | 법학경시대회</title>
+  <meta name="description" content="요청하신 페이지를 찾을 수 없습니다." />
+  <meta name="robots" content="noindex, follow" />
+
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
+  <meta name="theme-color" content="#1B3A6F" />
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preload" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+        onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" /></noscript>
+  <link rel="stylesheet" href="assets/css/site.css?v=20260516" />
 </head>
 <body>
-  <main class="error-wrap">
-    <div class="error-code">404</div>
-    <h1>페이지를 찾을 수 없습니다</h1>
-    <p>파일명이 바뀌었거나, 일부 파일만 업로드되어 페이지를 열 수 없는 상태입니다. 아래 주요 페이지로 이동해 주세요.</p>
-    <div class="error-links">
-      <a class="btn btn-dark" href="./index.html">홈으로</a>
-      <a class="btn btn-light" href="./samples.html">문제 샘플</a>
-      <a class="btn btn-light" href="./notice.html">공지사항</a>
-      <a class="btn btn-light" href="./contact.html">문의하기</a>
+  <a href="#main" class="skip-link">본문 바로가기</a>
+
+  <div class="utility">
+    <div class="container utility-inner">
+      <div class="utility-left"><span>법학경시대회 공식 홈페이지</span></div>
+      <div class="utility-right">
+        <a href="contact.html">문의하기</a>
+        <span class="utility-divider"></span>
+        <a href="faq.html">자주 묻는 질문</a>
+        <span class="utility-divider"></span>
+        <a href="notice.html">공지사항</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="법학경시대회 홈으로 이동">
+        <img src="assets/images/logo.png" alt="법학경시대회 Korean Law Olympiad" decoding="async" width="50" height="50">
+        <span class="brand-text">
+          <span class="ko">선율 법학경시대회 위원회</span>
+          <span class="en">Korean Law Olympiad Committee</span>
+        </span>
+      </a>
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bars" aria-hidden="true"></span>메뉴
+      </button>
+      <nav class="primary" id="primary-nav" aria-label="주요 메뉴">
+        <ul>
+          <li><a href="about.html">대회 소개</a></li>
+          <li><a href="universities.html">응시자 정보</a></li>
+          <li><a href="samples.html">문제 샘플</a></li>
+          <li><a href="voices.html">응원의 말</a></li>
+          <li><a href="achievements.html">결실</a></li>
+          <li><a href="media.html">언론보도</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" style="padding: 96px 0 120px;">
+    <div class="container" style="max-width: 720px; text-align: center;">
+      <div class="page-eyebrow" style="justify-content: center; display: flex;">ERROR 404</div>
+      <h1 class="page-title" style="font-size: clamp(56px, 9vw, 88px); margin-bottom: 16px;">404</h1>
+      <p class="page-sub" style="font-size: 18px; margin-bottom: 36px;">
+        요청하신 페이지를 찾을 수 없습니다.<br />
+        주소가 변경되었거나, 존재하지 않는 페이지일 수 있습니다.
+      </p>
+      <div class="cta-row" style="justify-content: center;">
+        <a href="index.html" class="btn btn-primary">홈으로 →</a>
+        <a href="notice.html" class="btn btn-outline">공지사항</a>
+        <a href="contact.html" class="btn btn-outline">문의하기</a>
+      </div>
     </div>
   </main>
+
+  <footer class="site-footer" style="padding-top: 32px;">
+    <div class="container" style="text-align: center; padding: 24px 0; font-size: 13px; color: rgba(255,255,255,0.7);">
+      © 2026 Korean Law Olympiad · 선율 법학경시대회 위원회
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js?v=20260516" defer></script>
 </body>
 </html>

@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>응시자 정보 | 법학경시대회</title>
-  <meta name="description" content="법학경시대회 수상자, 참여 학교, 회차별 점수 분포와 오픈북 시험의 변별력을 안내합니다." />
+  <title>응시자 정보 — 수상자 출신 학교와 회차별 점수 분포 | 법학경시대회</title>
+  <meta name="description" content="법학경시대회 누적 응시자 출신 대학과 회차별 대상·평균·최고 점수 분포를 공개합니다. 오픈북 시험의 변별력, 응시자 진로 다양성, 직업군 분포 등 응시자 공동체 데이터를 제공합니다." />
 
-  <meta property="og:title" content="응시자 정보 | 법학경시대회" />
-  <meta property="og:description" content="법학경시대회 수상자, 참여 학교, 회차별 점수 분포와 오픈북 시험의 변별력을 안내합니다." />
+  <meta property="og:title" content="응시자 정보 — 수상자 출신 학교와 회차별 점수 분포 | 법학경시대회" />
+  <meta property="og:description" content="법학경시대회 누적 응시자 출신 대학과 회차별 대상·평균·최고 점수 분포를 공개합니다. 오픈북 시험의 변별력, 응시자 진로 다양성, 직업군 분포 등 응시자 공동체 데이터를 제공합니다." />
   <meta property="og:image" content="https://lawtest.or.kr/assets/images/index-image-1.jpg" />
   <meta property="og:image:alt" content="법학경시대회 Korean Law Olympiad 공식 포스터" />
   <meta property="og:url" content="https://lawtest.or.kr/universities.html" />
@@ -26,8 +26,8 @@
   <meta name="keywords" content="법학경시대회 응시자, 참여 대학, KAIST 법학경시, 고려대 법학경시, 방송통신대 법학경시, 회차별 점수" />
   <meta property="og:site_name" content="법학경시대회 · Korean Law Olympiad" />
   <meta property="og:locale" content="ko_KR" />
-  <meta name="twitter:title" content="응시자 정보 | 법학경시대회" />
-  <meta name="twitter:description" content="법학경시대회 수상자, 참여 학교, 회차별 점수 분포와 오픈북 시험의 변별력을 안내합니다." />
+  <meta name="twitter:title" content="응시자 정보 — 수상자 출신 학교와 회차별 점수 분포 | 법학경시대회" />
+  <meta name="twitter:description" content="법학경시대회 누적 응시자 출신 대학과 회차별 대상·평균·최고 점수 분포를 공개합니다. 오픈북 시험의 변별력, 응시자 진로 다양성, 직업군 분포 등 응시자 공동체 데이터를 제공합니다." />
   <meta name="twitter:image" content="https://lawtest.or.kr/assets/images/index-image-1.jpg" />
   <meta name="theme-color" content="#1B3A6F" />
   <meta name="msapplication-TileColor" content="#1B3A6F" />
@@ -38,607 +38,11 @@
   <meta name="google-site-verification" content="6Sej0KUw454ipb1fYUucGbcFlsZ1R4FXC5JndgnV0Fg" />
 
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" as="style" crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-
-  <style>
-    :root {
-      --navy: #1B3A6F;
-      --navy-deep: #102953;
-      --navy-soft: #E8EFF7;
-      --gold: #B5945C;
-      --gold-deep: #8E7039;
-      --ink: #1A1A1A;
-      --text: #2E3338;
-      --text-soft: #5A6068;
-      --text-mute: #8B919C;
-      --line: #E0E4EB;
-      --line-strong: #C5CCD7;
-      --bg: #FFFFFF;
-      --bg-soft: #F7F9FC;
-      --bg-alt: #F2F5FA;
-      --important: #C8102E;
-      --success: #1F7A4D;
-      --font: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
-      --max-w: 1200px;
-    }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-    a:focus-visible, button:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
-    .skip-link { position: absolute; top: -40px; left: 0; background: var(--navy); color: #fff; padding: 8px 16px; z-index: 1000; font-size: 13px; }
-    .skip-link:focus { top: 0; }
-    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
-
-    /* UTILITY BAR */
-    .utility {
-      padding-top: env(safe-area-inset-top, 0); background: var(--bg-alt); border-bottom: 1px solid var(--line); font-size: 12px; color: var(--text-soft); }
-    .utility-inner { display: flex; justify-content: space-between; align-items: center; height: 36px; }
-    .utility-left { display: flex; gap: 16px; }
-    .utility-right { display: flex; gap: 16px; align-items: center; }
-    .utility a { color: var(--text-soft); }
-    .utility a:hover { color: var(--navy); }
-    .utility-divider { width: 1px; height: 12px; background: var(--line-strong); display: inline-block; }
-
-    /* HEADER */
-    header.site-header { background: var(--bg); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 100; }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 84px; gap: 32px; }
-    .brand { display: flex; align-items: center; }
-    .brand img { height: 48px; width: auto; }
-    .brand-text { margin-left: 14px; padding-left: 14px; border-left: 1px solid var(--line); display: flex; flex-direction: column; line-height: 1.2; }
-    .brand-text .ko { font-size: 13px; color: var(--text-soft); font-weight: 500; }
-    .brand-text .en { font-size: 11px; color: var(--text-mute); letter-spacing: 0.04em; margin-top: 2px; }
-    nav.primary ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 36px; align-items: center; }
-    nav.primary a { font-size: 15px; font-weight: 500; color: var(--ink); padding: 10px 0; position: relative; transition: color 0.15s; }
-    nav.primary a:hover { color: var(--navy); }
-    nav.primary a.active { color: var(--navy); }
-    nav.primary a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--navy); transform: scaleX(0); transition: transform 0.2s; }
-    nav.primary a:hover::after, nav.primary a.active::after { transform: scaleX(1); }
-    .menu-toggle { display: none; }
-    @media (max-width: 980px) { nav.primary ul { gap: 24px; } nav.primary a { font-size: 14px; } }
-    @media (max-width: 860px) {
-      .header-inner { height: 68px; }
-      .brand-text { display: none; }
-      .brand img { height: 40px; }
-      nav.primary { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 16px 24px; }
-      nav.primary.open { display: block; }
-      nav.primary ul { flex-direction: column; align-items: stretch; gap: 0; }
-      nav.primary li { border-bottom: 1px solid var(--line); }
-      nav.primary li:last-child { border-bottom: none; }
-      nav.primary a { display: block; padding: 14px 0; }
-      .menu-toggle { display: inline-flex; align-items: center; gap: 8px; background: none; border: 1px solid var(--line-strong); padding: 8px 14px; font-size: 13px; font-weight: 500; color: var(--ink); cursor: pointer; font-family: inherit; }
-      .menu-toggle .bars { display: inline-block; width: 14px; height: 10px; background: linear-gradient(var(--ink), var(--ink)) 0 0/100% 1.5px no-repeat, linear-gradient(var(--ink), var(--ink)) 0 50%/100% 1.5px no-repeat, linear-gradient(var(--ink), var(--ink)) 0 100%/100% 1.5px no-repeat; }
-    }
-
-    /* GLOBAL NOTICE BAR */
-    .notice-bar { background: var(--navy); color: #fff; }
-    .notice-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; flex-wrap: wrap; }
-    .notice-bar-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; padding: 4px 10px; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.32); margin-right: 12px; vertical-align: 1px; }
-    .notice-bar p { margin: 0; font-size: 14px; flex: 1 1 auto; }
-    .notice-bar a { color: #fff; border-bottom: 1px solid rgba(255,255,255,0.5); font-weight: 500; }
-    .notice-bar a:hover { border-bottom-color: #fff; }
-    .notice-bar-link { font-size: 13px; font-weight: 500; white-space: nowrap; }
-
-    /* PAGE HEADER */
-    .page-header { background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%); padding: 56px 0 48px; border-bottom: 1px solid var(--line); }
-    .breadcrumb { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--text-mute); margin-bottom: 24px; }
-    .breadcrumb a { color: var(--text-soft); }
-    .breadcrumb a:hover { color: var(--navy); }
-    .breadcrumb .sep { color: var(--line-strong); }
-    .breadcrumb .current { color: var(--ink); font-weight: 500; }
-    .page-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; color: var(--navy); font-weight: 600; letter-spacing: 0.06em; margin-bottom: 16px; }
-    .page-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--navy); }
-    h1.page-title { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.3; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 16px; }
-    .page-sub { font-size: 17px; line-height: 1.7; color: var(--text); max-width: 800px; margin: 0; }
-
-    /* TOP STATS */
-    .top-stats { background: var(--bg); border-bottom: 1px solid var(--line); }
-    .top-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @media (max-width: 720px) { .top-stats-grid { grid-template-columns: 1fr; } }
-    .top-stat-cell {
-      padding: 36px 36px;
-      border-right: 1px solid var(--line);
-    }
-    .top-stat-cell:last-child { border-right: none; }
-    @media (max-width: 720px) {
-      .top-stat-cell { border-right: none; border-bottom: 1px solid var(--line); }
-      .top-stat-cell:last-child { border-bottom: none; }
-    }
-    .top-stat-cell .label {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--navy);
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
-    }
-    .top-stat-cell .num {
-      font-size: 48px;
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1;
-      letter-spacing: -0.03em;
-      margin-bottom: 12px;
-    }
-    .top-stat-cell .num small { font-size: 22px; font-weight: 600; }
-    .top-stat-cell .name {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-    .top-stat-cell p {
-      font-size: 13px;
-      line-height: 1.65;
-      color: var(--text-soft);
-      margin: 0;
-    }
-
-    /* SECTIONS */
-    section.std { padding: 80px 0; }
-    @media (max-width: 720px) { section.std { padding: 56px 0; } }
-
-    .section-numbered {
-      display: grid; grid-template-columns: 80px 1fr;
-      gap: 32px; margin-bottom: 36px; align-items: start;
-    }
-    @media (max-width: 720px) { .section-numbered { grid-template-columns: 1fr; gap: 16px; } }
-    .section-num-box {
-      width: 56px; height: 56px;
-      background: var(--navy); color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 700; letter-spacing: 0.02em;
-    }
-    .section-title-block .label { display: block; font-size: 12px; font-weight: 600; color: var(--navy); letter-spacing: 0.08em; margin-bottom: 6px; }
-    .section-title-block h2 { font-size: clamp(22px, 2.6vw, 28px); font-weight: 700; color: var(--ink); margin: 0 0 12px; letter-spacing: -0.01em; line-height: 1.3; }
-    .section-title-block .lede { font-size: 15px; line-height: 1.7; color: var(--text); max-width: 760px; margin: 0; }
-
-    .section-divider { height: 1px; background: var(--line); margin: 80px 0; }
-    @media (max-width: 720px) { .section-divider { margin: 56px 0; } }
-
-    /* SECTION 1 — Open book yet discriminating */
-    .prose-block {
-      max-width: 860px;
-      margin-bottom: 32px;
-    }
-    .prose-block p {
-      font-size: 15px;
-      line-height: 1.85;
-      color: var(--text);
-      margin: 0 0 14px;
-    }
-    .prose-block strong { color: var(--ink); font-weight: 600; }
-    .prose-block .accent {
-      background: linear-gradient(transparent 65%, rgba(181, 148, 92, 0.25) 65%);
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .perf-indicators {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    @media (max-width: 720px) { .perf-indicators { grid-template-columns: 1fr; } }
-    .perf-card {
-      background: var(--bg);
-      border: 1px solid var(--line);
-      border-top: 4px solid var(--navy);
-      padding: 28px 32px;
-    }
-    .perf-card.highlight { border-top-color: var(--gold); }
-    .perf-card .stamp {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--navy);
-      letter-spacing: 0.08em;
-      margin-bottom: 14px;
-    }
-    .perf-card.highlight .stamp { color: var(--gold-deep); }
-    .perf-card .num {
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 10px;
-    }
-    .perf-card .num .accent {
-      color: var(--navy);
-    }
-    .perf-card.highlight .num .accent { color: var(--gold-deep); }
-    .perf-card .num small { font-size: 18px; font-weight: 600; color: var(--text-mute); }
-    .perf-card .desc {
-      font-size: 13px;
-      color: var(--text-soft);
-      line-height: 1.6;
-    }
-
-    /* SECTION 2 — Round-by-round */
-    .winners-row {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-    @media (max-width: 980px) { .winners-row { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 600px) { .winners-row { grid-template-columns: repeat(2, 1fr); } }
-
-    .winner-card {
-      background: var(--bg);
-      border: 1px solid var(--line);
-      overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .winner-card:hover {
-      border-color: var(--navy);
-      transform: translateY(-2px);
-    }
-    .winner-card img {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      border-bottom: 1px solid var(--line);
-    }
-    .winner-body {
-      padding: 14px 16px 16px;
-    }
-    .winner-round {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--navy);
-      background: var(--navy-soft);
-      padding: 3px 8px;
-      letter-spacing: 0.04em;
-      margin-bottom: 8px;
-    }
-    .winner-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-    .winner-detail {
-      font-size: 12px;
-      color: var(--text-soft);
-      line-height: 1.5;
-    }
-
-    .score-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-      border-top: 1px solid var(--ink);
-    }
-    .score-table thead th {
-      background: var(--bg-soft);
-      padding: 14px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-soft);
-      text-align: left;
-      border-bottom: 1px solid var(--line-strong);
-    }
-    .score-table thead th:nth-child(1) { width: 80px; text-align: center; }
-    .score-table thead th:nth-child(2) { width: 160px; }
-    .score-table thead th:nth-child(3) { width: 110px; text-align: center; }
-    .score-table thead th:nth-child(4) { width: 100px; text-align: center; }
-    .score-table tbody tr { border-bottom: 1px solid var(--line); transition: background 0.15s; }
-    .score-table tbody tr:hover { background: var(--bg-soft); }
-    .score-table td { padding: 16px; vertical-align: middle; }
-    .score-table .round-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--navy);
-      background: var(--navy-soft);
-      padding: 4px 10px;
-      letter-spacing: 0.04em;
-    }
-    .score-table td:nth-child(1) { text-align: center; }
-    .score-table td:nth-child(3),
-    .score-table td:nth-child(4) {
-      text-align: center;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-weight: 600;
-      color: var(--ink);
-      font-size: 15px;
-    }
-    .score-table td.dash { color: var(--text-mute); font-weight: 400; }
-    .score-table .winner-cell strong { color: var(--ink); font-weight: 700; }
-    .score-table .winner-cell .meta {
-      display: block;
-      font-size: 12px;
-      color: var(--text-soft);
-      font-weight: 400;
-      margin-top: 2px;
-    }
-    .table-note {
-      margin-top: 16px;
-      padding: 14px 18px;
-      background: var(--bg-soft);
-      border-left: 3px solid var(--text-mute);
-      font-size: 12px;
-      line-height: 1.7;
-      color: var(--text-soft);
-    }
-    .table-note strong { color: var(--ink); font-weight: 600; }
-
-    /* CEREMONY PHOTOS */
-    .ceremony-photos {
-      margin-top: 56px;
-    }
-    .ceremony-photos h3 {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--ink);
-      margin: 0 0 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
-    }
-    .ceremony-photos h3 .label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--navy);
-      letter-spacing: 0.06em;
-      margin-bottom: 4px;
-    }
-    .ceremony-photo-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-    @media (max-width: 720px) { .ceremony-photo-grid { grid-template-columns: 1fr; } }
-    .cphoto {
-      border: 1px solid var(--line);
-      overflow: hidden;
-    }
-    .cphoto img {
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-    }
-    .cphoto figcaption {
-      padding: 12px 18px;
-      background: var(--bg-soft);
-      border-top: 1px solid var(--line);
-      font-size: 12px;
-      color: var(--text-soft);
-      letter-spacing: 0.02em;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .cphoto figcaption .round-mark {
-      font-weight: 700;
-      color: var(--navy);
-      letter-spacing: 0.04em;
-    }
-
-    /* SECTION 3 — Profession diversity */
-    .professions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .prof-tag {
-      display: inline-block;
-      padding: 12px 22px;
-      background: var(--bg);
-      border: 1px solid var(--line);
-      font-size: 15px;
-      color: var(--text);
-      transition: all 0.15s;
-      font-weight: 500;
-    }
-    .prof-tag:hover {
-      border-color: var(--navy);
-      color: var(--navy);
-      background: var(--bg-soft);
-    }
-    .prof-tag.highlight {
-      background: var(--navy);
-      color: #fff;
-      border-color: var(--navy);
-    }
-    .prof-tag.gold {
-      background: rgba(181, 148, 92, 0.1);
-      border-color: var(--gold);
-      color: var(--gold-deep);
-      font-weight: 600;
-    }
-
-    /* SECTION 4 — Schools */
-    .schools-block { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-
-    .school-subhead {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding-bottom: 14px;
-      margin-bottom: 24px;
-      border-bottom: 1px solid var(--line);
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .school-subhead h3 {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--ink);
-      margin: 0;
-    }
-    .school-subhead .meta {
-      font-size: 12px;
-      color: var(--text-mute);
-      letter-spacing: 0.04em;
-    }
-
-    /* Top 12 ranked */
-    .ranked-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 56px;
-    }
-    @media (max-width: 760px) { .ranked-grid { grid-template-columns: repeat(2, 1fr); } }
-    .rank-card {
-      background: var(--bg);
-      border: 1px solid var(--line);
-      padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      transition: border-color 0.2s;
-    }
-    .rank-card:hover { border-color: var(--navy); }
-    .rank-num {
-      width: 32px; height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 700;
-      flex-shrink: 0;
-      letter-spacing: -0.01em;
-    }
-    .rank-1 .rank-num { background: var(--navy); color: #fff; }
-    .rank-2 .rank-num { background: var(--navy-soft); color: var(--navy); }
-    .rank-3 .rank-num { background: var(--navy-soft); color: var(--navy); }
-    .rank-num.std { background: var(--bg-soft); color: var(--text-soft); border: 1px solid var(--line-strong); }
-    .rank-school {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    /* Special tracks */
-    .special-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 56px;
-    }
-    @media (max-width: 760px) { .special-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 480px) { .special-grid { grid-template-columns: 1fr; } }
-    .special-card {
-      background: var(--bg);
-      border: 1px solid var(--line);
-      border-left: 3px solid var(--gold);
-      padding: 18px 22px;
-    }
-    .special-card .school-ko {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-    .special-card .school-en {
-      font-size: 12px;
-      color: var(--text-mute);
-      letter-spacing: 0.02em;
-    }
-
-    /* Full 69 list */
-    .full-schools {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px 16px;
-    }
-    @media (max-width: 760px) { .full-schools { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 480px) { .full-schools { grid-template-columns: 1fr; } }
-    .full-schools .school {
-      padding: 10px 14px;
-      background: var(--bg);
-      border: 1px solid var(--line);
-      font-size: 13px;
-      color: var(--text);
-      transition: all 0.15s;
-    }
-    .full-schools .school:hover {
-      border-color: var(--navy);
-      color: var(--navy);
-    }
-    .full-schools .school.your-school {
-      background: linear-gradient(135deg, var(--navy-soft), var(--bg));
-      border: 1px dashed var(--navy);
-      color: var(--navy);
-      font-weight: 600;
-      text-align: center;
-    }
-    .full-schools .school.your-school::before {
-      content: '+ ';
-      font-weight: 700;
-    }
-
-    /* Diversity note */
-    .diversity-note {
-      margin-top: 56px;
-      background: var(--navy);
-      color: #fff;
-      padding: 40px 44px;
-    }
-    @media (max-width: 720px) { .diversity-note { padding: 32px 28px; } }
-    .diversity-note .label {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      margin-bottom: 16px;
-    }
-    .diversity-note h3 {
-      font-size: 22px;
-      font-weight: 700;
-      color: #fff;
-      margin: 0 0 16px;
-      line-height: 1.4;
-    }
-    .diversity-note p {
-      font-size: 15px;
-      line-height: 1.85;
-      color: rgba(255,255,255,0.85);
-      margin: 0 0 12px;
-    }
-    .diversity-note p:last-child { margin-bottom: 0; }
-    .diversity-note strong { color: var(--gold); font-weight: 600; }
-
-    /* CTA BLOCK */
-    .cta-block { background: var(--navy-deep); color: #fff; padding: 64px 0; text-align: center; }
-    .cta-block h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 700; margin: 0 0 12px; letter-spacing: -0.01em; }
-    .cta-block p { font-size: 15px; color: rgba(255,255,255,0.8); margin: 0 0 28px; letter-spacing: 0.02em; }
-    .cta-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; font-size: 15px; font-weight: 500; font-family: inherit; cursor: pointer; transition: all 0.15s; border: 1px solid transparent; }
-    .btn-on-dark-primary { background: #fff; color: var(--navy); border-color: #fff; }
-    .btn-on-dark-primary:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
-    .btn-on-dark-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
-    .btn-on-dark-outline:hover { border-color: #fff; }
-
-    /* FOOTER */
-    footer.site-footer { background: var(--navy-deep); color: rgba(255,255,255,0.85); padding-top: 56px; }
-    .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.12); }
-    @media (max-width: 820px) { .footer-grid { grid-template-columns: 1fr; gap: 36px; } }
-    .footer-brand img { height: 42px; margin-bottom: 24px; }
-    .footer-brand p { font-size: 13px; line-height: 1.75; color: rgba(255,255,255,0.75); margin: 0 0 20px; }
-    .footer-info dl { margin: 0; display: grid; grid-template-columns: 60px 1fr; gap: 6px 14px; font-size: 13px; }
-    .footer-info dt { color: var(--gold); font-weight: 500; font-size: 12px; letter-spacing: 0.04em; }
-    .footer-info dd { margin: 0; color: rgba(255,255,255,0.85); }
-    .footer-col h4 { font-size: 13px; font-weight: 600; color: #fff; margin: 0 0 16px; letter-spacing: 0.04em; }
-    .footer-col ul { list-style: none; padding: 0; margin: 0; }
-    .footer-col li { margin-bottom: 8px; }
-    .footer-col a { font-size: 13px; color: rgba(255,255,255,0.7); transition: color 0.15s; }
-    .footer-col a:hover { color: #fff; }
-    .footer-bottom { padding: 24px 0 32px; font-size: 12px; color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    }
-  </style>
-
+  <link rel="preload" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+        onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" /></noscript>
 
   <!-- Structured Data · JSON-LD -->
   <script type="application/ld+json">
@@ -659,7 +63,7 @@
     "addressCountry": "KR"
   },
   "sameAs": [
-    "https://smartstore.naver.com/lawtest/",
+    "https://smartstore.naver.com/lawtest",
     "https://namu.wiki/w/%EB%B2%95%ED%95%99%EA%B2%BD%EC%8B%9C%EB%8C%80%ED%9A%8C"
   ]
 }
@@ -684,6 +88,7 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/css/site.css?v=20260516" />
 </head>
 <body>
   <a href="#main" class="skip-link">본문 바로가기</a>
@@ -706,19 +111,19 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="brand" aria-label="법학경시대회 홈으로 이동">
-        <img src="assets/images/logo.png" alt="법학경시대회 Korean Law Olympiad" />
+        <img src="assets/images/logo.png" alt="법학경시대회 Korean Law Olympiad" decoding="async" width="50" height="50">
         <span class="brand-text">
           <span class="ko">선율 법학경시대회 위원회</span>
           <span class="en">Korean Law Olympiad Committee</span>
         </span>
       </a>
-      <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
         <span class="bars" aria-hidden="true"></span>메뉴
       </button>
       <nav class="primary" id="primary-nav" aria-label="주요 메뉴">
         <ul>
           <li><a href="about.html">대회 소개</a></li>
-          <li><a href="universities.html" class="active">응시자 정보</a></li>
+          <li><a href="universities.html" class="active" aria-current="page">응시자 정보</a></li>
           <li><a href="samples.html">문제 샘플</a></li>
           <li><a href="voices.html">응원의 말</a></li>
           <li><a href="achievements.html">결실</a></li>
@@ -736,6 +141,7 @@
         제8회 법학경시대회는 2026년 8월 중순 개최됩니다.
         제7회 결과 발표는 5월 중순에 예정되어 있습니다.
       </p>
+      <a href="https://smartstore.naver.com/lawtest" target="_blank" rel="external noopener" class="notice-bar-link notice-bar-link-cta">접수사이트 →</a>
       <a href="notice.html" class="notice-bar-link">상세 안내 →</a>
     </div>
   </div>
@@ -760,22 +166,22 @@
     </section>
 
     <!-- TOP STATS -->
-    <div class="top-stats">
+    <div class="stats-row">
       <div class="container">
-        <div class="top-stats-grid">
-          <div class="top-stat-cell">
+        <div class="stats-grid stats-grid-3">
+          <div class="stat-cell stat-cell-large">
             <div class="label">AWARDED</div>
-            <div class="num">약 300<small>명</small></div>
+            <div class="num"><small>약</small> 300<small>명</small></div>
             <div class="name">수상자</div>
             <p>본 대회를 통해 약 300명의 수상자가 배출되었습니다.</p>
           </div>
-          <div class="top-stat-cell">
+          <div class="stat-cell stat-cell-large">
             <div class="label">INSTITUTIONS</div>
             <div class="num">69<small>개교</small></div>
             <div class="name">참여 학교</div>
             <p>국내외 대학·고등학교 총 69개교의 학습자가 본 대회에 응시하였습니다.</p>
           </div>
-          <div class="top-stat-cell">
+          <div class="stat-cell stat-cell-large">
             <div class="label">OPEN ACCESS</div>
             <div class="num" style="font-size: 72px; line-height: 1; letter-spacing: -0.04em; margin-top: -12px; margin-bottom: -3px;">∞</div>
             <div class="name">진입장벽 없음</div>
@@ -844,44 +250,44 @@
 
         <!-- Winners cards -->
         <div class="winners-row">
-          <article class="winner-card">
-            <img src="photos/r1_winner.jpg" alt="제1회 대상 한정현" loading="lazy" />
+          <article class="winner-card" data-lightbox data-article="https://www.lec.co.kr/news/articleView.html?idxno=749517" data-lb-title="제1회 대상 · 한정현 · KAIST 졸업">
+            <img src="photos/r1_winner.jpg" alt="제1회 대상 한정현" loading="lazy" decoding="async">
             <div class="winner-body">
               <span class="winner-round">제1회 대상</span>
               <div class="winner-name">한정현</div>
               <div class="winner-detail">KAIST 졸업</div>
             </div>
           </article>
-          <article class="winner-card">
-            <img src="photos/r3_winner.jpg" alt="제3회 대상 이규한" loading="lazy" />
+          <article class="winner-card" data-lightbox data-article="https://www.lec.co.kr/news/articleView.html?idxno=749945" data-lb-title="제3회 대상 · 이규한 · 현직 경찰관">
+            <img src="photos/r3_winner.jpg" alt="제3회 대상 이규한" loading="lazy" decoding="async">
             <div class="winner-body">
               <span class="winner-round">제3회 대상</span>
               <div class="winner-name">이규한</div>
-              <div class="winner-detail">현직 경찰관 · 73점</div>
+              <div class="winner-detail">현직 경찰관</div>
             </div>
           </article>
-          <article class="winner-card">
-            <img src="photos/r4_winner.jpg" alt="제4회 대상 박상영" loading="lazy" />
+          <article class="winner-card" data-lightbox data-article="https://www.lec.co.kr/news/articleView.html?idxno=750482" data-lb-title="제4회 대상 · 박상영 · 고려대 졸업">
+            <img src="photos/r4_winner.jpg" alt="제4회 대상 박상영" loading="lazy" decoding="async">
             <div class="winner-body">
               <span class="winner-round">제4회 대상</span>
               <div class="winner-name">박상영</div>
-              <div class="winner-detail">고려대 · 71점</div>
+              <div class="winner-detail">고려대 졸업</div>
             </div>
           </article>
-          <article class="winner-card">
-            <img src="photos/r5_winner.jpg" alt="제5회 대상 여운규" loading="lazy" />
+          <article class="winner-card" data-lightbox data-article="https://www.lec.co.kr/news/articleView.html?idxno=750728" data-lb-title="제5회 대상 · 여운규 · 방송통신대 재학">
+            <img src="photos/r5_winner.jpg" alt="제5회 대상 여운규" loading="lazy" decoding="async">
             <div class="winner-body">
               <span class="winner-round">제5회 대상</span>
               <div class="winner-name">여운규</div>
-              <div class="winner-detail">방송통신대 · 73점</div>
+              <div class="winner-detail">방송통신대 재학</div>
             </div>
           </article>
-          <article class="winner-card">
-            <img src="photos/r6_winner.jpg" alt="제6회 대상 박준한" loading="lazy" />
+          <article class="winner-card" data-lightbox data-article="https://www.lec.co.kr/news/articleView.html?idxno=751455" data-lb-title="제6회 대상 · 박준한 · 고려사이버대 재학">
+            <img src="photos/r6_winner.jpg" alt="제6회 대상 박준한" loading="lazy" decoding="async">
             <div class="winner-body">
               <span class="winner-round">제6회 대상</span>
               <div class="winner-name">박준한</div>
-              <div class="winner-detail">고려사이버대 · 70점</div>
+              <div class="winner-detail">고려사이버대 재학</div>
             </div>
           </article>
         </div>
@@ -905,7 +311,7 @@
               <td class="dash">—</td>
               <td class="winner-cell">
                 <strong>한정현</strong>
-                <span class="meta">KAIST 졸업, 산자부 인턴</span>
+                <span class="meta">KAIST 졸업</span>
               </td>
             </tr>
             <tr>
@@ -915,7 +321,7 @@
               <td>33점</td>
               <td class="winner-cell">
                 <strong>김예진</strong>
-                <span class="meta">충북대 로스쿨</span>
+                <span class="meta">충북대 로스쿨 재학</span>
               </td>
             </tr>
             <tr>
@@ -925,7 +331,7 @@
               <td>44점</td>
               <td class="winner-cell">
                 <strong>이규한</strong>
-                <span class="meta">현직 경찰관 최초 대상</span>
+                <span class="meta">현직 경찰관</span>
               </td>
             </tr>
             <tr>
@@ -935,7 +341,7 @@
               <td class="dash">—</td>
               <td class="winner-cell">
                 <strong>박상영</strong>
-                <span class="meta">고려대 → 서울대 대학원 법학과</span>
+                <span class="meta">고려대 졸업</span>
               </td>
             </tr>
             <tr>
@@ -945,7 +351,7 @@
               <td class="dash">—</td>
               <td class="winner-cell">
                 <strong>여운규</strong>
-                <span class="meta">방송통신대 법학과</span>
+                <span class="meta">방송통신대 재학</span>
               </td>
             </tr>
             <tr>
@@ -955,7 +361,7 @@
               <td class="dash">—</td>
               <td class="winner-cell">
                 <strong>박준한</strong>
-                <span class="meta">고려사이버대 → 치안대학원 진학 예정</span>
+                <span class="meta">고려사이버대 재학</span>
               </td>
             </tr>
           </tbody>
@@ -964,7 +370,6 @@
         <div class="table-note">
           ※ 점수는 100점 만점 기준입니다.
           <strong>제2회 평균 33점</strong>은 헌법 41점·민법 28점·형법 32점의 산술평균입니다.
-          체험단 자료는 공식 응시자 성적과의 우열 비교가 아니라, 출제 난도와 60~70점 기준점 보정을 위한 검수 자료로 활용합니다.
         </div>
 
         <!-- Ceremony photos -->
@@ -974,43 +379,43 @@
             제1회~제6회 시상식
           </h3>
           <div class="ceremony-photo-grid">
-            <figure class="cphoto">
-              <img src="photos/r1_group.jpg" alt="제1회 법학경시대회 시상식" loading="lazy" />
+            <figure class="cphoto" data-lightbox data-article="https://www.lec.co.kr/news/articleView.html?idxno=749517" data-lb-title="제1회 시상식 · 2025.03.03 · 변호사회관 1층">
+              <img src="photos/r1_group.jpg" alt="제1회 법학경시대회 시상식" loading="lazy" decoding="async">
               <figcaption>
                 <span><span class="round-mark">제1회</span> 시상식</span>
                 <span>2025.03.03 · 변호사회관 1층</span>
               </figcaption>
             </figure>
-            <figure class="cphoto">
-              <img src="photos/r2_group.jpg" alt="제2회 법학경시대회 시상식" loading="lazy" />
+            <figure class="cphoto" data-lightbox data-article="https://www.lec.co.kr/news/articleView.html?idxno=749736" data-lb-title="제2회 시상식 · 2025.04.05 · 변호사회관 1층">
+              <img src="photos/r2_group.jpg" alt="제2회 법학경시대회 시상식" loading="lazy" decoding="async">
               <figcaption>
                 <span><span class="round-mark">제2회</span> 시상식</span>
                 <span>2025.04.05 · 변호사회관 1층</span>
               </figcaption>
             </figure>
-            <figure class="cphoto">
-              <img src="photos/r3_group.jpg" alt="제3회 법학경시대회 시상식" loading="lazy" />
+            <figure class="cphoto" data-lightbox data-article="https://www.lec.co.kr/news/articleView.html?idxno=749945" data-lb-title="제3회 시상식 · 2025.05.10 · 변호사회관 1층">
+              <img src="photos/r3_group.jpg" alt="제3회 법학경시대회 시상식" loading="lazy" decoding="async">
               <figcaption>
                 <span><span class="round-mark">제3회</span> 시상식</span>
                 <span>2025.05.10 · 변호사회관 1층</span>
               </figcaption>
             </figure>
-            <figure class="cphoto">
-              <img src="photos/r4_group.jpg" alt="제4회 법학경시대회 시상식" loading="lazy" />
+            <figure class="cphoto" data-lightbox data-article="https://www.lec.co.kr/news/articleView.html?idxno=750482" data-lb-title="제4회 시상식 · 2025.08.09 · 변호사회관 1층">
+              <img src="photos/r4_group.jpg" alt="제4회 법학경시대회 시상식" loading="lazy" decoding="async">
               <figcaption>
                 <span><span class="round-mark">제4회</span> 시상식</span>
                 <span>2025.08.09 · 변호사회관 1층</span>
               </figcaption>
             </figure>
-            <figure class="cphoto">
-              <img src="photos/r5_group.jpg" alt="제5회 법학경시대회 시상식" loading="lazy" />
+            <figure class="cphoto" data-lightbox data-article="https://www.lec.co.kr/news/articleView.html?idxno=750728" data-lb-title="제5회 시상식 · 2025.09.20 · 자기주도 학습법 공모전 병행">
+              <img src="photos/r5_group.jpg" alt="제5회 법학경시대회 시상식" loading="lazy" decoding="async">
               <figcaption>
                 <span><span class="round-mark">제5회</span> 시상식</span>
                 <span>2025.09.20 · 자기주도 학습법 공모전 병행</span>
               </figcaption>
             </figure>
-            <figure class="cphoto">
-              <img src="photos/r6_group.jpg" alt="제6회 법학경시대회 시상식" loading="lazy" />
+            <figure class="cphoto" data-lightbox data-article="https://www.lec.co.kr/news/articleView.html?idxno=751455" data-lb-title="제6회 시상식 · 2026.01.24 · 변호사회관 조영래홀">
+              <img src="photos/r6_group.jpg" alt="제6회 법학경시대회 시상식" loading="lazy" decoding="async">
               <figcaption>
                 <span><span class="round-mark">제6회</span> 시상식</span>
                 <span>2026.01.24 · 변호사회관 조영래홀</span>
@@ -1039,15 +444,16 @@
           <span class="prof-tag">학부생</span>
           <span class="prof-tag">취업준비생</span>
           <span class="prof-tag">의사</span>
-          <span class="prof-tag highlight">현직 경찰관</span>
+          <span class="prof-tag">현직 경찰관</span>
           <span class="prof-tag">로스쿨 재학생</span>
           <span class="prof-tag">공무원</span>
           <span class="prof-tag">교사</span>
           <span class="prof-tag">태권도 사범</span>
+          <span class="prof-tag">방송통신대 · 사이버대 재학생</span>
           <span class="prof-tag">평생학습자</span>
           <span class="prof-tag">고등학생</span>
           <span class="prof-tag">대학 미진학자</span>
-          <span class="prof-tag gold">기초생활수급자</span>
+          <span class="prof-tag">기초생활수급자</span>
         </div>
       </div>
     </section>
@@ -1206,16 +612,16 @@
         <!-- Diversity note -->
         <div class="diversity-note">
           <div class="label">A NOTE ON DIVERSITY</div>
-          <h3>옥스퍼드 학습자와 풍암고등학교 재학생이<br />같은 무대에 이름을 올립니다</h3>
+          <h3>옥스퍼드 재학생과 풍암고등학교 재학생이<br />같은 무대에 이름을 올립니다</h3>
           <p>
-            본 대회의 응시자 명부에는 <strong>옥스퍼드대학교의 학습자</strong>와
+            본 대회의 응시자 명부에는 <strong>옥스퍼드대학교 재학생</strong>과
             <strong>풍암고등학교 재학생</strong>이 같은 무대에 이름을 올립니다.
           </p>
           <p>
-            한국 법학 교육에서 검증 통로가 부족했던 이공계 출신, 방송통신대·사이버대 학습자,
-            고등학교 졸업자, 지방 거주 응시자, 해외 거주자, 경제적 어려움에 처한 응시자에게도
-            본 대회는 학력·학벌의 진입장벽 없는 무대를 제공해 왔습니다.
-            비대면 시행 방식이 그 가능성을 열었습니다.
+            본 대회는 한국 법학 교육에서 검증 통로가 부족했던 응시자들에게도 열려 있습니다.
+            이공계 출신, 방송통신대·사이버대 학습자, 고등학교 졸업자, 지방·해외 거주자,
+            경제적 어려움에 처한 응시자 모두가 같은 시험을 치르고 같은 기준으로 평가받습니다.
+            비대면 시행 방식이 이 가능성을 열었습니다.
           </p>
         </div>
       </div>
@@ -1224,10 +630,10 @@
     <!-- CTA -->
     <section class="cta-block">
       <div class="container">
-        <h2>당신도 이 명단에 이름을 올릴 수 있습니다</h2>
-        <p>Add your name to this roster of legal aspirants</p>
+        <h2>이제, 당신의 차례입니다.</h2>
+        <p>Your turn.</p>
         <div class="cta-row">
-          <a href="achievements.html" class="btn btn-on-dark-primary">대회의 결실 →</a>
+          <a href="https://smartstore.naver.com/lawtest" target="_blank" rel="external noopener" class="btn btn-on-dark-primary">접수사이트 →</a>
           <a href="samples.html" class="btn btn-on-dark-outline">문제 샘플 →</a>
         </div>
       </div>
@@ -1239,7 +645,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="assets/images/logo-white.png" alt="법학경시대회 Korean Law Olympiad" />
+          <img src="assets/images/logo-white.png" alt="법학경시대회 Korean Law Olympiad" decoding="async" loading="lazy" width="42" height="42">
           <p>
             본 대회는 2023년 대한변협 법학경시대회 TF 논의에서 출발하였으며,
             현재 주최는 선율 법학경시대회 위원회입니다.
@@ -1262,7 +668,7 @@
           <h4>주요 메뉴</h4>
           <ul>
             <li><a href="about.html">대회 소개</a></li>
-            <li><a href="universities.html">응시자 정보</a></li>
+            <li><a href="universities.html" aria-current="page">응시자 정보</a></li>
             <li><a href="samples.html">문제 샘플</a></li>
             <li><a href="voices.html">응원의 말</a></li>
             <li><a href="achievements.html">결실</a></li>
@@ -1275,8 +681,7 @@
           <ul>
             <li><a href="notice.html">공지사항</a></li>
             <li><a href="faq.html">자주 묻는 질문</a></li>
-            <li><a href="media.html">보도자료</a></li>
-            <li><a href="terms.html">이용약관</a></li>
+<li><a href="terms.html">이용약관</a></li>
             <li><a href="privacy.html">개인정보처리방침</a></li>
             <li><a href="contact.html">문의하기</a></li>
           </ul>
@@ -1290,16 +695,20 @@
     </div>
   </footer>
 
-  <script>
-    (function () {
-      const btn = document.querySelector('.menu-toggle');
-      const nav = document.querySelector('nav.primary');
-      if (!btn || !nav) return;
-      btn.addEventListener('click', () => {
-        const isOpen = nav.classList.toggle('open');
-        btn.setAttribute('aria-expanded', isOpen);
-      });
-    })();
-  </script>
+    <script src="assets/js/site.js?v=20260516" defer></script>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="시상식 사진 보기">
+    <button class="lb-close" type="button" aria-label="닫기">×</button>
+    <button class="lb-prev" type="button" aria-label="이전 사진">‹</button>
+    <button class="lb-next" type="button" aria-label="다음 사진">›</button>
+    <figure class="lb-figure">
+      <img class="lb-image" alt="" />
+      <figcaption class="lb-caption">
+        <div class="lb-title"></div>
+        <a class="lb-article" href="#" target="_blank" rel="external noopener">관련 기사 보기 →</a>
+      </figcaption>
+    </figure>
+  </div>
 </body>
 </html>
