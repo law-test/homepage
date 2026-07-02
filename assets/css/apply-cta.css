@@ -1,0 +1,80 @@
+.official-poster {
+  display: block;
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+}
+
+.official-poster:hover {
+  border-color: #003675;
+  box-shadow: 0 12px 28px rgba(16, 33, 63, 0.16);
+  text-decoration: none;
+}
+
+.official-poster .poster-apply {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 50px;
+  margin: 12px -12px -12px;
+  padding: 14px 16px;
+  background: #003675;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.official-poster:hover .poster-apply {
+  background: #10213f;
+}
+
+.floating-apply {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  max-width: calc(100vw - 48px);
+  padding: 14px 20px;
+  background: #003675;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 4px;
+  box-shadow: 0 10px 28px rgba(16, 33, 63, 0.28);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.floating-apply:hover {
+  background: #10213f;
+  text-decoration: none;
+}
+
+.floating-apply-arrow {
+  font-size: 16px;
+  line-height: 1;
+}
+
+@media (max-width: 720px) {
+  .official-poster .poster-apply {
+    min-height: 48px;
+    font-size: 14px;
+  }
+
+  .floating-apply {
+    left: 16px;
+    right: 16px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    max-width: none;
+    padding: 14px 18px;
+  }
+}
