@@ -49,7 +49,6 @@
       "name": "한정현",
       "affiliation": "KAIST 졸업",
       "score": null,
-      "average": null,
       "source": "https://www.lec.co.kr/news/articleView.html?idxno=749517",
       "published": "2025-03-05"
     },
@@ -59,7 +58,6 @@
       "name": "김예진",
       "affiliation": "충북대학교 법학전문대학원 재학",
       "score": 67,
-      "average": null,
       "source": "https://www.lec.co.kr/news/articleView.html?idxno=749736",
       "published": "2025-04-07"
     },
@@ -69,7 +67,6 @@
       "name": "이규한",
       "affiliation": "현직 경찰관",
       "score": 73,
-      "average": 44,
       "source": "https://www.lec.co.kr/news/articleView.html?idxno=749945",
       "published": "2025-05-14"
     },
@@ -79,7 +76,6 @@
       "name": "박상영",
       "affiliation": "고려대학교 졸업",
       "score": 71,
-      "average": null,
       "source": "https://www.lec.co.kr/news/articleView.html?idxno=750482",
       "published": "2025-08-12"
     },
@@ -89,7 +85,6 @@
       "name": "여운규",
       "affiliation": "한국방송통신대학교 법학과 재학",
       "score": 73,
-      "average": null,
       "source": "https://www.lec.co.kr/news/articleView.html?idxno=750728",
       "published": "2025-09-25"
     },
@@ -99,7 +94,6 @@
       "name": "박준한",
       "affiliation": "고려사이버대학교 법학부 재학",
       "score": 70,
-      "average": null,
       "source": "https://www.lec.co.kr/news/articleView.html?idxno=751455",
       "published": "2026-01-29"
     },
@@ -110,7 +104,6 @@
       "affiliation": "KAIST 졸업",
       "award": "대상 · 재단법인 변호사공제재단 이사장상",
       "score": 85,
-      "average": null,
       "source": "https://www.lec.co.kr/news/articleView.html?idxno=752452",
       "published": "2026-07-23"
     },
@@ -121,7 +114,6 @@
       "affiliation": "서울대학교 대학원 법학과 재학",
       "award": "대상 · 대한변협 법률구조재단 이사장상",
       "score": 81,
-      "average": null,
       "source": "https://www.lec.co.kr/news/articleView.html?idxno=752452",
       "published": "2026-07-23"
     }
@@ -141,7 +133,7 @@
     "retention_scores": null,
     "retention_proctoring": null
   },
-  "asset_version": "2026-09-12-4",
+  "asset_version": "2026-09-12-5",
   "contest2": {
     "title": "2026 제2회 전국 자기주도 학습법 공모전",
     "start": "2026-09-14",

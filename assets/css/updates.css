@@ -1,5 +1,25 @@
 /* Shared corrections. This file intentionally follows legacy styles. */
 .record-links a.btn-primary{color:#fff;text-decoration:none}
+.school-feature-rank{display:flex;align-items:center;justify-content:center;width:42px;height:42px;margin-bottom:20px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:10px;font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
+#featured-schools .school-secondary{display:flex;align-items:center;gap:14px;background:#eaf0f8;border-color:#cfdcec}
+#schools{background:#eaf0f7}
+#schools .school-grid{list-style:none;margin:0;padding:0;gap:12px}
+#schools .school{display:flex;align-items:center;gap:12px;padding:16px;background:#f8fbff;border:1px solid #cbd9e9;border-radius:8px;min-height:76px;text-align:left;font-size:16px;font-weight:650;color:#193c64}
+.school-rank{display:flex;align-items:center;justify-content:center;flex:0 0 34px;height:34px;background:#dce7f5;border-radius:7px;color:#244f7c;font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
+.school-name{min-width:0;word-break:keep-all;overflow-wrap:anywhere;line-height:1.5}
+#schools .school:nth-child(-n+3){background:#173e69;border-color:#173e69;color:#fff}
+#schools .school:nth-child(-n+3) .school-rank{background:#315e8d;color:#fff}
+#schools .school:nth-child(n+4):nth-child(-n+12){background:#dae7f5;border-color:#b9cde3}
+.round-score-table tbody+tbody{border-top:1px solid #cbd7e5}
+.round-score-table tbody:nth-of-type(even){background:#f8fafc}
+.round-score-table .round-col,.round-score-table .ceremony-col,.round-score-table .source-col{vertical-align:middle}
+.round-score-table .round-col{background:transparent;white-space:nowrap}
+.round-score-table .ceremony-col{white-space:nowrap}
+.round-score-table .score-col{font-weight:700;font-variant-numeric:tabular-nums}
+.round-score-table .name-col small{display:inline-block;max-width:280px;margin-top:4px;color:#4b627d;line-height:1.6}
+@media(max-width:900px){#schools .school-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){#schools .school-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}#schools .school{gap:9px;padding:12px;font-size:14px;min-height:78px}.school-rank{flex-basis:28px;height:28px;font-size:13px}#featured-schools .school-secondary{gap:10px;padding:14px}.round-score-table .name-col{min-width:180px}}
+@media(max-width:380px){#schools .school-grid,#featured-schools .school-secondary-grid{grid-template-columns:1fr}#schools .school{min-height:62px;font-size:16px}}
 .callout.callout-warn .pa-text{min-width:0;max-width:100%}
 @media(max-width:720px){.privacy-alert-inner{display:block;padding-left:0;padding-right:0}.privacy-alert-inner .icon-shield{margin-bottom:12px}}
 .menu-open .floating-apply{visibility:hidden}

@@ -19,7 +19,7 @@ PAGES = {
     'samples': ('예시 문제·자료', '헌법·민법의 출제 유형별 예시 4문항과 해설, 회차별 시행 자료를 확인하세요.'),
     'notice': ('공지사항', '제8회 시상식과 수상 결과, 제9회 일정 안내, 회차별 공지 기록입니다.'),
     'records': ('대회 기록', '제1회부터 제8회까지 시상식과 대상 수상 기록, 참가자 통계, 수상자 활동을 확인하세요.'),
-    'universities': ('참가자·성적 통계', '회차별 대상 점수와 평균, 참가자의 소속·출신 학교를 소개합니다.'),
+    'universities': ('참가자·성적 통계', '회차별 대상 점수와 참가자의 소속·출신 학교를 소개합니다.'),
     'achievements': ('수상자 활동', '법학경시대회 수상자의 논문, 도서, 학습법 공모전과 연구 활동을 소개합니다.'),
     'voices': ('축하 메시지·참가 후기', '법조계·학계의 축하 메시지와 참가자의 대회 경험을 소개합니다.'),
     'media': ('언론보도', '법학경시대회에 관한 신문기사와 대학 공식 보도, 회차별 개최·시상 기록입니다.'),
@@ -57,11 +57,25 @@ def photo():
 
 def rows():
     parts = []
-    for item in SITE['round8']['winners']:
-        parts.append(f'<tr><td>제8회</td><td>2026.09.12</td><td class="name-col">{e(item["name"])}<br><small>{e(item["organization"])}</small></td><td>{number(item["score"])}</td><td>{number(None)}</td><td><a class="text-link" href="/notice.html#notice-8">결과 공지</a></td></tr>')
-    for item in reversed(SITE['archive']):
-        parts.append(f'<tr><td>제{item["round"]}회</td><td>{e(item["ceremony"].replace("-","."))}</td><td class="name-col">{e(item["name"])}</td><td>{number(item["score"])}</td><td>{number(item["average"])}</td><td><a class="text-link" href="{e(item["source"])}" target="_blank" rel="noopener noreferrer">기사 확인<span class="sr-only"> (새 창)</span></a></td></tr>')
-    return '<div class="table-scroll" tabindex="0" role="region" aria-label="회차별 점수 표"><table class="data-table"><thead><tr><th scope="col">회차</th><th scope="col">시상식</th><th scope="col">대상 수상자</th><th scope="col">점수</th><th scope="col">평균</th><th scope="col">출처</th></tr></thead><tbody>'+''.join(parts)+'</tbody></table></div><p class="source-note">100점 만점 · — 미공개</p>'
+    for round_no in range(8, 0, -1):
+        if round_no == 8:
+            items = SITE['round8']['winners']
+            ceremony = SITE['round8']['ceremony_date']
+            source = '<a class="text-link" href="/notice.html#notice-8">결과 공지</a>'
+        else:
+            items = [x for x in SITE['archive'] if x['round'] == round_no]
+            ceremony = items[0]['ceremony']
+            source = f'<a class="text-link" href="{e(items[0]["source"])}" target="_blank" rel="noopener noreferrer">기사 확인<span class="sr-only"> (새 창)</span></a>'
+        group = []
+        span = len(items)
+        for index, item in enumerate(items):
+            shared = '' if index else f'<th scope="rowgroup" rowspan="{span}" class="round-col">제{round_no}회</th><td rowspan="{span}" class="ceremony-col">{e(ceremony.replace("-", "."))}</td>'
+            award = item.get('organization') or item.get('award', '').removeprefix('대상 · ')
+            award_text = f'<br><small>{e(award)}</small>' if award else ''
+            source_cell = '' if index else f'<td rowspan="{span}" class="source-col">{source}</td>'
+            group.append(f'<tr>{shared}<td class="name-col">{e(item["name"])}{award_text}</td><td class="score-col">{number(item["score"])}</td>{source_cell}</tr>')
+        parts.append('<tbody>'+''.join(group)+'</tbody>')
+    return '<div class="table-scroll" tabindex="0" role="region" aria-label="회차별 대상 점수 표"><table class="data-table round-score-table"><thead><tr><th scope="col">회차</th><th scope="col">시상식</th><th scope="col">대상 수상자</th><th scope="col">점수</th><th scope="col">출처</th></tr></thead>'+''.join(parts)+'</table></div><p class="source-note">100점 만점 · — 미공개</p>'
 
 def archives():
     parts = []
@@ -85,7 +99,7 @@ def publications():
     def cards(category):
         return ''.join(f'<article class="record-block"><span class="status-chip">{e(x["status"])}</span><h3>{e(x["title"])}</h3><p>{e(x["subtitle"])}</p><p><strong>{e(x["authors"])}</strong><br>{e(x["journal"])} {e(x["issue"])} · {e(x["date"])} · {e(x["pages"])}쪽</p><div class="record-links"><a href="{e(x["url"])}" target="_blank" rel="noopener noreferrer">KCI 논문 보기 (새 창)</a><a href="https://doi.org/{e(x["doi"])}" target="_blank" rel="noopener noreferrer">DOI 원문 연결 (새 창)</a></div></article>' for x in items if x['category']==category)
     count=sum(x['category']=='recipient' for x in items)
-    return f'<section class="content-section" id="papers"><div class="container"><h2>수상자 학술 논문 · {count}편</h2>'+cards('recipient')+'<p class="source-note">박상영: 제4·7회 대상 수상자. 이승관: 제4회 종합 최우수상 수상자. 정소원·박단비: 법학경시대회 수상자.</p></div></section>'
+    return f'<section class="content-section" id="papers"><div class="container"><h2>수상자 학술 논문 · {count}편</h2>'+cards('recipient')+'</div></section>'
 
 class FAQParser(HTMLParser):
     def __init__(self):
