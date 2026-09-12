@@ -1,8 +1,8 @@
 {
-  "updated": "2026-09-12",
+  "updated": "2026-09-13",
   "organizer": "선율 법학경시대회 위원회",
   "next_round": 9,
-  "next_status": "일정 미정",
+  "next_status": "2026년 9월 14일 시험 일정 발표 예정",
   "round8": {
     "exam_date": "2026-08-01",
     "ceremony_date": "2026-09-12",
@@ -133,7 +133,7 @@
     "retention_scores": null,
     "retention_proctoring": null
   },
-  "asset_version": "2026-09-12-5",
+  "asset_version": "2026-09-13-1",
   "contest2": {
     "title": "2026 제2회 전국 자기주도 학습법 공모전",
     "start": "2026-09-14",
@@ -163,5 +163,6 @@
       "선율 법학경시대회 위원장상"
     ],
     "rights": "수상작에 대한 모든 권리는 선율에 귀속되며, 대중에게 공유될 수 있습니다."
-  }
+  },
+  "next_announcement_date": "2026-09-14"
 }
