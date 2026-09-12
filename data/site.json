@@ -3,39 +3,173 @@
   "organizer": "선율 법학경시대회 위원회",
   "next_round": 9,
   "next_status": "일정 미정",
-  "round8_schools": ["KAIST", "경찰대학", "고려대학교", "국민대학교", "대일외국어고등학교", "서울대학교", "서원대학교", "성신여자대학교", "세종대학교", "숭실대학교", "연세대학교", "인하대학교", "중앙대학교", "충남대학교", "한국방송통신대학교", "한국외국어대학교", "홍익대학교"],
   "round8": {
     "exam_date": "2026-08-01",
     "ceremony_date": "2026-09-12",
     "ceremony_time": "14:00",
     "ceremony_place": "변호사회관 5층 정의실",
-    "photo": null,
-    "photo_alt": "제8회 법학경시대회 시상식",
+    "photo": "assets/images/round8-ceremony-20260912.jpg",
+    "photo_alt": "2026년 9월 12일 변호사회관에서 열린 제8회 법학경시대회 시상식 단체사진",
     "winners": [
-      {"award": "대상", "organization": "재단법인 변호사공제재단상", "name": "정헌욱", "affiliation": "인하대학교 법학전문대학원 재학생", "score": 69},
-      {"award": "대상", "organization": "대한변협법률구조재단 이사장상", "name": "김영진", "affiliation": "KAIST 산업및시스템공학과 재학생", "score": 67}
+      {
+        "award": "대상",
+        "organization": "재단법인 변호사공제재단 이사장상",
+        "name": "정헌욱",
+        "affiliation": "인하대학교 법학전문대학원 재학생",
+        "score": 69
+      },
+      {
+        "award": "대상",
+        "organization": "대한변협 법률구조재단 이사장상",
+        "name": "김영진",
+        "affiliation": "KAIST 산업및시스템공학과 재학생",
+        "score": 67
+      }
     ],
     "other_awards": [],
     "sources": [
-      {"label": "법률저널 · 제8회 개최 안내 및 제7회 시상식 보도", "url": "https://www.lec.co.kr/news/articleView.html?idxno=752452", "date": "2026-07-23", "scope": "제8회 시행 안내, 제7회 결과"},
-      {"label": "피앤피뉴스 · 제8회 개최 안내", "url": "https://gosiweek.com/article/1065596232175960", "date": "2026-07-27", "scope": "제8회 시행 안내"}
+      {
+        "label": "법률저널 · 제8회 개최 안내 및 제7회 시상식 보도",
+        "url": "https://www.lec.co.kr/news/articleView.html?idxno=752452",
+        "date": "2026-07-23",
+        "scope": "제8회 시행 안내, 제7회 결과"
+      },
+      {
+        "label": "피앤피뉴스 · 제8회 개최 안내",
+        "url": "https://gosiweek.com/article/1065596232175960",
+        "date": "2026-07-27",
+        "scope": "제8회 시행 안내"
+      }
     ]
   },
   "archive": [
-    {"round":1,"ceremony":"2025-03-03","name":"한정현","affiliation":"KAIST 졸업","score":null,"average":null,"source":"https://www.lec.co.kr/news/articleView.html?idxno=749517","published":"2025-03-05"},
-    {"round":2,"ceremony":"2025-04-05","name":"김예진","affiliation":"충북대학교 법학전문대학원 재학","score":67,"average":null,"source":"https://www.lec.co.kr/news/articleView.html?idxno=749736","published":"2025-04-07"},
-    {"round":3,"ceremony":"2025-05-10","name":"이규한","affiliation":"현직 경찰관","score":73,"average":44,"source":"https://www.lec.co.kr/news/articleView.html?idxno=749945","published":"2025-05-14"},
-    {"round":4,"ceremony":"2025-08-09","name":"박상영","affiliation":"고려대학교 졸업","score":71,"average":null,"source":"https://www.lec.co.kr/news/articleView.html?idxno=750482","published":"2025-08-12"},
-    {"round":5,"ceremony":"2025-09-20","name":"여운규","affiliation":"한국방송통신대학교 법학과 재학","score":73,"average":null,"source":"https://www.lec.co.kr/news/articleView.html?idxno=750728","published":"2025-09-25"},
-    {"round":6,"ceremony":"2026-01-24","name":"박준한","affiliation":"고려사이버대학교 법학부 재학","score":70,"average":null,"source":"https://www.lec.co.kr/news/articleView.html?idxno=751455","published":"2026-01-29"},
-    {"round":7,"ceremony":"2026-05-31","name":"한정현","affiliation":"KAIST 졸업","award":"대상 · 변호사공제재단 이사장상","score":85,"average":null,"source":"https://www.lec.co.kr/news/articleView.html?idxno=752452","published":"2026-07-23"},
-    {"round":7,"ceremony":"2026-05-31","name":"박상영","affiliation":"서울대학교 대학원 법학과 재학","award":"대상 · 대한변협법률구조재단 이사장상","score":81,"average":null,"source":"https://www.lec.co.kr/news/articleView.html?idxno=752452","published":"2026-07-23"}
+    {
+      "round": 1,
+      "ceremony": "2025-03-03",
+      "name": "한정현",
+      "affiliation": "KAIST 졸업",
+      "score": null,
+      "average": null,
+      "source": "https://www.lec.co.kr/news/articleView.html?idxno=749517",
+      "published": "2025-03-05"
+    },
+    {
+      "round": 2,
+      "ceremony": "2025-04-05",
+      "name": "김예진",
+      "affiliation": "충북대학교 법학전문대학원 재학",
+      "score": 67,
+      "average": null,
+      "source": "https://www.lec.co.kr/news/articleView.html?idxno=749736",
+      "published": "2025-04-07"
+    },
+    {
+      "round": 3,
+      "ceremony": "2025-05-10",
+      "name": "이규한",
+      "affiliation": "현직 경찰관",
+      "score": 73,
+      "average": 44,
+      "source": "https://www.lec.co.kr/news/articleView.html?idxno=749945",
+      "published": "2025-05-14"
+    },
+    {
+      "round": 4,
+      "ceremony": "2025-08-09",
+      "name": "박상영",
+      "affiliation": "고려대학교 졸업",
+      "score": 71,
+      "average": null,
+      "source": "https://www.lec.co.kr/news/articleView.html?idxno=750482",
+      "published": "2025-08-12"
+    },
+    {
+      "round": 5,
+      "ceremony": "2025-09-20",
+      "name": "여운규",
+      "affiliation": "한국방송통신대학교 법학과 재학",
+      "score": 73,
+      "average": null,
+      "source": "https://www.lec.co.kr/news/articleView.html?idxno=750728",
+      "published": "2025-09-25"
+    },
+    {
+      "round": 6,
+      "ceremony": "2026-01-24",
+      "name": "박준한",
+      "affiliation": "고려사이버대학교 법학부 재학",
+      "score": 70,
+      "average": null,
+      "source": "https://www.lec.co.kr/news/articleView.html?idxno=751455",
+      "published": "2026-01-29"
+    },
+    {
+      "round": 7,
+      "ceremony": "2026-05-31",
+      "name": "한정현",
+      "affiliation": "KAIST 졸업",
+      "award": "대상 · 재단법인 변호사공제재단 이사장상",
+      "score": 85,
+      "average": null,
+      "source": "https://www.lec.co.kr/news/articleView.html?idxno=752452",
+      "published": "2026-07-23"
+    },
+    {
+      "round": 7,
+      "ceremony": "2026-05-31",
+      "name": "박상영",
+      "affiliation": "서울대학교 대학원 법학과 재학",
+      "award": "대상 · 대한변협 법률구조재단 이사장상",
+      "score": 81,
+      "average": null,
+      "source": "https://www.lec.co.kr/news/articleView.html?idxno=752452",
+      "published": "2026-07-23"
+    }
   ],
   "unconfirmed": {
-    "next_exam_date": null, "next_application_period": null, "application_fee": null,
-    "refund_policy": null, "checkin_time": null, "supported_browser": null,
-    "proctor_service": null, "score_appeal_period": null, "tie_policy": null,
-    "contest2_dates": null, "contact_hours": null,
-    "retention_application": null, "retention_scores": null, "retention_proctoring": null
+    "next_exam_date": null,
+    "next_application_period": null,
+    "application_fee": null,
+    "refund_policy": null,
+    "checkin_time": null,
+    "supported_browser": null,
+    "proctor_service": null,
+    "score_appeal_period": null,
+    "tie_policy": null,
+    "contact_hours": null,
+    "retention_application": null,
+    "retention_scores": null,
+    "retention_proctoring": null
+  },
+  "asset_version": "2026-09-12-3",
+  "contest2": {
+    "title": "2026 제2회 전국 자기주도 학습법 공모전",
+    "start": "2026-09-14",
+    "end": "2026-09-26",
+    "deadline": "2026-09-27T00:00:00+09:00",
+    "poster": "assets/images/self-study-contest-2026.png",
+    "email": "info@lawtest.or.kr",
+    "eligibility": "제한 없음",
+    "topic": "최근 1년 동안 자기주도 학습법을 통하여 이룬 성취",
+    "format": "자유 양식",
+    "criteria": [
+      {
+        "label": "자기소개 및 포부",
+        "points": 20
+      },
+      {
+        "label": "학습법 설명",
+        "points": 40
+      },
+      {
+        "label": "학습법으로 이룬 성취",
+        "points": 40
+      }
+    ],
+    "awards": [
+      "한국법학진흥원 원장상(대상)",
+      "선율 법학경시대회 위원장상"
+    ],
+    "rights": "수상작에 대한 모든 권리는 선율에 귀속되며, 대중에게 공유될 수 있습니다."
   }
 }
