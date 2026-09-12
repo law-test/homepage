@@ -5,7 +5,7 @@
 ## 내용 수정
 
 - `data/site.json`: 제8회 시상식·수상자·점수, 제1~7회 기록, 공모전 요강과 미확정 항목.
-- `data/publications.json`: 논문 서지, KCI·DOI, 수상자 논문과 관련 연구 분류.
+- `data/publications.json`: 수상자 논문 서지와 KCI·DOI.
 - `content/*.html`: 각 페이지 본문. 생성된 루트 HTML을 직접 수정하지 않습니다.
 - `templates/layout.html`: 공통 메뉴·배너·푸터·검색 및 공유 정보.
 - `assets/css/updates.css`, `assets/js/site.js`: 공통 화면과 메뉴·사진 확대 동작.

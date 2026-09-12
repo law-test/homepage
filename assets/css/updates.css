@@ -1,5 +1,9 @@
 /* Shared corrections. This file intentionally follows legacy styles. */
 .record-links a.btn-primary{color:#fff;text-decoration:none}
+.callout.callout-warn .pa-text{min-width:0;max-width:100%}
+@media(max-width:720px){.privacy-alert-inner{display:block;padding-left:0;padding-right:0}.privacy-alert-inner .icon-shield{margin-bottom:12px}}
+.menu-open .floating-apply{visibility:hidden}
+@media(max-width:860px){nav.primary.open{max-height:calc(100vh - 140px);max-height:calc(100dvh - 140px);overflow-y:auto;overscroll-behavior:contain}}
 :root{--text:#172a43;--text-sub:#46566b;--text-mute:#5d6b7e}
 html{scroll-padding-top:110px}body{font-size:16px;line-height:1.75}main,.container{min-width:0}
 img{max-width:100%;height:auto}a,button,summary{touch-action:manipulation}:focus-visible{outline:3px solid #bb7800;outline-offset:4px}[hidden]{display:none!important}

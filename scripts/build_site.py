@@ -85,7 +85,7 @@ def publications():
     def cards(category):
         return ''.join(f'<article class="record-block"><span class="status-chip">{e(x["status"])}</span><h3>{e(x["title"])}</h3><p>{e(x["subtitle"])}</p><p><strong>{e(x["authors"])}</strong><br>{e(x["journal"])} {e(x["issue"])} · {e(x["date"])} · {e(x["pages"])}쪽</p><div class="record-links"><a href="{e(x["url"])}" target="_blank" rel="noopener noreferrer">KCI 논문 보기 (새 창)</a><a href="https://doi.org/{e(x["doi"])}" target="_blank" rel="noopener noreferrer">DOI 원문 연결 (새 창)</a></div></article>' for x in items if x['category']==category)
     count=sum(x['category']=='recipient' for x in items)
-    return f'<section class="content-section" id="papers"><div class="container"><h2>수상자 학술 논문 · {count}편</h2>'+cards('recipient')+'<p class="source-note">박상영: 제4·7회 대상 수상자. 이승관: 제4회 종합 최우수상 수상자.</p></div></section><section class="content-section" id="related-research"><div class="container"><h2>관련 연구 성과</h2>'+cards('related')+'</div></section>'
+    return f'<section class="content-section" id="papers"><div class="container"><h2>수상자 학술 논문 · {count}편</h2>'+cards('recipient')+'<p class="source-note">박상영: 제4·7회 대상 수상자. 이승관: 제4회 종합 최우수상 수상자. 정소원·박단비: 법학경시대회 수상자.</p></div></section>'
 
 class FAQParser(HTMLParser):
     def __init__(self):
