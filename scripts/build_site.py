@@ -79,11 +79,36 @@ def rows():
 
 def archives():
     parts = []
-    for round_no in range(7, 0, -1):
-        items = [x for x in SITE['archive'] if x['round'] == round_no]
-        first = items[0]
-        people = ''.join(f'<li>{e(x.get("award","대상"))}: <strong>{e(x["name"])}</strong> · {e(x["affiliation"])}'+('' if x['score'] is None else f' · {x["score"]}점')+'</li>' for x in items)
-        parts.append(f'<article class="record-block" id="round-{round_no}"><h3>제{round_no}회 시상식</h3><p>{e(first["ceremony"].replace("-","."))}</p><ul>{people}</ul><div class="record-links"><a href="{e(first["source"])}" target="_blank" rel="noopener noreferrer">시상식 보도 보기 (새 창)</a><a href="/notice.html#notice-{round_no}">해당 회차 공지</a></div></article>')
+    photo_sizes = {1: (3751, 2813), 2: (748, 555), 3: (900, 516), 4: (900, 675), 5: (900, 675), 6: (900, 675), 8: (1381, 758)}
+    for round_no in range(8, 0, -1):
+        if round_no == 8:
+            info = SITE['round8']
+            items = info['winners']
+            ceremony = info['ceremony_date']
+            image_path = info['photo']
+            source = '/notice.html#notice-8'
+            details = f'<p class="record-event-details">시상식: {e(info["ceremony_time"])} · {e(info["ceremony_place"])}<br>시험: {e(info["exam_date"].replace("-", "."))}</p>'
+            links = '<a href="/notice.html#notice-8">제8회 결과 공지</a><a href="/media.html#round-8-news">제8회 개최 안내 기사</a><a href="/voices.html#round-8-reviews">제8회 참가 후기</a>'
+        else:
+            items = [x for x in SITE['archive'] if x['round'] == round_no]
+            ceremony = items[0]['ceremony']
+            image_path = f'photos/r{round_no}_group.jpg' if round_no <= 6 else None
+            source = items[0]['source']
+            details = ''
+            links = f'<a href="{e(source)}" target="_blank" rel="noopener noreferrer">시상식 보도 (새 창)</a><a href="/notice.html#notice-{round_no}">해당 회차 공지</a>'
+        people = []
+        for item in items:
+            award = f'{item["award"]} · {item["organization"]}' if round_no == 8 else item.get('award', '대상')
+            score = '' if item['score'] is None else f'<span class="record-winner-score">{e(item["score"])}점 / 100점</span>'
+            people.append(f'<li><p class="record-award">{e(award)}</p><p class="record-winner-name"><strong>{e(item["name"])}</strong>{score}</p><p class="record-affiliation">{e(item["affiliation"])}</p></li>')
+        picture = ''
+        if image_path:
+            if not (ROOT / image_path).is_file():
+                raise ValueError(f'Missing ceremony photo: {image_path}')
+            width, height = photo_sizes[round_no]
+            picture = f'<figure class="record-photo" data-lightbox data-lb-title="제{round_no}회 법학경시대회 시상식" data-article="{e(source)}"><img src="/{e(image_path)}" alt="제{round_no}회 시상식 단체사진" width="{width}" height="{height}" loading="lazy" decoding="async"><figcaption>사진 크게 보기 <span aria-hidden="true">↗</span></figcaption></figure>'
+        layout = 'record-layout' + ('' if picture else ' record-layout-text')
+        parts.append(f'<article class="ceremony-record" id="round-{round_no}"><header class="record-heading"><h3>제{round_no}회 법학경시대회</h3><p>시상식 <time datetime="{e(ceremony)}">{e(ceremony.replace("-", "."))}</time></p></header><div class="{layout}">{picture}<div class="record-details">{details}<ul class="record-winners">'+''.join(people)+f'</ul><div class="record-links">{links}</div></div></div></article>')
     return ''.join(parts)
 
 def notice_archives():
