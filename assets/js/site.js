@@ -1,150 +1,91 @@
+/* Shared navigation, deep links and accessible photo viewer. */
 (function () {
-  function ready(fn) {
-    if (document.readyState !== 'loading') fn();
-    else document.addEventListener('DOMContentLoaded', fn);
-  }
+  'use strict';
+  function ready(fn) { if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn); else fn(); }
   ready(function () {
-    var btn = document.querySelector('.menu-toggle');
-    var nav = document.querySelector('nav.primary');
-    if (btn && nav) {
-      btn.addEventListener('click', function () {
-        var isOpen = nav.classList.toggle('open');
-        btn.setAttribute('aria-expanded', String(isOpen));
-      });
-      nav.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', function () {
-          nav.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-        });
-      });
+    const menu = document.querySelector('.menu-toggle'), nav = document.querySelector('nav.primary');
+    function closeMenu(focus) { if (!menu || !nav) return; nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); if (focus) menu.focus(); }
+    if (menu && nav) {
+      menu.addEventListener('click', () => menu.setAttribute('aria-expanded', String(nav.classList.toggle('open'))));
+      nav.addEventListener('click', e => { if (e.target.closest('a')) closeMenu(false); });
+      document.addEventListener('click', e => { if (!e.target.closest('.site-header')) closeMenu(false); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu(true); });
     }
-  });
-})();
-
-
-// ============================================================
-// Lightbox for ceremony photos
-// ============================================================
-(function() {
-  var lb = document.getElementById('lightbox');
-  if (!lb) return;
-  var img = lb.querySelector('.lb-image');
-  var title = lb.querySelector('.lb-title');
-  var article = lb.querySelector('.lb-article');
-  var btnClose = lb.querySelector('.lb-close');
-  var btnPrev = lb.querySelector('.lb-prev');
-  var btnNext = lb.querySelector('.lb-next');
-
-  // Collect all eligible cards
-  var cards = Array.prototype.slice.call(
-    document.querySelectorAll('[data-lightbox]')
-  );
-  if (!cards.length) return;
-  var current = 0;
-  var lastFocus = null;
-
-  function show(idx) {
-    var card = cards[idx];
-    if (!card) return;
-    current = idx;
-    var cardImg = card.querySelector('img');
-    var titleText = '';
-
-    // Prefer explicit data-lb-title attribute if provided
-    var explicitTitle = card.getAttribute('data-lb-title');
-    if (explicitTitle) {
-      titleText = explicitTitle;
-    } else {
-      var heading = card.querySelector('h3');
-      var roundEl = card.querySelector('.ceremony-round');
-      var dateEl = card.querySelector('.ceremony-meta span:last-child');
-      var headingText = heading ? heading.textContent.trim() : '';
-      var roundText = roundEl ? roundEl.textContent.trim() : '';
-      // Avoid duplication if heading already contains round (e.g. "제1회 시상식" already includes "제1회")
-      if (roundText && headingText.indexOf(roundText) === -1) {
-        titleText += roundText;
-      }
-      if (headingText) titleText += (titleText ? ' · ' : '') + headingText;
-      if (dateEl) titleText += (titleText ? ' · ' : '') + dateEl.textContent.trim();
+    function openHash() {
+      if (!location.hash) return;
+      let id; try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }
+      const target = document.getElementById(id); if (!target) return;
+      const detail = target.matches('details') ? target : target.querySelector('details');
+      if (detail) detail.open = true;
+      let parent = target.parentElement;
+      while (parent) { if (parent.matches('details')) parent.open = true; parent = parent.parentElement; }
+      requestAnimationFrame(() => target.scrollIntoView({block:'start'}));
     }
-
-    img.src = cardImg.src;
-    img.alt = cardImg.alt || '';
-    title.textContent = titleText;
-    var articleUrl = card.getAttribute('data-article');
-    if (articleUrl) {
-      article.href = articleUrl;
-      // External URL opens in new tab; same-site / relative URL opens in same tab.
-      var isExternal = /^https?:\/\//i.test(articleUrl) &&
-                       articleUrl.indexOf(window.location.origin) !== 0;
-      if (isExternal) {
-        article.setAttribute('target', '_blank');
-        article.setAttribute('rel', 'external noopener');
-      } else {
-        article.removeAttribute('target');
-        article.removeAttribute('rel');
-      }
-      article.hidden = false;
-    } else {
-      article.hidden = true;
-    }
-  }
-
-  function open(idx) {
-    lastFocus = document.activeElement;
-    show(idx);
-    lb.hidden = false;
-    document.body.style.overflow = 'hidden';
-    btnClose.focus();
-  }
-
-  function close() {
-    lb.hidden = true;
-    document.body.style.overflow = '';
-    if (lastFocus) lastFocus.focus();
-  }
-
-  function next() { show((current + 1) % cards.length); }
-  function prev() { show((current - 1 + cards.length) % cards.length); }
-
-  // Wire up triggers
-  cards.forEach(function(card, i) {
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('role', 'button');
-    card.setAttribute('aria-label', '시상식 사진 크게 보기');
-    card.addEventListener('click', function(e) {
-      // Don't trigger if user clicked a link inside the card
-      if (e.target.tagName === 'A') return;
-      open(i);
+    window.addEventListener('hashchange', openHash);
+    document.addEventListener('click', e => { const a = e.target.closest('a[href^="#"]'); if (a && a.hash === location.hash) openHash(); });
+    openHash();
+    document.querySelectorAll('.answer-block').forEach(detail => {
+      function label() { const text = detail.querySelector('.toggle-text'); if (text) text.textContent = detail.open ? (detail.dataset.closeLabel || '정답 및 해설 닫기') : (detail.dataset.openLabel || '정답 및 해설 보기'); }
+      detail.addEventListener('toggle', label); label();
     });
-    card.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        open(i);
+    const cards = Array.from(document.querySelectorAll('[data-lightbox]')).filter(card => card.querySelector('img'));
+    if (!cards.length) return;
+    let lb = document.getElementById('lightbox');
+    if (!lb) {
+      lb = document.createElement('div'); lb.id = 'lightbox'; lb.className = 'lightbox'; lb.hidden = true;
+      lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true'); lb.setAttribute('aria-labelledby','lb-title');
+      lb.innerHTML = '<button type="button" class="lb-close" aria-label="사진 닫기">×</button><button type="button" class="lb-prev" aria-label="이전 사진">‹</button><button type="button" class="lb-next" aria-label="다음 사진">›</button><figure class="lb-figure"><img class="lb-image" alt=""><figcaption class="lb-caption"><div id="lb-title" class="lb-title"></div><div class="lb-position" aria-live="polite"></div><a class="lb-article" hidden>관련 기록 보기</a></figcaption></figure>';
+      document.body.appendChild(lb);
+    }
+    const photo = lb.querySelector('.lb-image'), title = lb.querySelector('.lb-title'), article = lb.querySelector('.lb-article');
+    const closeButton = lb.querySelector('.lb-close'), prevButton = lb.querySelector('.lb-prev'), nextButton = lb.querySelector('.lb-next'), position = lb.querySelector('.lb-position');
+    let current = 0, lastFocus = null, previousOverflow = '', background = [];
+    function caption(card) { return card.getAttribute('data-lb-title') || card.querySelector('img').alt || '대회 사진'; }
+    function show(index) {
+      current = (index + cards.length) % cards.length;
+      const card = cards[current], image = card.querySelector('img');
+      photo.src = card.getAttribute('data-full-src') || image.src; photo.alt = image.alt; title.textContent = caption(card);
+      if (position) position.textContent = (current + 1) + ' / ' + cards.length;
+      prevButton.hidden = nextButton.hidden = cards.length < 2;
+      const url = card.getAttribute('data-article'); article.hidden = true; article.removeAttribute('href');
+      if (url) {
+        const resolved = new URL(url, location.href);
+        if (['http:', 'https:'].includes(resolved.protocol)) {
+          article.href = resolved.href; article.hidden = false;
+          article.textContent = resolved.origin === location.origin ? '관련 기록 보기' : '관련 기사 보기 (새 창)';
+          if (resolved.origin !== location.origin) { article.target = '_blank'; article.rel = 'noopener noreferrer'; }
+          else { article.removeAttribute('target'); article.removeAttribute('rel'); }
+        }
+      }
+    }
+    function open(index) {
+      lastFocus = document.activeElement; previousOverflow = document.body.style.overflow; show(index);
+      background = Array.from(document.body.children).filter(el => el !== lb && !['SCRIPT','STYLE'].includes(el.tagName)).map(el => { const state = {el, inert:el.inert}; el.inert = true; return state; });
+      lb.hidden = false; document.body.style.overflow = 'hidden'; closeButton.focus();
+    }
+    function close() {
+      if (lb.hidden) return; lb.hidden = true; document.body.style.overflow = previousOverflow;
+      background.forEach(state => { state.el.inert = state.inert; }); background = [];
+      if (lastFocus && lastFocus.isConnected) lastFocus.focus();
+    }
+    cards.forEach((card,index) => {
+      card.tabIndex = 0; card.setAttribute('role','button'); card.setAttribute('aria-haspopup','dialog'); card.setAttribute('aria-label',caption(card)+' 크게 보기');
+      card.addEventListener('click',e => { if (!e.target.closest('a,button')) open(index); });
+      card.addEventListener('keydown',e => { if (e.target === card && ['Enter',' '].includes(e.key)) { e.preventDefault(); open(index); } });
+    });
+    closeButton.addEventListener('click',close); prevButton.addEventListener('click',() => show(current-1)); nextButton.addEventListener('click',() => show(current+1)); article.addEventListener('click',close);
+    lb.addEventListener('click',e => { if (e.target === lb) close(); });
+    document.addEventListener('keydown',e => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') { e.preventDefault(); close(); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); show(current+1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); show(current-1); }
+      else if (e.key === 'Tab') {
+        const focusable = Array.from(lb.querySelectorAll('button,a[href],[tabindex="0"]')).filter(el => !el.hidden && !el.disabled && el.getClientRects().length);
+        const first = focusable[0], last = focusable[focusable.length-1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
       }
     });
-  });
-
-  btnClose.addEventListener('click', close);
-  btnPrev.addEventListener('click', prev);
-  btnNext.addEventListener('click', next);
-
-  // Close lightbox when the article link is clicked,
-  // so the modal doesn't stay open during/after navigation.
-  if (article) {
-    article.addEventListener('click', function() { close(); });
-  }
-
-  // Click on backdrop closes
-  lb.addEventListener('click', function(e) {
-    if (e.target === lb) close();
-  });
-
-  // Keyboard
-  document.addEventListener('keydown', function(e) {
-    if (lb.hidden) return;
-    if (e.key === 'Escape') close();
-    else if (e.key === 'ArrowRight') next();
-    else if (e.key === 'ArrowLeft') prev();
   });
 })();

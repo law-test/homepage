@@ -1,58 +1,35 @@
-# 법학경시대회 홈페이지 v6 (응시자 중심 개편)
+# 법학경시대회 홈페이지
 
-## 업로드 방법
+[lawtest.or.kr](https://lawtest.or.kr/)에서 서비스하는 정적 홈페이지입니다. 공통 메뉴·회차 정보·논문 목록을 한 곳에서 관리하고 HTML을 생성합니다. 빌드는 Python 3 표준 라이브러리만 사용합니다.
 
-ZIP을 풀면 `index.html` 등 HTML 파일들과 `site.css`, `site.js`, `assets/images/` 폴더가 보입니다.
-GitHub 저장소 루트에 그대로 올리시면 됩니다.
+## 내용 수정
 
-기존 `assets/images/` 폴더의 다른 이미지 파일(로고, 시상식 사진, favicon 등)은 그대로 두시고,
-새로 들어간 `r8_poster_hero.jpg`, `r8_poster_og.jpg`, `r8_poster_full.jpg` 세 파일만 추가로 업로드하시면 됩니다.
+- `data/site.json`: 제8회 시상식·수상자·점수, 제1~7회 기록, 소속 학교와 미확정 항목.
+- `data/publications.json`: 논문 서지, KCI·DOI, 수상자 논문과 관련 연구 분류.
+- `content/*.html`: 각 페이지 본문. 생성된 루트 HTML을 직접 수정하지 않습니다.
+- `templates/layout.html`: 공통 메뉴·배너·푸터·검색 및 공유 정보.
+- `assets/css/updates.css`, `assets/js/site.js`: 공통 화면과 메뉴·사진 확대 동작.
+- `docs/content-sources.md`: 확인 자료와 미확정 항목.
 
-## v6에서 바뀐 것
+## 빌드와 확인
 
-### 1. 일정 통일 — 사이트 전역
-- 모든 페이지에서 **2026년 8월 1일 (토) 오후 2시**로 통일 (이전: 8월 중순/일요일 표기 혼재)
-- **접수 마감 2026년 7월 31일 (금) 자정** 명시 (notice-bar, 메인 INFO CARDS, schedule)
-- JSON-LD startDate/endDate `2026-08-01`로 정정
+저장소 루트에서 실행합니다.
 
-### 2. 카피 톤 — 위원회 중심 → 응시자 중심
-- Hero: "결과는 정직하게 변별됩니다" → "이미 일곱 번의 무대를 지나갔습니다. 여덟 번째 자리, 당신의 100분으로 채워 보세요."
-- PILLARS 3개 모두 응시자가 받는 것 중심으로 재작성
-- "본 대회는..." 어조 전면 정리 → "이 대회는...", "100분의 시험..." 등
-- about/voices/samples/universities 페이지 헤더 모두 응시자 중심 카피로 교체
+```sh
+python -X utf8 scripts/build_site.py
+python -X utf8 scripts/check_site.py
+node --check assets/js/site.js
+python -m http.server 8765 --bind 127.0.0.1
+```
 
-### 3. 응시 규모 역산 차단
-- "약 300명 수상자" 같은 절대 수치 사이트 전역 삭제
-- meta description, og:description, twitter:description 모두 정리
-- 회차 수치(7회)는 유지, 응시 규모는 정성 표현(스펙트럼·다양성)으로 대체
+마지막 명령은 로컬 확인용 서버입니다. `http://127.0.0.1:8765/`에서 데스크톱·모바일 메뉴, 공지·FAQ 바로가기, 정답 펼치기와 사진 확대를 확인합니다. 정적 검사는 내부 링크·앵커·공통 메뉴·제목·구조화 데이터·핵심 수상 결과를 검사합니다. 실제 시험 시스템이나 외부 결제는 검사하지 않습니다.
 
-### 4. HTML 주석 전면 제거
-- 14개 파일 약 185개의 주석 제거 (작업 메모성 포함)
-- 소스 코드를 응시자가 봐도 깔끔하게
+생성된 루트 HTML 15개와 `sitemap.xml`도 함께 커밋합니다. 기존 GitHub Pages 배포 경로와 `CNAME`을 유지합니다. `.nojekyll`은 생성된 파일을 그대로 배포하도록 합니다.
 
-### 5. 제7회 수상자 25명 수상소감 신설
-- voices.html 하단에 새 섹션 추가
-- 성+이니셜 마스킹 (예: 김O름) · 설문 동의 범위 내 공개
-- 응시자 입장에서 "내가 응시하면 어떤 사람이 옆에 있을까"에 답하는 콘텐츠
+## 제8회 사진 추가
 
-### 6. 제8회 포스터 — 새 hero 이미지
-- 8회 포스터를 JPG로 변환 + 3가지 사이즈로 최적화
-  - `r8_poster_hero.jpg` (720×1012, hero 영역용)
-  - `r8_poster_og.jpg` (1200×1687, og·twitter 카드용)
-  - `r8_poster_full.jpg` (896×1260, lightbox·아카이브용)
-- 원본 PNG는 별도 보존
+확정 사진을 `assets/images/`에 저장하고 `data/site.json`의 `round8.photo`에 `/assets/images/파일명.jpg` 형식으로 경로를 입력한 뒤 다시 빌드합니다. 사진이 없는 동안에는 빈 사진 영역과 안내가 표시됩니다. 다른 회차의 사진으로 대신하지 않습니다.
 
-### 7. 메인 SCHEDULE 영역 재편
-- 제7회 결과 + 제8회 일정 6단계 (접수 마감 → 시험 → 시상)로 재구성
-- 제8회 접수 마감일(7/31)이 메인에서 즉시 보이도록
+## 확인이 필요한 정보
 
-### 8. media.html 인용 보강
-- 17건 → 29건으로 확대 (법률신문 제3·4·5회 추가, ContestKorea 등)
-- 통계 카드 갱신 (법조·종합 매체 8개, 대학 공식 4개, 변협·해외·플랫폼 5개)
-
-## 손대지 않은 것
-
-- 디자인·레이아웃·CSS 구조 (`recipient-card` 관련 CSS만 site.css 끝에 추가)
-- 접수 URL (`smartstore.naver.com/lawtest` 유지 — `mylawtest.com`이 여기로 포워딩)
-- 시상식 사진·로고·favicon 등 기존 이미지 자산
-- site.js 동작
+제9회 일정·요강은 미정입니다. 운영 기준이 확정되면 응시 안내·공지·FAQ·약관을 함께 갱신합니다. 새 접수 배너의 회차와 일정도 공통 레이아웃에서 변경합니다. 점수는 공개 허락된 값만 사용하며 원본 신청서·채점표·연락처는 저장소에 올리지 않습니다.

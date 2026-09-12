@@ -1,0 +1,128 @@
+"""Build static GitHub Pages files using Python's standard library only.
+
+Edit content/*.html and data/site.json, then run: python scripts/build_site.py
+Root HTML files are generated, remain committed, and need no server-side runtime.
+"""
+from pathlib import Path
+from html import escape
+from html.parser import HTMLParser
+from datetime import date
+import json
+import re
+
+ROOT = Path(__file__).resolve().parents[1]
+SITE = json.loads((ROOT / 'data/site.json').read_text(encoding='utf-8'))
+PAGES = {
+    'index': ('법학경시대회 공식 홈페이지', '제8회 시상식 결과와 수상자, 대회 안내 및 회차별 기록을 확인하세요. 제9회 시험 일정은 미정입니다.'),
+    'about': ('대회 안내', '법학경시대회의 목적, 출범 배경, 주최와 시상 체계를 안내합니다.'),
+    'guide': ('응시 안내', '접수 현황, 응시 절차, 준비물, 허용 자료와 시험 운영 안내입니다. 제9회 일정과 세부 요강은 미정입니다.'),
+    'samples': ('예시 문제·자료', '헌법·민법의 출제 유형별 예시 4문항과 해설, 회차별 시행 자료를 확인하세요.'),
+    'notice': ('공지사항', '제8회 시상식과 수상 결과, 제9회 일정 안내, 회차별 공지 기록입니다.'),
+    'records': ('대회 기록', '제1회부터 제8회까지 시상식과 대상 수상 기록, 참가자 통계, 수상자 활동을 확인하세요.'),
+    'universities': ('참가자·성적 통계', '출처가 확인된 회차별 대상 점수와 평균, 참가자의 소속·출신 학교를 정리합니다.'),
+    'achievements': ('수상자 활동', '법학경시대회 수상자의 논문, 도서, 학습법 공모전과 연구 활동을 소개합니다.'),
+    'voices': ('축하 메시지·참가 후기', '법조계·학계의 축하 메시지와 참가자의 대회 경험을 소개합니다.'),
+    'media': ('언론보도', '법학경시대회에 관한 신문기사와 대학 공식 보도, 회차별 개최·시상 기록입니다.'),
+    'faq': ('자주 묻는 질문', '제9회 일정, 참가 자격, 시험 방식, 오픈북 규정과 수상 후 활동에 관한 질문입니다.'),
+    'contact': ('문의하기', '대회 운영, 참가 접수, 수상 기록과 개인정보 관련 전화·문자·이메일 문의 창구입니다.'),
+    'privacy': ('개인정보처리방침', '대회 운영과 접수, 시험 감독, 시상 과정의 개인정보 처리 및 권리 행사 안내입니다.'),
+    'terms': ('이용약관', '법학경시대회 홈페이지와 참가 접수, 응시 및 게시 자료 이용에 관한 약관입니다.'),
+    '404': ('페이지를 찾을 수 없습니다', '요청한 페이지를 찾을 수 없습니다. 홈페이지나 공지사항으로 이동하세요.')
+}
+NAV = [('about','대회 안내'),('guide','응시 안내'),('samples','예시 문제·자료'),('notice','공지사항'),('records','대회 기록'),('contact','문의')]
+RECORD_PAGES = {'records','universities','achievements','voices','media'}
+
+def e(value):
+    return escape(str(value), quote=True)
+
+def number(value):
+    return '<span class="empty-value" aria-label="미공개">—</span>' if value is None else e(value)
+
+def winners():
+    cards = []
+    for item in SITE['round8']['winners']:
+        score = '' if item['score'] is None else f'<p class="score">총점 {e(item["score"])}점 / 100점</p>'
+        cards.append(f'<article class="winner-card"><div class="award-title">{e(item["award"])} · {e(item["organization"])}</div><h3>{e(item["name"])}</h3><p>{e(item["affiliation"])}</p>{score}</article>')
+    return '<div class="winner-grid">' + ''.join(cards) + '</div>'
+
+def photo():
+    item = SITE['round8']
+    if not item['photo']:
+        return '<figure class="ceremony-photo"><div class="photo-slot" role="img" aria-label="제8회 시상식 사진 미등록"></div><figcaption class="photo-caption">제8회 시상식 · 2026년 9월 12일</figcaption></figure>'
+    path = item['photo'].lstrip('/')
+    if not path.startswith('assets/images/') or not (ROOT / path).is_file():
+        raise ValueError('round8.photo must identify an existing image under assets/images/')
+    return f'<figure class="ceremony-photo" data-lightbox data-lb-title="제8회 법학경시대회 시상식"><img src="/{e(path)}" alt="{e(item["photo_alt"])}"><figcaption class="photo-caption">제8회 시상식 · 2026년 9월 12일</figcaption></figure>'
+
+def rows():
+    parts = []
+    for item in SITE['round8']['winners']:
+        parts.append(f'<tr><td>제8회</td><td>2026.09.12</td><td class="name-col">{e(item["name"])}<br><small>{e(item["organization"])}</small></td><td>{number(item["score"])}</td><td>{number(None)}</td><td>위원회 확인</td></tr>')
+    for item in reversed(SITE['archive']):
+        parts.append(f'<tr><td>제{item["round"]}회</td><td>{e(item["ceremony"].replace("-","."))}</td><td class="name-col">{e(item["name"])}</td><td>{number(item["score"])}</td><td>{number(item["average"])}</td><td><a class="text-link" href="{e(item["source"])}" target="_blank" rel="noopener noreferrer">기사 확인<span class="sr-only"> (새 창)</span></a></td></tr>')
+    return '<div class="table-scroll" tabindex="0" role="region" aria-label="회차별 점수 표"><table class="data-table"><thead><tr><th scope="col">회차</th><th scope="col">시상식</th><th scope="col">대상 수상자</th><th scope="col">점수</th><th scope="col">평균</th><th scope="col">출처</th></tr></thead><tbody>'+''.join(parts)+'</tbody></table></div><p class="source-note">점수는 100점 만점입니다. —는 확인되지 않거나 공개되지 않은 값입니다. 회차별 시험 구성과 응시자 집단이 달라 점수만으로 난도를 직접 비교하기는 어렵습니다.</p>'
+
+def archives():
+    parts = []
+    for round_no in range(7, 0, -1):
+        items = [x for x in SITE['archive'] if x['round'] == round_no]
+        first = items[0]
+        people = ''.join(f'<li>{e(x.get("award","대상"))}: <strong>{e(x["name"])}</strong> · {e(x["affiliation"])}'+('' if x['score'] is None else f' · {x["score"]}점')+'</li>' for x in items)
+        parts.append(f'<article class="record-block" id="round-{round_no}"><h3>제{round_no}회 시상식</h3><p>{e(first["ceremony"].replace("-","."))}</p><ul>{people}</ul><div class="record-links"><a href="{e(first["source"])}" target="_blank" rel="noopener noreferrer">시상식 보도 보기 (새 창)</a><a href="/notice.html#notice-{round_no}">해당 회차 공지</a></div></article>')
+    return ''.join(parts)
+
+def notice_archives():
+    parts = []
+    for round_no in range(7,0,-1):
+        items = [x for x in SITE['archive'] if x['round'] == round_no]
+        first = items[0]
+        parts.append(f'<article class="notice-entry" id="notice-{round_no}"><span class="status-chip">지난 대회</span><h2>제{round_no}회 법학경시대회 시상식 결과</h2><p class="meta">기사 게시일 {e(first["published"])} · 내용 확인일 {e(SITE["updated"])}</p><p>제{round_no}회 시상식은 {e(first["ceremony"].replace("-","."))}에 열렸습니다.</p><ul>'+''.join(f'<li>{e(x.get("award","대상"))}: {e(x["name"])} · {e(x["affiliation"])}'+('' if x['score'] is None else f' · {x["score"]}점')+'</li>' for x in items)+f'</ul><div class="record-links"><a href="{e(first["source"])}" target="_blank" rel="noopener noreferrer">기사 원문 (새 창)</a><a href="/records.html#round-{round_no}">회차별 기록</a></div></article>')
+    return ''.join(parts)
+
+def publications():
+    items=json.loads((ROOT/'data/publications.json').read_text(encoding='utf-8'))
+    def cards(category):
+        return ''.join(f'<article class="record-block"><span class="status-chip">{e(x["status"])}</span><h3>{e(x["title"])}</h3><p>{e(x["subtitle"])}</p><p><strong>{e(x["authors"])}</strong><br>{e(x["journal"])} {e(x["issue"])} · {e(x["date"])} · {e(x["pages"])}쪽</p><div class="record-links"><a href="{e(x["url"])}" target="_blank" rel="noopener noreferrer">KCI 서지 확인 (새 창)</a><a href="https://doi.org/{e(x["doi"])}" target="_blank" rel="noopener noreferrer">DOI 원문 연결 (새 창)</a></div></article>' for x in items if x['category']==category)
+    count=sum(x['category']=='recipient' for x in items)
+    return f'<section class="content-section" id="papers"><div class="container"><h2>수상자 학술 논문 · {count}편</h2><p class="section-intro">저자와 학술지 서지에서 게재 사실을 확인한 논문입니다. 연구 성과는 각 저자의 활동이며, 대회 수상에 따라 게재가 보장되는 것은 아닙니다.</p>'+cards('recipient')+'<p class="source-note">박상영: 제4·7회 대상 수상자. 이승관: 제4회 종합 최우수상 수상자. 저자 소속은 각 논문의 게재 당시 서지를 기준으로 합니다.</p></div></section><section class="content-section" id="related-research"><div class="container"><h2>관련 연구 성과</h2><p class="section-intro">기존 홈페이지에서 소개한 공동연구입니다. 수상자 논문 집계와 구분하여 기록합니다.</p>'+cards('related')+'</div></section>'
+
+class FAQParser(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.questions=[]; self.in_summary=False; self.in_detail=False; self.q=''; self.a=''
+    def handle_starttag(self,tag,attrs):
+        if tag=='details': self.in_detail=True; self.q=''; self.a=''
+        if tag=='summary': self.in_summary=True
+    def handle_endtag(self,tag):
+        if tag=='summary': self.in_summary=False
+        if tag=='details':
+            self.questions.append({'@type':'Question','name':' '.join(self.q.split()),'acceptedAnswer':{'@type':'Answer','text':' '.join(self.a.split())}});self.in_detail=False
+    def handle_data(self,data):
+        if self.in_summary:self.q += data+' '
+        elif self.in_detail:self.a += data+' '
+
+def main():
+    layout=(ROOT/'templates/layout.html').read_text(encoding='utf-8')
+    for slug,(title,description) in PAGES.items():
+        content=(ROOT/f'content/{slug}.html').read_text(encoding='utf-8')
+        schools='<p>제8회 접수·결과 자료에 기재된 학교입니다. 학과·대학원 표기는 학교명으로 통합했습니다. 접수 자료를 포함하므로 모두 실제 응시·수상 학교라는 뜻은 아닙니다.</p><div class="school-grid">'+''.join('<div class="school">'+e(name)+'</div>' for name in SITE['round8_schools'])+'</div>'
+        replacements={'round8_winners':winners(),'round8_photo':photo(),'score_table':rows(),'archive_records':archives(),'archive_notices':notice_archives(),'publications':publications(),'round8_schools':schools,'updated':e(SITE['updated'])}
+        for key,val in replacements.items():content=content.replace('{{ '+key+' }}',val)
+        canonical='https://lawtest.or.kr/'+('' if slug=='index' else slug+'.html')
+        active='records' if slug in RECORD_PAGES else ('guide' if slug=='faq' else slug)
+        navigation=''.join(f'<li><a href="/{key}.html"'+(' class="active" aria-current="'+('page' if slug==key else 'location')+'"' if key==active else '')+f'>{label}</a></li>' for key,label in NAV)
+        schema={'@context':'https://schema.org','@type':'WebPage','name':title,'url':canonical,'description':description,'dateModified':SITE['updated'],'publisher':{'@type':'Organization','name':SITE['organizer'],'url':'https://lawtest.or.kr/'}}
+        structured='<script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False)+'</script>'
+        if slug=='faq':
+            parser=FAQParser();parser.feed(content)
+            structured+='\n<script type="application/ld+json">'+json.dumps({'@context':'https://schema.org','@type':'FAQPage','mainEntity':parser.questions},ensure_ascii=False)+'</script>'
+        values={'title':e(title),'description':e(description),'canonical':e(canonical),'content':content,'updated':e(SITE['updated']),'navigation':navigation,'structured_data':structured,'extra_head':'<meta name="robots" content="noindex, follow">' if slug=='404' else ''}
+        output=layout
+        for key,val in values.items():output=output.replace('{{ '+key+' }}',val)
+        if re.search(r'\{\{\s*\w+\s*\}\}',output):raise ValueError(f'Unresolved template marker: {slug}')
+        output = '\n'.join(line.rstrip() for line in output.splitlines()) + '\n'
+        (ROOT/f'{slug}.html').write_text(output,encoding='utf-8',newline='\n')
+    urls=''.join(f'<url><loc>https://lawtest.or.kr/{"" if slug=="index" else slug+".html"}</loc><lastmod>{SITE["updated"]}</lastmod></url>\n' for slug in PAGES if slug!='404')
+    (ROOT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls+'</urlset>\n',encoding='utf-8')
+    print(f'Built {len(PAGES)} static pages from shared layout and verified content.')
+
+if __name__=='__main__':main()
