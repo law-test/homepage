@@ -79,7 +79,7 @@ def rows():
 
 def archives():
     parts = []
-    photo_sizes = {1: (3751, 2813), 2: (748, 555), 3: (900, 516), 4: (900, 675), 5: (900, 675), 6: (900, 675), 8: (1381, 758)}
+    photo_sizes = {1: (3751, 2813), 2: (748, 555), 3: (900, 516), 4: (900, 675), 5: (900, 675), 6: (900, 675), 7: (4032, 3024), 8: (1381, 758)}
     for round_no in range(8, 0, -1):
         if round_no == 8:
             info = SITE['round8']
@@ -88,11 +88,11 @@ def archives():
             image_path = info['photo']
             source = '/notice.html#notice-8'
             details = f'<p class="record-event-details">시상식: {e(info["ceremony_time"])} · {e(info["ceremony_place"])}<br>시험: {e(info["exam_date"].replace("-", "."))}</p>'
-            links = '<a href="/notice.html#notice-8">제8회 결과 공지</a><a href="/media.html#round-8-news">제8회 개최 안내 기사</a><a href="/voices.html#round-8-reviews">제8회 참가 후기</a>'
+            links = '<a href="/notice.html#notice-8">제8회 결과 공지</a><a href="/media.html#round-8-news">제8회 개최 안내 기사</a><a href="/voices.html#reviews">참가 후기</a>'
         else:
             items = [x for x in SITE['archive'] if x['round'] == round_no]
             ceremony = items[0]['ceremony']
-            image_path = f'photos/r{round_no}_group.jpg' if round_no <= 6 else None
+            image_path = f'photos/r{round_no}_group.jpg'
             source = items[0]['source']
             details = ''
             links = f'<a href="{e(source)}" target="_blank" rel="noopener noreferrer">시상식 보도 (새 창)</a><a href="/notice.html#notice-{round_no}">해당 회차 공지</a>'
