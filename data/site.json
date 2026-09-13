@@ -133,17 +133,17 @@
     "retention_scores": null,
     "retention_proctoring": null
   },
-  "asset_version": "2026-09-13-5",
+  "asset_version": "2026-09-13-6",
   "contest2": {
     "title": "2026 제2회 전국 자기주도 학습법 공모전",
     "start": "2026-09-14",
     "end": "2026-09-26",
     "deadline": "2026-09-27T00:00:00+09:00",
-    "poster": "assets/images/self-study-contest-2026-0913.png",
+    "poster": "assets/images/self-study-contest-2026-hwpx.png",
     "email": "info@lawtest.or.kr",
     "eligibility": "제한 없음",
     "topic": "최근 1년 동안 자기주도 학습법을 통하여 이룬 성취",
-    "format": "자유 양식",
+    "format": "지정 HWPX 양식",
     "criteria": [
       {
         "label": "자기소개 및 포부",
@@ -164,7 +164,9 @@
     ],
     "rights": "수상작에 대한 모든 권리는 선율에 귀속되며, 대중에게 공유될 수 있습니다.",
     "slogan": "나의 학습 경험을, 모두의 배움으로.",
-    "co_organizer": "한국법학진흥원"
+    "co_organizer": "한국법학진흥원",
+    "application_form": "assets/downloads/2026-contest-application.hwpx",
+    "notice": "assets/downloads/2026-contest-notice.pdf"
   },
   "next_announcement_date": "2026-09-14"
 }

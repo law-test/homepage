@@ -24,13 +24,15 @@ PAGES = {
     'voices': ('축하 메시지·참가 후기', '법조계·학계의 축하 메시지와 참가자의 대회 경험을 소개합니다.'),
     'media': ('언론보도', '법학경시대회에 관한 신문기사와 대학 공식 보도, 회차별 개최·시상 기록입니다.'),
     'faq': ('자주 묻는 질문', '제9회 일정, 참가 자격, 시험 방식, 오픈북 규정과 수상 후 활동에 관한 질문입니다.'),
-    'contest': ('2026 제2회 전국 자기주도 학습법 공모전', '2026년 9월 14일~26일 접수. 최근 1년간 자기주도 학습으로 이룬 성취를 자유 양식으로 이메일 제출하세요.'),
+    'contest': ('2026 제2회 전국 자기주도 학습법 공모전', '2026년 9월 14일~26일 접수. 최근 1년간 자기주도 학습으로 이룬 성취를 지정 HWPX 양식에 작성하여 이메일로 제출하세요.'),
+    'contest-notice': ('자기주도 학습법 공모전 공고', '2026 제2회 공모 요강과 지정 HWPX 참가 양식 다운로드.'),
+    'contest-first': ('제1회 공모전 수상작', '자기주도 학습법 공모전 수상작의 학습 방법과 성과를 소개합니다.'),
     'contact': ('문의하기', '대회 운영, 참가 접수, 수상 기록과 개인정보 관련 전화·문자·이메일 문의 창구입니다.'),
     'privacy': ('개인정보처리방침', '대회 운영과 접수, 시험 감독, 시상 과정의 개인정보 처리 및 권리 행사 안내입니다.'),
     'terms': ('이용약관', '법학경시대회 홈페이지와 참가 접수, 응시 및 게시 자료 이용에 관한 약관입니다.'),
     '404': ('페이지를 찾을 수 없습니다', '요청한 페이지를 찾을 수 없습니다. 홈페이지나 공지사항으로 이동하세요.')
 }
-NAV = [('about','대회 안내'),('guide','응시 안내'),('samples','예시 문제·자료'),('notice','공지사항'),('records','대회 기록'),('contact','문의')]
+NAV = [('about','대회 안내'),('guide','응시 안내'),('samples','예시 문제·자료'),('notice','공지사항'),('records','대회 기록'),('contest','학습법 공모전'),('contact','문의')]
 RECORD_PAGES = {'records','universities','achievements','voices','media'}
 
 def e(value):
@@ -140,21 +142,48 @@ class FAQParser(HTMLParser):
         if self.in_summary:self.q += data+' '
         elif self.in_detail:self.a += data+' '
 
+
+def contest_notice():
+    data=json.loads((ROOT/'data/contest_notice.json').read_text(encoding='utf-8'))
+    def paragraph(text):
+        if text.startswith('양식 받는 곳:'):
+            return '<p><strong>양식 받는 곳:</strong> <a class="text-link" href="/index.html">lawtest.or.kr</a> → <a class="text-link" href="/contest.html">학습법 공모전</a> → <a class="text-link" href="/assets/downloads/2026-contest-application.hwpx" download>참가 양식 HWPX 다운로드</a></p>'
+        return f'<p>{e(text)}</p>'
+    return ''.join(f'<section class="contest-notice-section"><h2>{i}. {e(x["heading"])}</h2>'+''.join(paragraph(t) for t in x['paragraphs'])+'</section>' for i,x in enumerate(data['sections'],1))
+
+def contest_entries():
+    entries=json.loads((ROOT/'data/contest_entries.json').read_text(encoding='utf-8'))['entries']
+    sections=[]
+    for award,anchor in [('대상','grand'),('최우수상','excellence'),('우수상','merit')]:
+        cards=[]
+        for i,x in enumerate(entries,1):
+            if x['award']!=award:continue
+            cards.append(f'<article class="study-entry" id="{e(x["id"])}"><span class="study-number">{i:02}</span><h3>{e(x["title"])}</h3><h4>학습법</h4><ul>'+''.join(f'<li>{e(t)}</li>' for t in x['method'])+'</ul><div class="study-achievements"><h4>성과</h4><ul>'+''.join(f'<li>{e(t)}</li>' for t in x['achievements'])+'</ul></div></article>')
+        sections.append(f'<section class="study-award-section" id="{anchor}"><h2>{award}</h2><div class="study-entry-grid">'+''.join(cards)+'</div></section>')
+    return ''.join(sections)
+
+
+def contest_banner(slug):
+    return '<div class="notice-bar"><div class="container notice-bar-inner"><p><span class="notice-bar-tag">제2회 공모전</span>2026년 9월 14일~26일 자정 접수</p><a class="notice-bar-link" href="/contest-notice.html">공고문 보기</a></div></div>' if slug.startswith("contest") else '<div class="notice-bar"><div class="container notice-bar-inner"><p><span class="notice-bar-tag">제8회 시상 완료</span>2026년 9월 12일(토) 오후 2시 · 변호사회관 5층 정의실</p><a class="notice-bar-link" href="/records.html#round-8">제8회 결과 보기</a></div></div>'
+
+def floating_cta(slug):
+    return '<a class="floating-apply" href="/assets/downloads/2026-contest-application.hwpx" download>참가 양식 HWPX 다운로드 <span aria-hidden="true">↓</span></a>' if slug.startswith("contest") else '<a class="floating-apply" href="/records.html#round-8">제8회 수상 결과 보기 <span aria-hidden="true">→</span></a>'
+
 def main():
     layout=(ROOT/'templates/layout.html').read_text(encoding='utf-8')
     for slug,(title,description) in PAGES.items():
         content=(ROOT/f'content/{slug}.html').read_text(encoding='utf-8')
-        replacements={'round8_winners':winners(),'round8_photo':photo(),'score_table':rows(),'archive_records':archives(),'archive_notices':notice_archives(),'publications':publications(),'updated':e(SITE['updated'])}
+        replacements={'round8_winners':winners(),'round8_photo':photo(),'score_table':rows(),'archive_records':archives(),'archive_notices':notice_archives(),'publications':publications(),'updated':e(SITE['updated']),'contest_notice':contest_notice(),'contest_entries':contest_entries()}
         for key,val in replacements.items():content=content.replace('{{ '+key+' }}',val)
         canonical='https://lawtest.or.kr/'+('' if slug=='index' else slug+'.html')
-        active='records' if slug in RECORD_PAGES else ('guide' if slug=='faq' else ('notice' if slug=='contest' else slug))
+        active='records' if slug in RECORD_PAGES else ('guide' if slug=='faq' else ('contest' if slug.startswith('contest') else slug))
         navigation=''.join(f'<li><a href="/{key}.html"'+(' class="active" aria-current="'+('page' if slug==key else 'location')+'"' if key==active else '')+f'>{label}</a></li>' for key,label in NAV)
         schema={'@context':'https://schema.org','@type':'WebPage','name':title,'url':canonical,'description':description,'dateModified':SITE['updated'],'publisher':{'@type':'Organization','name':SITE['organizer'],'url':'https://lawtest.or.kr/'}}
         structured='<script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False)+'</script>'
         if slug=='faq':
             parser=FAQParser();parser.feed(content)
             structured+='\n<script type="application/ld+json">'+json.dumps({'@context':'https://schema.org','@type':'FAQPage','mainEntity':parser.questions},ensure_ascii=False)+'</script>'
-        values={'title':e(title),'description':e(description),'canonical':e(canonical),'content':content,'updated':e(SITE['updated']),'asset_version':e(SITE.get('asset_version',SITE['updated'])),'navigation':navigation,'structured_data':structured,'extra_head':'<meta name="robots" content="noindex, follow">' if slug=='404' else ''}
+        values={'title':e(title),'description':e(description),'canonical':e(canonical),'content':content,'updated':e(SITE['updated']),'asset_version':e(SITE.get('asset_version',SITE['updated'])),'navigation':navigation,'structured_data':structured,'notice_banner':contest_banner(slug),'floating_cta':floating_cta(slug),'extra_head':'<meta name="robots" content="noindex, follow">' if slug=='404' else ''}
         output=layout
         for key,val in values.items():output=output.replace('{{ '+key+' }}',val)
         if re.search(r'\{\{\s*\w+\s*\}\}',output):raise ValueError(f'Unresolved template marker: {slug}')

@@ -4,7 +4,9 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 from collections import Counter
 import json
+import re
 import sys
+from zipfile import ZipFile
 
 ROOT=Path(__file__).resolve().parents[1]
 class Page(HTMLParser):
@@ -28,7 +30,7 @@ class Page(HTMLParser):
 
 def main():
     errors=[];pages={p:Page(p.read_text(encoding='utf-8')) for p in ROOT.glob('*.html') if not p.name.startswith('google')}
-    expected=['/about.html','/guide.html','/samples.html','/notice.html','/records.html','/contact.html']
+    expected=['/about.html','/guide.html','/samples.html','/notice.html','/records.html','/contest.html','/contact.html']
     checked=0
     for path,page in pages.items():
         html=path.read_text(encoding='utf-8')
@@ -59,6 +61,21 @@ def main():
     for file in ('index','records'):
         parsed=pages[ROOT/f'{file}.html']
         if any('/None' in url or '/null' in url for _,_,url in parsed.links):errors.append(f'{file}: unresolved image URL')
+    entries=json.loads((ROOT/'data/contest_entries.json').read_text(encoding='utf-8'))['entries']
+    public_text=json.dumps(entries,ensure_ascii=False)
+    for entry in entries:
+        if set(entry)!={'id','award','title','method','achievements'}:errors.append('contest entries: unexpected public fields')
+        if entry['award'] not in ('대상','최우수상','우수상'):errors.append('contest entries: invalid award label')
+        if entry['id'] not in pages[ROOT/'contest-first.html'].ids:errors.append('contest entries: missing published entry')
+    if re.search(r'01[016789][\s–-]*\d{3,4}[\s–-]*\d{4}|[\w.+-]+@[\w.-]+',public_text):errors.append('contest entries: contact information detected')
+    if any(word in public_text for word in ('생년월일','학번','주민등록','성명:')):errors.append('contest entries: identity field detected')
+    for slug in ('contest','contest-notice'):
+        if '자유 양식' in (ROOT/f'{slug}.html').read_text(encoding='utf-8'):errors.append(f'{slug}: outdated free-form submission rule')
+    for filename in ('2026-contest-application.hwpx','2026-contest-notice.hwpx'):
+        try:
+            with ZipFile(ROOT/'assets/downloads'/filename) as doc:
+                if doc.testzip() or 'Contents/section0.xml' not in doc.namelist():errors.append(f'{filename}: invalid HWPX')
+        except Exception as exc:errors.append(f'{filename}: {exc}')
     print(f'Checked {len(pages)} pages, {checked} local references, shared menus, anchors, headings and JSON-LD.')
     if errors:
         print('\n'.join(errors));return 1

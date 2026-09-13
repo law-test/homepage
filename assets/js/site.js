@@ -39,6 +39,29 @@
       function label() { const text = detail.querySelector('.toggle-text'); if (text) text.textContent = detail.open ? (detail.dataset.closeLabel || '정답 및 해설 닫기') : (detail.dataset.openLabel || '정답 및 해설 보기'); }
       detail.addEventListener('toggle', label); label();
     });
+    const announcement = document.getElementById('contest-announcement');
+    if (announcement && typeof announcement.showModal === 'function') {
+      const day = () => new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+      const storageKey = 'contest-2026-hwpx';
+      const hiddenToday = () => { try { return localStorage.getItem(storageKey) === day(); } catch (_) { return false; } };
+      const seen = () => { try { return sessionStorage.getItem(storageKey) === 'seen'; } catch (_) { return false; } };
+      const show = () => { if (!announcement.open) announcement.showModal(); };
+      announcement.addEventListener('close', () => {
+        try {
+          sessionStorage.setItem(storageKey, 'seen');
+          if (announcement.querySelector('#contest-hide-today').checked) localStorage.setItem(storageKey, day());
+        } catch (_) { /* The dialog remains usable if browser storage is disabled. */ }
+      });
+      announcement.querySelectorAll('[data-close-contest]').forEach(button => button.addEventListener('click', () => announcement.close()));
+      announcement.querySelectorAll('a').forEach(link => link.addEventListener('click', () => announcement.close()));
+      announcement.addEventListener('click', event => {
+        if (event.target !== announcement) return;
+        const box = announcement.getBoundingClientRect();
+        if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) announcement.close();
+      });
+      document.querySelectorAll('[data-open-contest]').forEach(button => button.addEventListener('click', show));
+      if (!location.hash && Date.now() < Date.parse('2026-09-27T00:00:00+09:00') && !hiddenToday() && !seen()) show();
+    }
     const cards = Array.from(document.querySelectorAll('[data-lightbox]')).filter(card => card.querySelector('img'));
     if (!cards.length) return;
     let lb = document.getElementById('lightbox');
