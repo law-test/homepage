@@ -13,11 +13,11 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 SITE = json.loads((ROOT / 'data/site.json').read_text(encoding='utf-8'))
 PAGES = {
-    'index': ('법학경시대회 공식 홈페이지', '제8회 시상식 종료 및 수상 결과, 대회 안내와 순환형 법학 학습 체계를 소개합니다.'),
+    'index': ('법학경시대회 공식 홈페이지', '제9회 법학경시대회 2026.09.21.–11.30. 접수·응시, 제2회 전국 자기주도 학습법 공모전 09.14.–09.26. 접수. 포스터와 참가 안내를 확인하세요.'),
     'about': ('대회 안내', '법학경시대회의 목적, 출범 배경, 주최와 시상 체계를 안내합니다.'),
     'guide': ('응시 안내', '참가 자격, 응시 절차, 준비물, 허용 자료와 시험 운영 규정을 안내합니다.'),
     'samples': ('예시 문제·자료', '헌법·민법의 출제 유형별 예시 4문항과 해설, 회차별 시행 자료를 확인하세요.'),
-    'notice': ('공지사항', '제8회 시상식과 수상 결과, 제9회 일정 안내, 회차별 공지 기록입니다.'),
+    'notice': ('공지사항', '제9회 법학경시대회 접수·응시 기간 2026.09.21.–11.30., 시험과 시상 안내, 공식 포스터 및 회차별 공지 기록입니다.'),
     'records': ('대회 기록', '제1회부터 제8회까지 시상식과 대상 수상 기록, 참가자 통계, 수상자 활동을 확인하세요.'),
     'universities': ('참가자·성적 통계', '회차별 대상 점수와 참가자의 소속·출신 학교를 소개합니다.'),
     'achievements': ('수상자 활동', '법학경시대회 수상자의 논문, 도서, 학습법 공모전과 연구 활동을 소개합니다.'),
@@ -164,10 +164,10 @@ def contest_entries():
 
 
 def contest_banner(slug):
-    return '<div class="notice-bar"><div class="container notice-bar-inner"><p><span class="notice-bar-tag">제2회 공모전</span>2026년 9월 14일~26일 자정 접수</p><a class="notice-bar-link" href="/contest-notice.html">공고문 보기</a></div></div>' if slug.startswith("contest") else '<div class="notice-bar"><div class="container notice-bar-inner"><p><span class="notice-bar-tag">제8회 시상 완료</span>2026년 9월 12일(토) 오후 2시 · 변호사회관 5층 정의실</p><a class="notice-bar-link" href="/records.html#round-8">제8회 결과 보기</a></div></div>'
+    return '<div class="notice-bar"><div class="container events-notice-bar"><a href="/notice.html#notice-9"><strong>제9회 법학경시대회</strong><span>09.21. – 11.30. 접수·응시</span><span aria-hidden="true">→</span></a><a href="/contest.html"><strong>자기주도 학습법 공모전</strong><span>09.14. – 09.26. 접수</span><span aria-hidden="true">→</span></a></div></div>'
 
 def floating_cta(slug):
-    return '<a class="floating-apply" href="/assets/downloads/2026-contest-application.hwpx" download>참가 양식 HWPX 다운로드 <span aria-hidden="true">↓</span></a>' if slug.startswith("contest") else '<a class="floating-apply" href="/records.html#round-8">제8회 수상 결과 보기 <span aria-hidden="true">→</span></a>'
+    return '<a class="floating-apply" href="/assets/downloads/2026-contest-application.hwpx" download>참가 양식 HWPX 다운로드 <span aria-hidden="true">↓</span></a>' if slug.startswith("contest") else '<a class="floating-apply" href="/guide.html#application">제9회 접수·응시 안내 <span aria-hidden="true">→</span></a>'
 
 def main():
     layout=(ROOT/'templates/layout.html').read_text(encoding='utf-8')
@@ -183,7 +183,9 @@ def main():
         if slug=='faq':
             parser=FAQParser();parser.feed(content)
             structured+='\n<script type="application/ld+json">'+json.dumps({'@context':'https://schema.org','@type':'FAQPage','mainEntity':parser.questions},ensure_ascii=False)+'</script>'
-        values={'title':e(title),'description':e(description),'canonical':e(canonical),'content':content,'updated':e(SITE['updated']),'asset_version':e(SITE.get('asset_version',SITE['updated'])),'navigation':navigation,'structured_data':structured,'notice_banner':contest_banner(slug),'floating_cta':floating_cta(slug),'extra_head':'<meta name="robots" content="noindex, follow">' if slug=='404' else ''}
+        social_image = 'self-study-contest-2026-hwpx.png' if slug.startswith('contest') else 'round9-poster-20260920.jpg'
+        social_alt = '2026 제2회 전국 자기주도 학습법 공모전 포스터' if slug.startswith('contest') else '제9회 법학경시대회 포스터'
+        values={'title':e(title),'description':e(description),'canonical':e(canonical),'content':content,'updated':e(SITE['updated']),'asset_version':e(SITE.get('asset_version',SITE['updated'])),'navigation':navigation,'structured_data':structured,'notice_banner':contest_banner(slug),'floating_cta':floating_cta(slug),'social_image':e(social_image),'social_alt':e(social_alt),'extra_head':'<meta name="robots" content="noindex, follow">' if slug=='404' else ''}
         output=layout
         for key,val in values.items():output=output.replace('{{ '+key+' }}',val)
         if re.search(r'\{\{\s*\w+\s*\}\}',output):raise ValueError(f'Unresolved template marker: {slug}')

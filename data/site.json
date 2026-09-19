@@ -1,8 +1,8 @@
 {
-  "updated": "2026-09-13",
+  "updated": "2026-09-20",
   "organizer": "선율 법학경시대회 위원회",
   "next_round": 9,
-  "next_status": "2026년 9월 14일 시험 일정 발표 예정",
+  "next_status": "2026년 9월 21일~11월 30일 접수·응시",
   "round8": {
     "exam_date": "2026-08-01",
     "ceremony_date": "2026-09-12",
@@ -119,8 +119,6 @@
     }
   ],
   "unconfirmed": {
-    "next_exam_date": null,
-    "next_application_period": null,
     "application_fee": null,
     "refund_policy": null,
     "checkin_time": null,
@@ -133,7 +131,7 @@
     "retention_scores": null,
     "retention_proctoring": null
   },
-  "asset_version": "2026-09-13-6",
+  "asset_version": "2026-09-20-round9-1",
   "contest2": {
     "title": "2026 제2회 전국 자기주도 학습법 공모전",
     "start": "2026-09-14",
@@ -168,5 +166,27 @@
     "application_form": "assets/downloads/2026-contest-application.hwpx",
     "notice": "assets/downloads/2026-contest-notice.pdf"
   },
-  "next_announcement_date": "2026-09-14"
+  "round9": {
+    "title": "제9회 법학경시대회",
+    "start": "2026-09-21",
+    "end": "2026-11-30",
+    "deadline": "2026-12-01T00:00:00+09:00",
+    "poster": "assets/images/round9-poster-20260920.jpg",
+    "application_url": "https://mylawtest.com",
+    "eligibility": "제한 없음",
+    "format": "비대면 온라인 · 오픈북",
+    "questions": 100,
+    "duration_minutes": 120,
+    "reapplication": "응시 후 7일 경과 시 재접수 가능",
+    "chair_awards": {
+      "최우수상": 65,
+      "우수상": 50,
+      "장려상": 40
+    },
+    "grand_prizes": [
+      "변호사공제재단 이사장상",
+      "대한변협 법률구조재단 이사장상"
+    ],
+    "source": "운영자 확정 제9회 포스터 종합 v21 및 2026-09-20 홈페이지 반영 요청"
+  }
 }

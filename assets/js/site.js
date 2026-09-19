@@ -3,6 +3,17 @@
   'use strict';
   function ready(fn) { if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn); else fn(); }
   ready(function () {
+    function updateEventStatuses() {
+      const now = Date.now();
+      document.querySelectorAll('[data-event-start][data-event-end]').forEach(label => {
+        const start = Date.parse(label.dataset.eventStart), end = Date.parse(label.dataset.eventEnd);
+        const state = now < start ? 'upcoming' : now < end ? 'active' : 'closed';
+        label.textContent = state === 'upcoming' ? label.dataset.eventUpcoming : state === 'active' ? label.dataset.eventActive : '접수 종료';
+        label.dataset.eventState = state;
+      });
+    }
+    updateEventStatuses();
+    window.setInterval(updateEventStatuses, 60000);
     const menu = document.querySelector('.menu-toggle'), nav = document.querySelector('nav.primary');
     function closeMenu(focus) { if (!menu || !nav) return; nav.classList.remove('open'); nav.style.maxHeight = ''; document.body.classList.remove('menu-open'); menu.setAttribute('aria-expanded', 'false'); if (focus) menu.focus(); }
     function fitMenu() {
