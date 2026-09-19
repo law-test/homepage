@@ -183,7 +183,7 @@ def main():
         if slug=='faq':
             parser=FAQParser();parser.feed(content)
             structured+='\n<script type="application/ld+json">'+json.dumps({'@context':'https://schema.org','@type':'FAQPage','mainEntity':parser.questions},ensure_ascii=False)+'</script>'
-        social_image = 'self-study-contest-2026-hwpx.png' if slug.startswith('contest') else 'round9-poster-20260920.jpg'
+        social_image = 'self-study-contest-2026-hwpx.png' if slug.startswith('contest') else 'round9-poster-20260920-100min.jpg'
         social_alt = '2026 제2회 전국 자기주도 학습법 공모전 포스터' if slug.startswith('contest') else '제9회 법학경시대회 포스터'
         values={'title':e(title),'description':e(description),'canonical':e(canonical),'content':content,'updated':e(SITE['updated']),'asset_version':e(SITE.get('asset_version',SITE['updated'])),'navigation':navigation,'structured_data':structured,'notice_banner':contest_banner(slug),'floating_cta':floating_cta(slug),'social_image':e(social_image),'social_alt':e(social_alt),'extra_head':'<meta name="robots" content="noindex, follow">' if slug=='404' else ''}
         output=layout

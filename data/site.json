@@ -131,7 +131,7 @@
     "retention_scores": null,
     "retention_proctoring": null
   },
-  "asset_version": "2026-09-20-round9-1",
+  "asset_version": "2026-09-20-round9-100min",
   "contest2": {
     "title": "2026 제2회 전국 자기주도 학습법 공모전",
     "start": "2026-09-14",
@@ -171,12 +171,12 @@
     "start": "2026-09-21",
     "end": "2026-11-30",
     "deadline": "2026-12-01T00:00:00+09:00",
-    "poster": "assets/images/round9-poster-20260920.jpg",
+    "poster": "assets/images/round9-poster-20260920-100min.jpg",
     "application_url": "https://mylawtest.com",
     "eligibility": "제한 없음",
     "format": "비대면 온라인 · 오픈북",
     "questions": 100,
-    "duration_minutes": 120,
+    "duration_minutes": 100,
     "reapplication": "응시 후 7일 경과 시 재접수 가능",
     "chair_awards": {
       "최우수상": 65,
@@ -187,6 +187,6 @@
       "변호사공제재단 이사장상",
       "대한변협 법률구조재단 이사장상"
     ],
-    "source": "운영자 확정 제9회 포스터 종합 v21 및 2026-09-20 홈페이지 반영 요청"
+    "source": "제9회 포스터 및 2026-09-20 운영자 정정: 시험 시간은 기존과 동일한 100분"
   }
 }
