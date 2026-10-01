@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-20",
+  "updated": "2026-10-01",
   "organizer": "선율 법학경시대회 위원회",
   "next_round": 9,
   "next_status": "2026년 9월 21일~11월 30일 접수·응시",
@@ -39,6 +39,18 @@
         "url": "https://gosiweek.com/article/1065596232175960",
         "date": "2026-07-27",
         "scope": "제8회 시행 안내"
+      },
+      {
+        "publisher": "법률저널",
+        "url": "https://www.lec.co.kr/news/articleView.html?idxno=752771",
+        "date": "2026-09-23",
+        "scope": "제8회 시상 결과·제9회 상시 응시"
+      },
+      {
+        "publisher": "피앤피뉴스",
+        "url": "https://gosiweek.com/article/1065603506969071",
+        "date": "2026-09-23",
+        "scope": "제8회 시상 결과"
       }
     ]
   },
@@ -131,7 +143,7 @@
     "retention_scores": null,
     "retention_proctoring": null
   },
-  "asset_version": "2026-09-20-round9-100min",
+  "asset_version": "20261001-scroll-1",
   "contest2": {
     "title": "2026 제2회 전국 자기주도 학습법 공모전",
     "start": "2026-09-14",
@@ -164,7 +176,8 @@
     "slogan": "나의 학습 경험을, 모두의 배움으로.",
     "co_organizer": "한국법학진흥원",
     "application_form": "assets/downloads/2026-contest-application.hwpx",
-    "notice": "assets/downloads/2026-contest-notice.pdf"
+    "notice": "assets/downloads/2026-contest-notice.pdf",
+    "status": "closed"
   },
   "round9": {
     "title": "제9회 법학경시대회",

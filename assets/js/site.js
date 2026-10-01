@@ -14,25 +14,6 @@
     }
     updateEventStatuses();
     window.setInterval(updateEventStatuses, 60000);
-    const menu = document.querySelector('.menu-toggle'), nav = document.querySelector('nav.primary');
-    function closeMenu(focus) { if (!menu || !nav) return; nav.classList.remove('open'); nav.style.maxHeight = ''; document.body.classList.remove('menu-open'); menu.setAttribute('aria-expanded', 'false'); if (focus) menu.focus(); }
-    function fitMenu() {
-      if (!nav || !nav.classList.contains('open')) return;
-      nav.style.maxHeight = Math.max(0, window.innerHeight - nav.getBoundingClientRect().top - 12) + 'px';
-    }
-    if (menu && nav) {
-      menu.addEventListener('click', () => {
-        const open = nav.classList.toggle('open');
-        menu.setAttribute('aria-expanded', String(open));
-        document.body.classList.toggle('menu-open', open);
-        if (open) fitMenu(); else nav.style.maxHeight = '';
-      });
-      nav.addEventListener('click', e => { if (e.target.closest('a')) closeMenu(false); });
-      document.addEventListener('click', e => { if (!e.target.closest('.site-header')) closeMenu(false); });
-      document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu(true); });
-      window.addEventListener('resize', () => { if (window.matchMedia('(min-width: 861px)').matches) closeMenu(false); else fitMenu(); });
-      window.addEventListener('scroll', fitMenu, {passive:true});
-    }
     function openHash() {
       if (!location.hash) return;
       let id; try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }
@@ -45,33 +26,33 @@
     }
     window.addEventListener('hashchange', openHash);
     document.addEventListener('click', e => { const a = e.target.closest('a[href^="#"]'); if (a && a.hash === location.hash) openHash(); });
+    const header = document.querySelector('.site-header');
+    const jumpbar = document.querySelector('.page-jump-bar');
+    function updateHeaderSpace() {
+      document.documentElement.style.setProperty('--header-height', (header ? header.offsetHeight : 0) + 'px');
+      document.documentElement.style.setProperty('--jumpbar-height', (jumpbar && window.innerWidth > 860 ? jumpbar.offsetHeight : 0) + 'px');
+    }
+    if ('ResizeObserver' in window && header) {
+      const observer = new ResizeObserver(updateHeaderSpace);
+      observer.observe(header);
+      if (jumpbar) observer.observe(jumpbar);
+    }
+    window.addEventListener('resize', updateHeaderSpace);
+    updateHeaderSpace();
     openHash();
-    document.querySelectorAll('.answer-block').forEach(detail => {
-      function label() { const text = detail.querySelector('.toggle-text'); if (text) text.textContent = detail.open ? (detail.dataset.closeLabel || '정답 및 해설 닫기') : (detail.dataset.openLabel || '정답 및 해설 보기'); }
-      detail.addEventListener('toggle', label); label();
-    });
-    const announcement = document.getElementById('contest-announcement');
-    if (announcement && typeof announcement.showModal === 'function') {
-      const day = () => new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
-      const storageKey = 'contest-2026-hwpx';
-      const hiddenToday = () => { try { return localStorage.getItem(storageKey) === day(); } catch (_) { return false; } };
-      const seen = () => { try { return sessionStorage.getItem(storageKey) === 'seen'; } catch (_) { return false; } };
-      const show = () => { if (!announcement.open) announcement.showModal(); };
-      announcement.addEventListener('close', () => {
-        try {
-          sessionStorage.setItem(storageKey, 'seen');
-          if (announcement.querySelector('#contest-hide-today').checked) localStorage.setItem(storageKey, day());
-        } catch (_) { /* The dialog remains usable if browser storage is disabled. */ }
-      });
-      announcement.querySelectorAll('[data-close-contest]').forEach(button => button.addEventListener('click', () => announcement.close()));
-      announcement.querySelectorAll('a').forEach(link => link.addEventListener('click', () => announcement.close()));
-      announcement.addEventListener('click', event => {
-        if (event.target !== announcement) return;
-        const box = announcement.getBoundingClientRect();
-        if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) announcement.close();
-      });
-      document.querySelectorAll('[data-open-contest]').forEach(button => button.addEventListener('click', show));
-      if (!location.hash && Date.now() < Date.parse('2026-09-27T00:00:00+09:00') && !hiddenToday() && !seen()) show();
+    if (jumpbar) {
+      const links = Array.from(jumpbar.querySelectorAll('a[href^="#"]'));
+      const sections = links.map(link => document.getElementById(link.hash.slice(1)));
+      let scheduled = false;
+      function markSection() {
+        scheduled = false;
+        const offset = (header ? header.offsetHeight : 0) + (window.innerWidth > 860 ? jumpbar.offsetHeight : 0) + 36;
+        let current = 0;
+        sections.forEach((section, index) => { if (section && section.getBoundingClientRect().top <= offset) current = index; });
+        links.forEach((link, index) => { if (index === current) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current'); });
+      }
+      window.addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(markSection); } }, {passive:true});
+      markSection();
     }
     const cards = Array.from(document.querySelectorAll('[data-lightbox]')).filter(card => card.querySelector('img'));
     if (!cards.length) return;

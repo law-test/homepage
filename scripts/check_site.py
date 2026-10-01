@@ -39,6 +39,8 @@ def main():
         dup=[x for x,c in Counter(page.ids).items() if c>1]
         if dup:errors.append(f'{path.name}: duplicate IDs: {dup}')
         if '{{ ' in html:errors.append(f'{path.name}: unresolved template')
+        if re.search(r'<(?:details|summary)\b',html):errors.append(f'{path.name}: click-hidden reading content remains')
+        if 'contest-announcement' in html:errors.append(f'{path.name}: expired contest popup remains')
         for payload in page.scripts:
             try:json.loads(payload)
             except ValueError:errors.append(f'{path.name}: invalid JSON-LD')
@@ -71,6 +73,22 @@ def main():
     if any(word in public_text for word in ('생년월일','학번','주민등록','성명:')):errors.append('contest entries: identity field detected')
     for slug in ('contest','contest-notice'):
         if '자유 양식' in (ROOT/f'{slug}.html').read_text(encoding='utf-8'):errors.append(f'{slug}: outdated free-form submission rule')
+        if '접수 마감' not in (ROOT/f'{slug}.html').read_text(encoding='utf-8'):errors.append(f'{slug}: closed contest status missing')
+    records=(ROOT/'records.html').read_text(encoding='utf-8')
+    for anchor in ('photos','participants','activities','voices','press','papers','scores','schools','reviews','recent-news'):
+        if anchor not in pages[ROOT/'records.html'].ids:errors.append(f'records: missing continuous section {anchor}')
+    for round_no in range(1,9):
+        if f'round-{round_no}' not in pages[ROOT/'records.html'].ids:errors.append(f'records: missing round {round_no}')
+    for item in json.loads((ROOT/'data/publications.json').read_text(encoding='utf-8')):
+        if item['title'] not in records or item['authors'] not in records:errors.append('records: publication content missing')
+    contest=(ROOT/'contest.html').read_text(encoding='utf-8')
+    for entry in entries:
+        if entry['id'] not in pages[ROOT/'contest.html'].ids:errors.append('contest: award entry requires separate navigation')
+    faq_schema=[json.loads(x) for x in pages[ROOT/'faq.html'].scripts if json.loads(x).get('@type')=='FAQPage']
+    if not faq_schema or len(faq_schema[0]['mainEntity'])!=10:errors.append('faq: expected 10 complete structured answers')
+    guide=(ROOT/'guide.html').read_text(encoding='utf-8')
+    for question in faq_schema[0]['mainEntity'] if faq_schema else []:
+        if question['name'] not in guide:errors.append('guide: FAQ is not included for continuous reading')
     for filename in ('2026-contest-application.hwpx','2026-contest-notice.hwpx'):
         try:
             with ZipFile(ROOT/'assets/downloads'/filename) as doc:
