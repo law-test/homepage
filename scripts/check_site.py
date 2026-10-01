@@ -30,7 +30,7 @@ class Page(HTMLParser):
 
 def main():
     errors=[];pages={p:Page(p.read_text(encoding='utf-8')) for p in ROOT.glob('*.html') if not p.name.startswith('google')}
-    expected=['/about.html','/guide.html','/samples.html','/notice.html','/records.html','/contest.html','/contact.html']
+    expected=['/about.html','/guide.html','/records.html#reviews','/samples.html','/notice.html','/records.html','/contest.html','/contact.html']
     checked=0
     for path,page in pages.items():
         html=path.read_text(encoding='utf-8')

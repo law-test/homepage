@@ -14,6 +14,19 @@
     }
     updateEventStatuses();
     window.setInterval(updateEventStatuses, 60000);
+    function markReviewNavigation() {
+      if (!location.pathname.endsWith('/records.html')) return;
+      const reviewsActive = ['#reviews','#voices','#round-8-reviews','#recipient-voices'].includes(location.hash);
+      document.querySelectorAll('a[href="/records.html#reviews"],a[href="/records.html"]').forEach(link => {
+        if (!link.closest('#primary-nav,.footer-col')) return;
+        const active = link.hash === '#reviews' ? reviewsActive : !reviewsActive;
+        link.classList.toggle('active', active);
+        if (active) link.setAttribute('aria-current', reviewsActive ? 'location' : 'page');
+        else link.removeAttribute('aria-current');
+      });
+    }
+    window.addEventListener('hashchange', markReviewNavigation);
+    markReviewNavigation();
     function openHash() {
       if (!location.hash) return;
       let id; try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }

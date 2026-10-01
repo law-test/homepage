@@ -13,14 +13,14 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 SITE = json.loads((ROOT / 'data/site.json').read_text(encoding='utf-8'))
 PAGES = {
-    'index': ('법학경시대회 공식 홈페이지', '제9회 법학경시대회 2026.09.21.–11.30. 접수·응시, 제2회 전국 자기주도 학습법 공모전 09.14.–09.26. 접수. 포스터와 참가 안내를 확인하세요.'),
+    'index': ('법학경시대회 공식 홈페이지', '제9회 법학경시대회 2026.09.21.–11.30. 접수·응시. 참가 후기, 수상 기록과 최신 대회 소식을 확인하세요.'),
     'about': ('대회 안내', '법학경시대회의 목적, 출범 배경, 주최와 시상 체계를 안내합니다.'),
     'guide': ('응시 안내', '참가 자격, 응시 절차, 준비물, 허용 자료와 시험 운영 규정을 안내합니다.'),
     'samples': ('예시 문제·자료', '헌법·민법의 출제 유형별 예시 4문항과 해설, 회차별 시행 자료를 확인하세요.'),
     'notice': ('공지사항', '제9회 법학경시대회 접수·응시 기간 2026.09.21.–11.30., 시험과 시상 안내, 공식 포스터 및 회차별 공지 기록입니다.'),
-    'records': ('대회 기록', '제1회부터 제8회까지 시상식과 대상 수상 기록, 참가자 통계, 수상자 활동을 확인하세요.'),
+    'records': ('대회 기록', '제1회부터 제8회까지 시상식과 대상 수상 기록, 참가자 통계, 수상자 공동체 활동을 확인하세요.'),
     'universities': ('참가자·성적 통계', '회차별 대상 점수와 참가자의 소속·출신 학교를 소개합니다.'),
-    'achievements': ('수상자 활동', '법학경시대회 수상자의 논문, 도서, 학습법 공모전과 연구 활동을 소개합니다.'),
+    'achievements': ('수상자 공동체 활동', '법학경시대회 수상자의 논문, 도서, 학습법 공모전과 연구 활동을 소개합니다.'),
     'voices': ('축하 메시지·참가 후기', '법조계·학계의 축하 메시지와 참가자의 대회 경험을 소개합니다.'),
     'media': ('언론보도', '법학경시대회에 관한 신문기사와 대학 공식 보도, 회차별 개최·시상 기록입니다.'),
     'faq': ('자주 묻는 질문', '제9회 일정, 참가 자격, 시험 방식, 오픈북 규정과 수상 후 활동에 관한 질문입니다.'),
@@ -32,7 +32,7 @@ PAGES = {
     'terms': ('이용약관', '법학경시대회 홈페이지와 참가 접수, 응시 및 게시 자료 이용에 관한 약관입니다.'),
     '404': ('페이지를 찾을 수 없습니다', '요청한 페이지를 찾을 수 없습니다. 홈페이지나 공지사항으로 이동하세요.')
 }
-NAV = [('about','대회 안내'),('guide','응시 안내'),('samples','예시 문제·자료'),('notice','공지사항'),('records','대회 기록'),('contest','학습법 공모전'),('contact','문의')]
+NAV = [('about','대회 안내'),('guide','응시 안내'),('reviews','참가 후기'),('samples','예시 문제·자료'),('notice','공지사항'),('records','대회 기록'),('contest','학습법 공모전'),('contact','문의')]
 RECORD_PAGES = {'records','universities','achievements','voices','media'}
 
 def e(value):
@@ -126,7 +126,7 @@ def publications():
     def cards(category):
         return ''.join(f'<article class="record-block"><span class="status-chip">{e(x["status"])}</span><h3>{e(x["title"])}</h3><p>{e(x["subtitle"])}</p><p><strong>{e(x["authors"])}</strong><br>{e(x["journal"])} {e(x["issue"])} · {e(x["date"])} · {e(x["pages"])}쪽</p><div class="record-links"><a href="{e(x["url"])}" target="_blank" rel="noopener noreferrer">KCI 논문 보기 (새 창)</a><a href="https://doi.org/{e(x["doi"])}" target="_blank" rel="noopener noreferrer">DOI 원문 연결 (새 창)</a></div></article>' for x in items if x['category']==category)
     count=sum(x['category'] in ('recipient','student_collaboration') for x in items)
-    return f'<section class="content-section" id="papers"><div class="container"><h2>학생 공동연구·수상자 학술 논문 · {count}편</h2>'+cards('student_collaboration')+cards('recipient')+'</div></section>'
+    return f'<section class="content-section" id="papers"><div class="container"><div class="section-numbered"><div class="section-num-box">03</div><div class="section-title-block"><span class="label">ACADEMIC PAPERS</span><h2>학술 논문 · {count}편</h2></div></div>'+cards('student_collaboration')+cards('recipient')+'</div></section>'
 
 
 def latest_publications():
@@ -145,6 +145,12 @@ def latest_press():
     return '<div class="quick-grid">'+''.join(cards)+'</div>'
 
 
+def review_preview():
+    content=(ROOT/'content/voices.html').read_text(encoding='utf-8')
+    cards=re.findall(r'<figure class="review-card">.*?</figure>',content,re.S)
+    return '<div class="review-grid">'+''.join(cards[:3])+'</div>'
+
+
 def page_body(slug):
     """Reuse the maintained page content without its standalone page heading."""
     content=(ROOT/f'content/{slug}.html').read_text(encoding='utf-8')
@@ -153,8 +159,8 @@ def page_body(slug):
 
 def record_sections():
     groups=[('universities','participants','02','참가자·성적 통계'),
-            ('achievements','activities','03','수상자 활동·학생 공동연구'),
-            ('voices','voices','04','축하 메시지·참가 후기'),
+            ('achievements','activities','03','수상자 공동체 활동'),
+            ('voices','voices','04','참가 후기·축하 메시지'),
             ('media','press','05','언론보도')]
     parts=[]
     for slug,anchor,number,title in groups:
@@ -235,7 +241,7 @@ def main():
             faq=page_body('faq')
             faq=re.sub(r'id="([^"]+)"',r'id="faq-\1"',faq)
             content+='<section id="faq" class="guide-faq"><header class="record-section-heading"><div class="container"><h2>자주 묻는 질문</h2><p>접수부터 응시·시상까지, 질문과 답변을 한눈에 확인하세요.</p></div></header>'+faq+'</section>'
-        replacements={'round8_winners':winners(),'round8_photo':photo(),'score_table':rows(),'archive_records':archives(),'archive_notices':notice_archives(),'publications':publications(),'latest_publications':latest_publications(),'latest_press':latest_press(),'updated':e(SITE['updated']),'contest_notice':contest_notice(),'contest_entries':contest_entries()}
+        replacements={'round8_winners':winners(),'round8_photo':photo(),'score_table':rows(),'archive_records':archives(),'archive_notices':notice_archives(),'publications':publications(),'latest_publications':latest_publications(),'latest_press':latest_press(),'review_preview':review_preview(),'updated':e(SITE['updated']),'contest_notice':contest_notice(),'contest_entries':contest_entries()}
         for key,val in replacements.items():content=content.replace('{{ '+key+' }}',val)
         if slug=='records':
             for source,anchor in [('records','photos'),('universities','participants'),('achievements','activities'),('voices','voices'),('media','press')]:
@@ -244,8 +250,8 @@ def main():
                     content=re.sub(r'href="/media.html#round-(\d+)"',r'href="#press-round-\1"',content)
                 content=content.replace(f'href="/{source}.html#','href="#')
         canonical='https://lawtest.or.kr/'+('' if slug=='index' else slug+'.html')
-        active='records' if slug in RECORD_PAGES else ('guide' if slug=='faq' else ('contest' if slug.startswith('contest') else slug))
-        navigation=''.join(f'<li><a href="/{key}.html"'+(' class="active" aria-current="'+('page' if slug==key else 'location')+'"' if key==active else '')+f'>{label}</a></li>' for key,label in NAV)
+        active='reviews' if slug=='voices' else ('records' if slug in RECORD_PAGES else ('guide' if slug=='faq' else ('contest' if slug.startswith('contest') else slug)))
+        navigation=''.join('<li><a href="'+('/records.html#reviews' if key=='reviews' else f'/{key}.html')+'"'+(' class="active" aria-current="'+('page' if slug==key else 'location')+'"' if key==active else '')+f'>{label}</a></li>' for key,label in NAV)
         schema={'@context':'https://schema.org','@type':'WebPage','name':title,'url':canonical,'description':description,'dateModified':SITE['updated'],'publisher':{'@type':'Organization','name':SITE['organizer'],'url':'https://lawtest.or.kr/'}}
         structured='<script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False)+'</script>'
         if slug=='faq':
