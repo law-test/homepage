@@ -126,7 +126,7 @@ def publications():
     def cards(category):
         return ''.join(f'<article class="record-block"><span class="status-chip">{e(x["status"])}</span><h3>{e(x["title"])}</h3><p>{e(x["subtitle"])}</p><p><strong>{e(x["authors"])}</strong><br>{e(x["journal"])} {e(x["issue"])} · {e(x["date"])} · {e(x["pages"])}쪽</p><div class="record-links"><a href="{e(x["url"])}" target="_blank" rel="noopener noreferrer">KCI 논문 보기 (새 창)</a><a href="https://doi.org/{e(x["doi"])}" target="_blank" rel="noopener noreferrer">DOI 원문 연결 (새 창)</a></div></article>' for x in items if x['category']==category)
     count=sum(x['category'] in ('recipient','student_collaboration') for x in items)
-    return f'<section class="content-section" id="papers"><div class="container"><h2>학생 공동연구·수상자 학술 논문 · {count}편</h2><p class="section-intro">김민규 변호사와 학생들의 공동연구 및 수상자의 학술 활동을 소개합니다. 저자와 학술지 정보는 각 논문의 KCI 기록에서 확인할 수 있습니다.</p>'+cards('student_collaboration')+cards('recipient')+'</div></section>'
+    return f'<section class="content-section" id="papers"><div class="container"><h2>학생 공동연구·수상자 학술 논문 · {count}편</h2>'+cards('student_collaboration')+cards('recipient')+'</div></section>'
 
 
 def latest_publications():
