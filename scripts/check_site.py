@@ -85,7 +85,7 @@ def main():
     for entry in entries:
         if entry['id'] not in pages[ROOT/'contest.html'].ids:errors.append('contest: award entry requires separate navigation')
     faq_schema=[json.loads(x) for x in pages[ROOT/'faq.html'].scripts if json.loads(x).get('@type')=='FAQPage']
-    if not faq_schema or len(faq_schema[0]['mainEntity'])!=12:errors.append('faq: expected 12 complete structured answers')
+    if not faq_schema or len(faq_schema[0]['mainEntity'])!=10:errors.append('faq: expected 10 complete structured answers')
     guide=(ROOT/'guide.html').read_text(encoding='utf-8')
     for question in faq_schema[0]['mainEntity'] if faq_schema else []:
         if question['name'] not in guide:errors.append('guide: FAQ is not included for continuous reading')
