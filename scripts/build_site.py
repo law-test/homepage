@@ -13,9 +13,9 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 SITE = json.loads((ROOT / 'data/site.json').read_text(encoding='utf-8'))
 PAGES = {
-    'index': ('법학경시대회 공식 홈페이지', '법학이 처음이어도 책을 펴고 도전하세요. 제9회 온라인 오픈북 100분, 40점부터 장려상. 예시 문제와 결제·참가 신청 절차를 확인하세요.'),
+    'index': ('법학경시대회 공식 홈페이지', '제9회 법학경시대회 공식 안내. 접수·응시 2026.09.21.–11.30., 헌법·민법·형법 100문항·100분, 비대면 온라인·오픈북. 대회 요강, 접수 절차와 예시 자료를 확인하세요.'),
     'about': ('대회 안내', '법학경시대회의 목적, 출범 배경, 주최와 시상 체계를 안내합니다.'),
-    'guide': ('응시 안내', '제9회 법학경시대회 예시 문제, 1~3일 준비 제안과 접수 방법. 응시료 결제 후 참가 신청서를 작성하면 3일 내 이메일로 응시 안내를 받습니다.'),
+    'guide': ('응시 안내', '제9회 법학경시대회 접수·응시 일정, 응시료, 참가 신청 절차와 준비 사항을 안내합니다. 결제 후 참가 신청서를 작성하면 3일 내 이메일로 응시 페이지를 안내합니다.'),
     'samples': ('예시 문제·자료', '헌법·민법의 출제 유형별 예시 4문항과 해설, 회차별 시행 자료를 확인하세요.'),
     'notice': ('공지사항', '제9회 법학경시대회 접수·응시 기간 2026.09.21.–11.30., 시험과 시상 안내, 공식 포스터 및 회차별 공지 기록입니다.'),
     'records': ('대회 기록', '제1회부터 제8회까지 시상식과 대상 수상 기록, 참가자 통계, 수상자 공동체 활동을 확인하세요.'),
@@ -96,7 +96,7 @@ def archives():
             ceremony = items[0]['ceremony']
             image_path = f'photos/r{round_no}_group.jpg'
             source = items[0]['source']
-            details = ''
+            details = '<p class="record-event-details">제7회에서는 고교 3학년 재학생이 59점으로 우수상을 받았으며, 우수상 수상자 중 가장 높은 성적을 기록했습니다. <a class="text-link" href="https://www.gosiweek.com/article/1065575004750140" target="_blank" rel="noopener noreferrer">관련 보도 (새 창)</a></p>' if round_no == 7 else ''
             links = f'<a href="{e(source)}" target="_blank" rel="noopener noreferrer">시상식 보도 (새 창)</a><a href="/notice.html#notice-{round_no}">해당 회차 공지</a>'
         people = []
         for item in items:
