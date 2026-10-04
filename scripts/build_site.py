@@ -32,7 +32,7 @@ PAGES = {
     'terms': ('이용약관', '법학경시대회 홈페이지와 참가 접수, 응시 및 게시 자료 이용에 관한 약관입니다.'),
     '404': ('페이지를 찾을 수 없습니다', '요청한 페이지를 찾을 수 없습니다. 홈페이지나 공지사항으로 이동하세요.')
 }
-NAV = [('about','대회 안내'),('guide','응시 안내'),('reviews','참가 후기'),('samples','예시 문제·자료'),('notice','공지사항'),('records','대회 기록'),('contest','학습법 공모전'),('contact','문의')]
+NAV = [('about','대회 안내'),('apply','참가 신청'),('reviews','참가 후기'),('samples','예시 문제·자료'),('notice','공지사항'),('records','대회 기록'),('contest','학습법 공모전'),('contact','문의')]
 RECORD_PAGES = {'records','universities','achievements','voices','media'}
 
 def e(value):
@@ -227,10 +227,10 @@ def contest_entries():
 
 
 def contest_banner(slug):
-    return '<div class="notice-bar"><div class="container events-notice-bar current-event-only"><a href="/guide.html#application"><strong>제9회 법학경시대회</strong><span>09.21. – 11.30. 접수·응시</span><span aria-hidden="true">→</span></a></div></div>'
+    return f'<div class="notice-bar"><div class="container events-notice-bar current-event-only"><a href="{e(SITE["round9"]["payment_url"])}"><strong>제9회 법학경시대회 참가 신청</strong><span>09.21. – 11.30. 접수·응시</span><span aria-hidden="true">→</span></a></div></div>'
 
 def floating_cta(slug):
-    return '<a class="floating-apply" href="/guide.html#application">제9회 접수·응시 안내 <span aria-hidden="true">→</span></a>'
+    return f'<a class="floating-apply" href="{e(SITE["round9"]["payment_url"])}">제9회 참가 신청 <span aria-hidden="true">→</span></a>'
 
 def application_actions():
     info = SITE['round9']
@@ -259,7 +259,8 @@ def main():
                 content=content.replace(f'href="/{source}.html#','href="#')
         canonical='https://lawtest.or.kr/'+('' if slug=='index' else slug+'.html')
         active='reviews' if slug=='voices' else ('records' if slug in RECORD_PAGES else ('guide' if slug=='faq' else ('contest' if slug.startswith('contest') else slug)))
-        navigation=''.join('<li><a href="'+('/records.html#reviews' if key=='reviews' else f'/{key}.html')+'"'+(' class="active" aria-current="'+('page' if slug==key else 'location')+'"' if key==active else '')+f'>{label}</a></li>' for key,label in NAV)
+        nav_urls={'apply':SITE['round9']['payment_url'],'reviews':'/records.html#reviews'}
+        navigation=''.join('<li><a href="'+e(nav_urls.get(key,f'/{key}.html'))+'"'+(' class="active" aria-current="'+('page' if slug==key else 'location')+'"' if key==active else '')+f'>{label}</a></li>' for key,label in NAV)
         schema={'@context':'https://schema.org','@type':'WebPage','name':title,'url':canonical,'description':description,'dateModified':SITE['updated'],'publisher':{'@type':'Organization','name':SITE['organizer'],'url':'https://lawtest.or.kr/'}}
         structured='<script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False)+'</script>'
         if slug=='faq':
