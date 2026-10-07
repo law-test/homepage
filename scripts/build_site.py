@@ -15,7 +15,7 @@ SITE = json.loads((ROOT / 'data/site.json').read_text(encoding='utf-8'))
 PAGES = {
     'index': ('법학경시대회 공식 홈페이지', '제9회 법학경시대회 공식 안내. 접수·응시 2026.09.21.–11.30., 헌법·민법·형법 100문항·100분, 비대면 온라인·오픈북. 대회 요강, 접수 절차와 예시 자료를 확인하세요.'),
     'about': ('대회 안내', '법학경시대회의 목적, 출범 배경, 주최와 시상 체계를 안내합니다.'),
-    'guide': ('응시 안내', '제9회 법학경시대회 접수·응시 일정, 응시료, 참가 신청 절차와 준비 사항을 안내합니다. 결제 후 참가 신청서를 작성하면 3일 내 이메일로 응시 페이지를 안내합니다.'),
+    'guide': ('참가 안내', '제9회 법학경시대회의 참가 경험, 시상과 수상자 활동, 응시 방법과 준비 사항을 살펴보세요. 대회 안내부터 참가 신청까지 순서대로 확인할 수 있습니다.'),
     'samples': ('예시 문제·자료', '헌법·민법의 출제 유형별 예시 4문항과 해설, 회차별 시행 자료를 확인하세요.'),
     'notice': ('공지사항', '제9회 법학경시대회 접수·응시 기간 2026.09.21.–11.30., 시험과 시상 안내, 공식 포스터 및 회차별 공지 기록입니다.'),
     'records': ('대회 기록', '제1회부터 제8회까지 시상식과 대상 수상 기록, 참가자 통계, 수상자 공동체 활동을 확인하세요.'),
@@ -32,7 +32,7 @@ PAGES = {
     'terms': ('이용약관', '법학경시대회 홈페이지와 참가 접수, 응시 및 게시 자료 이용에 관한 약관입니다.'),
     '404': ('페이지를 찾을 수 없습니다', '요청한 페이지를 찾을 수 없습니다. 홈페이지나 공지사항으로 이동하세요.')
 }
-NAV = [('about','대회 안내'),('apply','참가 신청'),('reviews','참가 후기'),('samples','예시 문제·자료'),('notice','공지사항'),('records','대회 기록'),('contest','학습법 공모전'),('contact','문의')]
+NAV = [('about','대회 소개'),('guide','참가 안내'),('reviews','참가 후기'),('samples','예시 문제'),('records','대회 기록'),('notice','공지사항')]
 RECORD_PAGES = {'records','universities','achievements','voices','media'}
 
 def e(value):
@@ -227,15 +227,15 @@ def contest_entries():
 
 
 def contest_banner(slug):
-    return f'<div class="notice-bar"><div class="container events-notice-bar current-event-only"><a href="{e(SITE["round9"]["payment_url"])}"><strong>제9회 법학경시대회 참가 신청</strong><span>09.21. – 11.30. 접수·응시</span><span aria-hidden="true">→</span></a></div></div>'
+    return ''
 
 def floating_cta(slug):
-    return f'<a class="floating-apply" href="{e(SITE["round9"]["payment_url"])}">제9회 참가 신청 <span aria-hidden="true">→</span></a>'
+    return ''
 
 def application_actions():
     info = SITE['round9']
     return f'''<div class="application-actions" aria-label="신청 진행 단계에 맞는 바로가기">
-<div class="application-action"><span class="application-step-label">1 · 아직 결제하지 않았다면</span><a class="btn btn-primary" href="{e(info['payment_url'])}" target="_blank" rel="noopener noreferrer" aria-label="응시료 {info['payment_amount']:,}원 결제, 네이버 스마트스토어 새 창"><span>응시료 {info['payment_amount']:,}원 결제 ↗</span></a><p>네이버 스마트스토어의 제9회 상품으로 이동합니다. 결제 후에는 아래 참가 신청서도 작성해 주세요.</p></div>
+<div class="application-action"><span class="application-step-label">1 · 참가 신청</span><a class="btn btn-primary" href="{e(info['payment_url'])}" target="_blank" rel="noopener noreferrer" aria-label="참가 신청, 네이버 스마트스토어 새 창"><span>스마트스토어에서 참가 신청 ↗</span></a><p>제9회 상품의 안내를 확인하고 결제한 뒤, 참가 신청서를 작성해 주세요.</p></div>
 <div class="application-action"><span class="application-step-label">2 · 결제를 마쳤다면</span><a class="btn btn-outline" href="{e(info['application_form_url'])}" target="_blank" rel="noopener noreferrer" aria-label="결제 후 신청서 작성, 네이버폼 새 창"><span>결제 후 신청서 작성 ↗</span></a><p>네이버폼에 응시 안내를 받을 이메일을 정확히 적어 주세요. 이미 결제했다면 다시 결제할 필요가 없습니다.</p></div>
 </div><p class="application-note"><strong>결제와 참가 신청서 작성을 모두 마쳐 주세요.</strong> 3일 내 이메일로 응시 페이지를 안내합니다. 네이버 로그인이 필요할 수 있습니다.</p>'''
 
@@ -249,7 +249,7 @@ def main():
             faq=page_body('faq')
             faq=re.sub(r'id="([^"]+)"',r'id="faq-\1"',faq)
             content+='<section id="faq" class="guide-faq"><header class="record-section-heading"><div class="container"><h2>자주 묻는 질문</h2><p>접수부터 응시·시상까지, 질문과 답변을 한눈에 확인하세요.</p></div></header>'+faq+'</section>'
-        replacements={'round8_winners':winners(),'round8_photo':photo(),'score_table':rows(),'archive_records':archives(),'archive_notices':notice_archives(),'publications':publications(),'latest_publications':latest_publications(),'latest_press':latest_press(),'review_preview':review_preview(),'updated':e(SITE['updated']),'contest_notice':contest_notice(),'contest_entries':contest_entries(),'application_actions':application_actions(),'application_payment_url':e(SITE['round9']['payment_url']),'application_form_url':e(SITE['round9']['application_form_url']),'application_price':f"{SITE['round9']['payment_amount']:,}"}
+        replacements={'round8_winners':winners(),'round8_photo':photo(),'score_table':rows(),'archive_records':archives(),'archive_notices':notice_archives(),'publications':publications(),'latest_publications':latest_publications(),'latest_press':latest_press(),'review_preview':review_preview(),'updated':e(SITE['updated']),'contest_notice':contest_notice(),'contest_entries':contest_entries(),'application_actions':application_actions(),'application_payment_url':e(SITE['round9']['payment_url']),'application_form_url':e(SITE['round9']['application_form_url'])}
         for key,val in replacements.items():content=content.replace('{{ '+key+' }}',val)
         if slug=='records':
             for source,anchor in [('records','photos'),('universities','participants'),('achievements','activities'),('voices','voices'),('media','press')]:
