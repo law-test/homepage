@@ -1,0 +1,52 @@
+/* Match the contest site's typography, logo, navy and gold without changing game rules. */
+body.lawtest-study{--sg-bg:#f5f6f8;--sg-surface:#fff;--sg-text:#202a36;--sg-muted:#616a75;--sg-line:#dfe3e8;--sg-accent:#233e66;--sg-accent-dark:#192b46;--sg-soft:#edf1f6;--sg-good:#256b50;--sg-good-bg:#eef5f0;--sg-bad:#a03742;--sg-bad-bg:#fff1f1;--sg-gold:#8c795a;--sg-gold-bg:#f7f5f1;color-scheme:light;background:var(--sg-bg);color:var(--sg-text);font-family:var(--font);font-size:16px;line-height:1.8}
+.lawtest-study .site-header{background:#fff;border-bottom:1px solid var(--sg-line)}
+.lawtest-study .site-header .header-inner{max-width:1200px}
+.lawtest-study .site-header .brand img{width:186px;height:auto}
+.lawtest-study .site-header nav.primary a{border-radius:0;color:#343d49}
+.lawtest-study .site-header nav.primary a.active{color:var(--sg-accent);border-bottom-color:var(--sg-gold)}
+.lawtest-study #game-main{max-width:1200px;padding:42px 24px 64px}
+.lawtest-study .sg-intro{padding:0 0 27px}
+.lawtest-study .sg-intro h1{font-size:clamp(28px,3.5vw,42px);font-weight:750;line-height:1.3;letter-spacing:-.04em;color:#213957}
+.lawtest-study .sg-intro>p{font-size:16px;color:var(--sg-muted);margin-top:12px}
+.lawtest-study .sg-chips{margin-top:22px;gap:9px}
+.lawtest-study .sg-chips span{padding:6px 12px;border:1px solid #ded7c4;border-radius:3px;color:#5a4927;background:var(--sg-gold-bg);font-size:13px;font-weight:600}
+.lawtest-study .sg-progress-panel,.lawtest-study .sg-game-shell,.lawtest-study .sg-certificate{border-radius:3px;box-shadow:none;border:1px solid var(--sg-line);padding:26px 28px;background:#fff}
+.lawtest-study .sg-progress-heading h2{font-size:21px;font-weight:700;letter-spacing:-.025em;color:var(--sg-accent)}
+.lawtest-study .sg-progress-heading p{font-size:14px;color:var(--sg-muted)}
+.lawtest-study .sg-grade-steps{margin:19px 0 2px;gap:10px}
+.lawtest-study .sg-grade-steps li{border-radius:3px;padding:13px 8px;background:#fafbfc;color:var(--sg-muted)}
+.lawtest-study .sg-grade-steps strong{color:var(--sg-accent);font-weight:700}
+.lawtest-study .sg-grade-steps .sg-grade-current{background:var(--sg-gold-bg);border-color:var(--sg-gold)}
+.lawtest-study .sg-grade-steps .sg-grade-earned{background:var(--sg-good-bg);border-color:#b9d0c1}
+.lawtest-study .sg-status{margin:13px 2px;font-size:14px;color:var(--sg-muted)}
+.lawtest-study .sg-status:empty{display:none}
+.lawtest-study .sg-global-controls{margin-bottom:22px}
+.lawtest-study .sg-timer strong{font-size:32px;font-weight:750;color:var(--sg-accent)}
+.lawtest-study .sg-timer.sg-timer-low strong{color:var(--sg-bad)}
+.lawtest-study button{border-radius:3px;min-height:48px;padding:11px 18px;font-size:15px;font-weight:650;line-height:1.5;color:var(--sg-accent);border-color:#bcc7d4;background:#fff;box-shadow:none}
+.lawtest-study button.sg-primary{background:var(--sg-accent);border-color:var(--sg-accent);color:#fff}
+.lawtest-study button.sg-primary:hover:not(:disabled){background:var(--sg-accent-dark);color:#fff}
+.lawtest-study button:hover:not(:disabled){background:var(--sg-soft)}
+.lawtest-study .sg-modes{padding-bottom:22px;margin-bottom:23px;gap:10px;border-bottom:1px solid var(--sg-line)}
+.lawtest-study .sg-modes button{font-size:14px;border-color:#ccd5e0;background:#fff;color:var(--sg-accent);min-height:48px}
+.lawtest-study .sg-modes button[aria-pressed=true]{background:var(--sg-accent);color:#fff;border-color:var(--sg-accent);box-shadow:inset 0 -3px 0 var(--sg-gold)}
+.lawtest-study .sg-mode-heading{align-items:center;margin-bottom:16px}
+.lawtest-study .sg-mode-heading h2{color:var(--sg-accent);font-size:24px;letter-spacing:-.03em}
+.lawtest-study input,.lawtest-study select{border-radius:3px;border-color:#c5ced9;background:#fff;color:var(--sg-text);padding:10px 12px;font-family:inherit;font-size:16px;min-height:46px}
+.lawtest-study .sg-question{background:#fafbfc;border-color:var(--sg-line);border-radius:3px;padding:18px 20px;margin-top:20px}
+.lawtest-study .sg-question legend{color:var(--sg-accent);font-size:14px;font-weight:700}
+.lawtest-study .sg-prompt{line-height:1.85}
+.lawtest-study .sg-openbook{padding-top:12px}
+.lawtest-study .sg-openbook summary{color:var(--sg-accent);font-weight:600}
+.lawtest-study .sg-certificate-choice{background:var(--sg-gold-bg);border:1px solid #e5d6aa;border-radius:3px}
+.lawtest-study .sg-result,.lawtest-study .sg-certificate{scroll-margin-top:140px}
+.lawtest-study .lawtest-game-footer{margin-top:0;padding:34px 0;color:#fff}
+.lawtest-study .lawtest-game-footer .container{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.lawtest-study .lawtest-game-footer img{width:160px;height:auto}
+.lawtest-study .lawtest-game-footer nav{display:flex;gap:19px;flex-wrap:wrap;font-size:13px}
+.lawtest-study .lawtest-game-footer nav a{color:rgba(255,255,255,.82)}
+.lawtest-study .lawtest-game-footer p{width:100%;font-size:11px;color:rgba(255,255,255,.65);margin:0}
+@media(max-width:1100px){.lawtest-study .site-header .brand img{width:168px}}
+@media(max-width:860px){.lawtest-study .site-header .brand img{width:156px}.lawtest-study #game-main{padding-top:32px}.lawtest-study .sg-modes button{flex:1 1 220px}}
+@media(max-width:640px){.lawtest-study .site-header .brand img{width:147px}.lawtest-study #game-main{padding:29px 18px 40px}.lawtest-study .sg-intro h1{font-size:28px}.lawtest-study .sg-intro>p{font-size:15px}.lawtest-study .sg-progress-panel,.lawtest-study .sg-game-shell,.lawtest-study .sg-certificate{padding:19px 17px}.lawtest-study .sg-progress-heading h2{font-size:19px}.lawtest-study .sg-grade-steps{gap:8px}.lawtest-study .sg-grade-steps li{padding:11px 5px}.lawtest-study .sg-modes button{flex:1 1 100%;min-height:46px}.lawtest-study .sg-mode-heading h2{font-size:22px}.lawtest-study .sg-question{padding:15px 13px}.lawtest-study .sg-certificate-choice{padding:16px}.lawtest-study .lawtest-game-footer .container{gap:18px}.lawtest-study .lawtest-game-footer nav{gap:12px 17px}.lawtest-study .lawtest-game-footer img{width:147px}}
