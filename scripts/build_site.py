@@ -32,7 +32,7 @@ PAGES = {
     'terms': ('이용약관', '법학경시대회 홈페이지와 참가 접수, 응시 및 게시 자료 이용에 관한 약관입니다.'),
     '404': ('페이지를 찾을 수 없습니다', '요청한 페이지를 찾을 수 없습니다. 홈페이지나 공지사항으로 이동하세요.')
 }
-NAV = [('about','대회 소개'),('guide','참가 안내'),('reviews','참가 후기'),('samples','예시 문제'),('records','대회 기록'),('notice','공지사항')]
+NAV = [('about','대회 소개'),('guide','참가 안내'),('reviews','참가 후기'),('samples','예시 문제'),('standard-game','학습게임'),('records','대회 기록'),('notice','공지사항')]
 RECORD_PAGES = {'records','universities','achievements','voices','media'}
 
 def e(value):
@@ -276,6 +276,7 @@ def main():
         output = '\n'.join(line.rstrip() for line in output.splitlines()) + '\n'
         (ROOT/f'{slug}.html').write_text(output,encoding='utf-8',newline='\n')
     urls=''.join(f'<url><loc>https://lawtest.or.kr/{"" if slug=="index" else slug+".html"}</loc><lastmod>{SITE["updated"]}</lastmod></url>\n' for slug in PAGES if slug!='404')
+    urls+=f'<url><loc>https://lawtest.or.kr/standard-game.html</loc><lastmod>{SITE["updated"]}</lastmod></url>\n'
     (ROOT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls+'</urlset>\n',encoding='utf-8')
     print(f'Built {len(PAGES)} static pages from shared layout and verified content.')
 

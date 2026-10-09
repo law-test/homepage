@@ -31,18 +31,20 @@ class Page(HTMLParser):
 def main():
     errors=[];pages={p:Page(p.read_text(encoding='utf-8')) for p in ROOT.glob('*.html') if not p.name.startswith('google')}
     payment_url=json.loads((ROOT/'data/site.json').read_text(encoding='utf-8'))['round9']['payment_url']
-    expected=['/about.html','/guide.html','/records.html#reviews','/samples.html','/records.html','/notice.html']
+    expected=['/about.html','/guide.html','/records.html#reviews','/samples.html','/standard-game.html','/records.html','/notice.html']
     checked=0
     for path,page in pages.items():
         html=path.read_text(encoding='utf-8')
-        if page.nav!=expected:errors.append(f'{path.name}: inconsistent primary navigation')
+        study_game=path.name=='standard-game.html'
+        if not study_game and page.nav!=expected:errors.append(f'{path.name}: inconsistent primary navigation')
+        if study_game and not all(value in html for value in ['sg-mode-exam','sg-mode-statute','도전 판례왕!','도전 조문왕!','assets/standard-game.js','assets/standard-game.css']):errors.append('standard-game: independent study-game entry missing')
         if len(page.headings)!=1:errors.append(f'{path.name}: expected one h1, found {len(page.headings)}')
         dup=[x for x,c in Counter(page.ids).items() if c>1]
         if dup:errors.append(f'{path.name}: duplicate IDs: {dup}')
         if '{{ ' in html:errors.append(f'{path.name}: unresolved template')
         if re.search(r'(?:49[,.]?500|99[,.]?000|49500|99000|application_price)',html):errors.append(f'{path.name}: fee exposed before Smart Store')
         if 'class="floating-apply"' in html:errors.append(f'{path.name}: intrusive payment prompt remains')
-        if re.search(r'<(?:details|summary)\b',html):errors.append(f'{path.name}: click-hidden reading content remains')
+        if not study_game and re.search(r'<(?:details|summary)\b',html):errors.append(f'{path.name}: click-hidden reading content remains')
         if 'contest-announcement' in html:errors.append(f'{path.name}: expired contest popup remains')
         for payload in page.scripts:
             try:json.loads(payload)

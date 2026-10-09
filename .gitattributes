@@ -9,3 +9,11 @@
 *.pdf binary
 *.png binary
 *.jpg binary
+
+# Shared study-game assets are copied byte for byte from the wiki deployment.
+assets/game-core.js -text
+assets/standard-game.js -text
+assets/standard-game.css -text
+assets/standard_cases.json -text
+assets/standard_statutes.json -text
+assets/vendor/game-* -text
