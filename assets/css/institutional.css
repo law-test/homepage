@@ -78,7 +78,8 @@ a.text-link:hover{text-decoration:underline;text-underline-offset:4px}
 .page-sub{font-size:17px;color:#627183;max-width:850px}
 .page-eyebrow{font-size:12px;color:#6e7f94}
 .record-subnav{gap:8px;flex-wrap:wrap}
-.record-subnav a,.record-links a{border-color:#d4dce6;background:#fff;color:#3e536e;border-radius:2px;box-shadow:none}
+.record-subnav a{border-color:#d4dce6;background:#fff;color:#3e536e;border-radius:2px;box-shadow:none}
+.record-links a:not(.btn){color:#3e536e}
 .record-section-heading{background:#edf1f6}
 .record-section-heading h2{font-size:28px}
 .guide-panel,.quick-card,.fact-card,.application-action{box-shadow:none;border-color:#dce2e9;border-radius:3px}
@@ -107,3 +108,38 @@ footer.site-footer{background:#1c2c44;padding-top:40px;color:#d1d6df}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 @media(max-width:640px){.utility-inner{height:auto;min-height:30px;display:flex;flex-direction:row;justify-content:flex-end;padding-top:0;padding-bottom:0}.utility-left{display:none}.utility-right{padding:3px 0}.utility-left::before{display:none}}
+
+/* Preserve readable controls and natural image proportions throughout the records. */
+.record-links .btn{max-width:100%;white-space:normal;text-align:center}
+.wiki-feature{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px}
+.wiki-feature>*,.book-card>*,.patent-grid>*,.contrib-feature>*{min-width:0}
+.wiki-lead{margin-top:0}
+.book-card{grid-template-columns:220px minmax(0,1fr)}
+.book-card .book-cover img{aspect-ratio:auto;object-fit:contain}
+.patent-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.invention-facts{grid-template-columns:100px minmax(0,1fr);overflow-wrap:anywhere}
+.contrib-feature{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.contrib-feature img{height:auto;min-height:0;align-self:center;object-fit:contain}
+.community-activities>.content-section{padding:48px 0}
+.community-activities>.content-section:first-child{border-top:0}
+.community-activities .section-numbered{margin-bottom:28px}
+.community-activities .section-title-block h2{margin-top:4px}
+.community-activities .section-title-block .lede{margin-bottom:0}
+/* The complete document menu stays visible without sideways scrolling. */
+.toc-nav{position:static;overflow:visible}
+.toc-nav-inner{min-width:0;flex-wrap:wrap}
+.toc-nav a{flex:1 1 140px;white-space:normal}
+@media(max-width:900px){.wiki-feature,.contrib-feature{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:860px){.book-card{grid-template-columns:minmax(0,1fr)}.book-card .book-cover{width:100%;max-width:200px;margin-inline:auto}.patent-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:720px){
+  .community-activities>.content-section{padding:32px 0}
+  .community-activities .section-numbered{grid-template-columns:44px minmax(0,1fr);gap:16px;margin-bottom:24px}
+  .community-activities .section-num-box{width:44px;height:44px;font-size:16px}
+  .community-activities .section-title-block h2{font-size:24px;line-height:1.45}
+  .wiki-feature{padding:24px;gap:16px}
+  .book-card .book-cover{width:min(180px,100%)}
+  .contrib-feature-body{padding:24px}
+  .toc-nav a{flex-basis:33.333%;font-size:12px;padding:12px 8px;border-bottom:1px solid var(--line)}
+}
+@media(max-width:640px){nav.primary ul{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:600px){.invention-facts{grid-template-columns:minmax(0,1fr)}}

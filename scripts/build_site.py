@@ -108,7 +108,15 @@ def archives():
             if not (ROOT / image_path).is_file():
                 raise ValueError(f'Missing ceremony photo: {image_path}')
             width, height = photo_sizes[round_no]
-            picture = f'<figure class="record-photo" data-lightbox data-lb-title="제{round_no}회 법학경시대회 시상식" data-article="{e(source)}"><img src="/{e(image_path)}" alt="제{round_no}회 시상식 단체사진" width="{width}" height="{height}" loading="lazy" decoding="async"><figcaption>사진 크게 보기 <span aria-hidden="true">↗</span></figcaption></figure>'
+            display_path = image_path
+            full_size_attribute = ''
+            if round_no in (1, 7):
+                display_path = f'assets/images/round{round_no}-ceremony-1200.jpg'
+                if not (ROOT / display_path).is_file():
+                    raise ValueError(f'Missing ceremony preview: {display_path}')
+                width, height = 1200, 900
+                full_size_attribute = f' data-full-src="/{e(image_path)}"'
+            picture = f'<figure class="record-photo" data-lightbox{full_size_attribute} data-lb-title="제{round_no}회 법학경시대회 시상식" data-article="{e(source)}"><img src="/{e(display_path)}" alt="제{round_no}회 시상식 단체사진" width="{width}" height="{height}" loading="lazy" decoding="async"><figcaption>사진 크게 보기 <span aria-hidden="true">↗</span></figcaption></figure>'
         layout = 'record-layout' + ('' if picture else ' record-layout-text')
         parts.append(f'<article class="ceremony-record" id="round-{round_no}"><header class="record-heading"><h3>제{round_no}회 법학경시대회</h3><p>시상식 <time datetime="{e(ceremony)}">{e(ceremony.replace("-", "."))}</time></p></header><div class="{layout}">{picture}<div class="record-details">{details}<ul class="record-winners">'+''.join(people)+f'</ul><div class="record-links">{links}</div></div></div></article>')
     return ''.join(parts)
