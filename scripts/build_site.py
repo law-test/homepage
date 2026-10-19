@@ -124,7 +124,14 @@ def notice_archives():
 def publications():
     items=json.loads((ROOT/'data/publications.json').read_text(encoding='utf-8'))
     def cards(category):
-        return ''.join(f'<article class="record-block"><span class="status-chip">{e(x["status"])}</span><h3>{e(x["title"])}</h3><p>{e(x["subtitle"])}</p><p><strong>{e(x["authors"])}</strong><br>{e(x["journal"])} {e(x["issue"])} · {e(x["date"])} · {e(x["pages"])}쪽</p><div class="record-links"><a href="{e(x["url"])}" target="_blank" rel="noopener noreferrer">KCI 논문 보기 (새 창)</a><a href="https://doi.org/{e(x["doi"])}" target="_blank" rel="noopener noreferrer">DOI 원문 연결 (새 창)</a></div></article>' for x in items if x['category']==category)
+        parts=[]
+        for x in items:
+            if x['category'] != category:
+                continue
+            subtitle=f'<p>{e(x["subtitle"])}</p>' if x.get('subtitle') else ''
+            doi_link=f'<a href="https://doi.org/{e(x["doi"])}" target="_blank" rel="noopener noreferrer">DOI 원문 연결 (새 창)</a>' if x.get('doi') else ''
+            parts.append(f'<article class="record-block"><span class="status-chip">{e(x["status"])}</span><h3>{e(x["title"])}</h3>{subtitle}<p><strong>{e(x["authors"])}</strong><br>{e(x["journal"])} {e(x["issue"])} · {e(x["date"])} · {e(x["pages"])}쪽</p><div class="record-links"><a href="{e(x["url"])}" target="_blank" rel="noopener noreferrer">KCI 논문 보기 (새 창)</a>{doi_link}</div></article>')
+        return ''.join(parts)
     count=sum(x['category'] in ('recipient','student_collaboration') for x in items)
     return f'<section class="content-section" id="papers"><div class="container"><div class="section-numbered"><div class="section-num-box">03</div><div class="section-title-block"><span class="label">ACADEMIC PAPERS</span><h2>학술 논문 · {count}편</h2></div></div>'+cards('student_collaboration')+cards('recipient')+'</div></section>'
 
