@@ -34,9 +34,19 @@ PAGES = {
 }
 NAV = [('about','대회 소개'),('guide','참가 안내'),('reviews','참가 후기'),('samples','예시 문제'),('standard-game','학습게임'),('records','대회 기록'),('notice','공지사항'),('apply','참가 신청')]
 RECORD_PAGES = {'records','universities','achievements','voices','media'}
+OFFICIAL_CHANNELS = (
+    ('유튜브', 'https://www.youtube.com/@lawtest_official'),
+    ('틱톡', 'https://www.tiktok.com/@lawtest_official'),
+    ('네이버 클립', 'https://clip.naver.com/@lawtest_official'),
+    ('블로그', 'https://blog.naver.com/mylawyerz'),
+)
 
 def e(value):
     return escape(str(value), quote=True)
+
+
+def official_channel_links():
+    return ''.join(f'<li><a href="{e(url)}" target="_blank" rel="noopener noreferrer"><span>{e(label)}</span><span class="channel-new-window">새 창 ↗</span></a></li>' for label, url in OFFICIAL_CHANNELS)
 
 def number(value):
     return '<span class="empty-value" aria-label="미공개">—</span>' if value is None else e(value)
@@ -251,8 +261,8 @@ def application_actions():
     info = SITE['round9']
     return f'''<ol class="application-actions" aria-label="참가 신청 필수 두 단계">
 <li class="application-action"><span class="application-step-label">1 · 스마트스토어 결제</span><a class="btn btn-primary" href="{e(info['payment_url'])}" target="_blank" rel="noopener noreferrer">스마트스토어로 이동 <span class="external-label">새 창 ↗</span></a><p>제9회 상품 안내를 확인하고 결제해 주세요. 결제 후 이 페이지의 2단계로 이어갑니다.</p></li>
-<li class="application-action"><span class="application-step-label">2 · 참가 신청서 작성</span><a class="btn btn-outline" href="{e(info['application_form_url'])}" target="_blank" rel="noopener noreferrer">결제 후 신청서 작성 <span class="external-label">새 창 ↗</span></a><p>이미 결제했다면 이 단계부터 진행하세요. 네이버폼에 응시 안내를 받을 이메일을 정확히 입력해 주세요.</p></li>
-</ol><p class="application-note"><strong>두 단계를 모두 마치면 3일 내 이메일로 응시 페이지를 안내합니다.</strong> 네이버 로그인이 필요할 수 있습니다.</p>'''
+<li class="application-action"><span class="application-step-label">2 · 참가 신청서 작성</span><a class="btn btn-outline" href="{e(info['application_form_url'])}" target="_blank" rel="noopener noreferrer">결제 후 신청서 작성 <span class="external-label">새 창 ↗</span></a><p>이번 응시 건의 결제를 이미 마쳤다면 다시 결제하지 않고 이 단계부터 진행하세요. 신청서에는 결제 시 사용한 전화번호와 같은 연락처를 적고, 응시 안내를 받을 이메일을 정확히 입력해 주세요.</p></li>
+</ol><p class="application-note"><strong>두 단계를 모두 마치면 3일 내 이메일로 응시 페이지를 안내합니다.</strong> 재응시는 새로 결제한 뒤 새 신청서를 작성합니다. <a href="/guide.html#reapplication">재응시·일부 환급 안내</a> · 네이버 로그인이 필요할 수 있습니다.</p>'''
 
 
 def main():
@@ -265,6 +275,7 @@ def main():
             faq=re.sub(r'id="([^"]+)"',r'id="faq-\1"',faq)
             content+='<section id="faq" class="guide-faq"><header class="record-section-heading"><div class="container"><h2>자주 묻는 질문</h2><p>접수부터 응시·시상까지, 질문과 답변을 한눈에 확인하세요.</p></div></header>'+faq+'</section>'
         replacements={'round8_winners':winners(),'round8_photo':photo(),'score_table':rows(),'archive_records':archives(),'archive_notices':notice_archives(),'publications':publications(),'latest_publications':latest_publications(),'latest_press':latest_press(),'review_preview':review_preview(),'updated':e(SITE['updated']),'contest_notice':contest_notice(),'contest_entries':contest_entries(),'application_actions':application_actions(),'application_payment_url':e(SITE['round9']['payment_url']),'application_form_url':e(SITE['round9']['application_form_url'])}
+        replacements['official_channel_links'] = official_channel_links()
         for key,val in replacements.items():content=content.replace('{{ '+key+' }}',val)
         if slug=='records':
             for source,anchor in [('records','photos'),('universities','participants'),('achievements','activities'),('voices','voices'),('media','press')]:
@@ -285,6 +296,7 @@ def main():
         social_image = 'self-study-contest-2026-hwpx.png' if slug.startswith('contest') else 'round9-poster-20260920-100min.jpg'
         social_alt = '2026 제2회 전국 자기주도 학습법 공모전 포스터' if slug.startswith('contest') else '제9회 법학경시대회 포스터'
         values={'title':e(title),'description':e(description),'canonical':e(canonical),'content':content,'updated':e(SITE['updated']),'asset_version':e(SITE.get('asset_version',SITE['updated'])),'navigation':navigation,'structured_data':structured,'notice_banner':contest_banner(slug),'floating_cta':floating_cta(slug),'social_image':e(social_image),'social_alt':e(social_alt),'payment_url':e(SITE['round9']['payment_url']),'extra_head':'<meta name="robots" content="noindex, follow">' if slug=='404' else ''}
+        values['official_channel_links'] = official_channel_links()
         output=layout
         for key,val in values.items():output=output.replace('{{ '+key+' }}',val)
         if re.search(r'\{\{\s*\w+\s*\}\}',output):raise ValueError(f'Unresolved template marker: {slug}')

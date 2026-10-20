@@ -164,3 +164,24 @@ ol.application-actions{list-style:none;padding:0;align-items:stretch}
   .application-period{font-size:14px}
   .application-hub>.container>h2{margin-top:8px}
 }
+
+/* Direct official channels, kept separate from the registration steps. */
+.home-channels{border-top:1px solid var(--line);background:#fff}
+.home-channels h2{font-size:25px;margin:0 0 12px;color:#253a55}
+.home-channels p{font-size:16px;line-height:1.8;color:#627183;margin:0 0 24px}
+.official-channel-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.official-channel-list li{min-width:0}
+.official-channel-list a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding:16px 20px;border:1px solid #d4dce6;color:var(--navy);font-size:16px;font-weight:600;background:#fff}
+.official-channel-list a:hover{background:#f4f6f8;border-color:#7186a1}
+.channel-new-window{font-size:11px;font-weight:400;white-space:nowrap}
+.footer-channels{display:flex;flex-wrap:wrap;align-items:center;gap:12px 30px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.footer-channels h4{margin:0;color:#fff;font-size:13px;font-weight:600}
+.footer-channels ul{display:flex;flex-wrap:wrap;gap:8px 28px;list-style:none;padding:0;margin:0}
+.footer-channels a{display:inline-flex;align-items:center;gap:8px;min-height:36px;color:#d1d6df;font-size:13px}
+.footer-channels a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.lawtest-game-footer .footer-channels{width:100%;padding:16px 0}
+.reapplication-guide{margin:24px 0}
+.reapplication-guide ol{padding-left:22px}
+.reapplication-guide li{margin:8px 0;line-height:1.8}
+@media(max-width:720px){.official-channel-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.official-channel-list a{padding:14px 16px;font-size:15px}.home-channels h2{font-size:23px}.home-channels p{font-size:15px}.footer-channels{display:block}.footer-channels h4{margin-bottom:12px}.footer-channels ul{gap:6px 20px}}
+@media(max-width:380px){.official-channel-list a{align-items:flex-start;flex-direction:column;gap:4px}}
