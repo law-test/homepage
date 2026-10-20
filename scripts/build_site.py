@@ -32,7 +32,7 @@ PAGES = {
     'terms': ('이용약관', '법학경시대회 홈페이지와 참가 접수, 응시 및 게시 자료 이용에 관한 약관입니다.'),
     '404': ('페이지를 찾을 수 없습니다', '요청한 페이지를 찾을 수 없습니다. 홈페이지나 공지사항으로 이동하세요.')
 }
-NAV = [('about','대회 소개'),('guide','참가 안내'),('reviews','참가 후기'),('samples','예시 문제'),('standard-game','학습게임'),('records','대회 기록'),('notice','공지사항')]
+NAV = [('about','대회 소개'),('guide','참가 안내'),('reviews','참가 후기'),('samples','예시 문제'),('standard-game','학습게임'),('records','대회 기록'),('notice','공지사항'),('apply','참가 신청')]
 RECORD_PAGES = {'records','universities','achievements','voices','media'}
 
 def e(value):
@@ -249,10 +249,10 @@ def floating_cta(slug):
 
 def application_actions():
     info = SITE['round9']
-    return f'''<div class="application-actions" aria-label="신청 진행 단계에 맞는 바로가기">
-<div class="application-action"><span class="application-step-label">1 · 참가 신청</span><a class="btn btn-primary" href="{e(info['payment_url'])}" target="_blank" rel="noopener noreferrer" aria-label="참가 신청, 네이버 스마트스토어 새 창"><span>스마트스토어에서 참가 신청 ↗</span></a><p>제9회 상품의 안내를 확인하고 결제한 뒤, 참가 신청서를 작성해 주세요.</p></div>
-<div class="application-action"><span class="application-step-label">2 · 결제를 마쳤다면</span><a class="btn btn-outline" href="{e(info['application_form_url'])}" target="_blank" rel="noopener noreferrer" aria-label="결제 후 신청서 작성, 네이버폼 새 창"><span>결제 후 신청서 작성 ↗</span></a><p>네이버폼에 응시 안내를 받을 이메일을 정확히 적어 주세요. 이미 결제했다면 다시 결제할 필요가 없습니다.</p></div>
-</div><p class="application-note"><strong>결제와 참가 신청서 작성을 모두 마쳐 주세요.</strong> 3일 내 이메일로 응시 페이지를 안내합니다. 네이버 로그인이 필요할 수 있습니다.</p>'''
+    return f'''<ol class="application-actions" aria-label="참가 신청 필수 두 단계">
+<li class="application-action"><span class="application-step-label">1 · 스마트스토어 결제</span><a class="btn btn-primary" href="{e(info['payment_url'])}" target="_blank" rel="noopener noreferrer">스마트스토어로 이동 <span class="external-label">새 창 ↗</span></a><p>제9회 상품 안내를 확인하고 결제해 주세요. 결제 후 이 페이지의 2단계로 이어갑니다.</p></li>
+<li class="application-action"><span class="application-step-label">2 · 참가 신청서 작성</span><a class="btn btn-outline" href="{e(info['application_form_url'])}" target="_blank" rel="noopener noreferrer">결제 후 신청서 작성 <span class="external-label">새 창 ↗</span></a><p>이미 결제했다면 이 단계부터 진행하세요. 네이버폼에 응시 안내를 받을 이메일을 정확히 입력해 주세요.</p></li>
+</ol><p class="application-note"><strong>두 단계를 모두 마치면 3일 내 이메일로 응시 페이지를 안내합니다.</strong> 네이버 로그인이 필요할 수 있습니다.</p>'''
 
 
 def main():
@@ -274,8 +274,8 @@ def main():
                 content=content.replace(f'href="/{source}.html#','href="#')
         canonical='https://lawtest.or.kr/'+('' if slug=='index' else slug+'.html')
         active='reviews' if slug=='voices' else ('records' if slug in RECORD_PAGES else ('guide' if slug=='faq' else ('contest' if slug.startswith('contest') else slug)))
-        nav_urls={'apply':SITE['round9']['payment_url'],'reviews':'/records.html#reviews'}
-        navigation=''.join('<li><a href="'+e(nav_urls.get(key,f'/{key}.html'))+'"'+(' class="active" aria-current="'+('page' if slug==key else 'location')+'"' if key==active else '')+f'>{label}</a></li>' for key,label in NAV)
+        nav_urls={'apply':'/guide.html#application','reviews':'/records.html#reviews'}
+        navigation=''.join('<li><a href="'+e(nav_urls.get(key,f'/{key}.html'))+'"'+(' class="nav-apply"' if key=='apply' else (' class="active" aria-current="'+('page' if slug==key else 'location')+'"' if key==active else ''))+f'>{label}</a></li>' for key,label in NAV)
         schema={'@context':'https://schema.org','@type':'WebPage','name':title,'url':canonical,'description':description,'dateModified':SITE['updated'],'publisher':{'@type':'Organization','name':SITE['organizer'],'url':'https://lawtest.or.kr/'}}
         structured='<script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False)+'</script>'
         if slug=='faq':

@@ -31,7 +31,7 @@ class Page(HTMLParser):
 def main():
     errors=[];pages={p:Page(p.read_text(encoding='utf-8')) for p in ROOT.glob('*.html') if not p.name.startswith('google')}
     payment_url=json.loads((ROOT/'data/site.json').read_text(encoding='utf-8'))['round9']['payment_url']
-    expected=['/about.html','/guide.html','/records.html#reviews','/samples.html','/standard-game.html','/records.html','/notice.html']
+    expected=['/about.html','/guide.html','/records.html#reviews','/samples.html','/standard-game.html','/records.html','/notice.html','/guide.html#application']
     checked=0
     for path,page in pages.items():
         html=path.read_text(encoding='utf-8')

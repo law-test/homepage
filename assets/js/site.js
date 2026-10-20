@@ -27,6 +27,18 @@
     }
     window.addEventListener('hashchange', markReviewNavigation);
     markReviewNavigation();
+    function markApplicationNavigation() {
+      if (!location.pathname.endsWith('/guide.html')) return;
+      const applicationActive = location.hash === '#application';
+      document.querySelectorAll('#primary-nav a[href="/guide.html"],#primary-nav a[href="/guide.html#application"],.footer-col a[href="/guide.html"],.footer-col a[href="/guide.html#application"]').forEach(link => {
+        const active = link.hash === '#application' ? applicationActive : !applicationActive;
+        link.classList.toggle('active', active);
+        if (active) link.setAttribute('aria-current', applicationActive ? 'location' : 'page');
+        else link.removeAttribute('aria-current');
+      });
+    }
+    window.addEventListener('hashchange', markApplicationNavigation);
+    markApplicationNavigation();
     function openHash() {
       if (!location.hash) return;
       let id; try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }
